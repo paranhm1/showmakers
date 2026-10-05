@@ -1,6 +1,6 @@
 # ShowMakers WordPress CMS migration plan
 
-Status: Phase 3 implemented with official free ACF. Earlier phase sections remain as planning history; the Phase 3 completion section is authoritative. Updated 2026-10-05.
+Status: Phase 4 one-project local CMS pilot completed with official free ACF. Earlier phase sections remain planning history; the latest Phase 4 completion section is authoritative. Updated 2026-10-05.
 
 ## Protected baseline and scope
 
@@ -228,3 +228,39 @@ Validation: PHP syntax checks; free-only JSON types; all four JSON groups loaded
 No new staff role, Contact backend, SEO plugin, Inquiry CPT, business import, production deployment, DNS, Vercel, Supabase or environment variables. Main/static-approved-v1 stay unchanged. Commit and push only `wordpress-cms` using `ShowMakers: add WordPress content model`.
 
 Next recommended Phase 4: migrate verified assets/content as drafts using stable source IDs; first validate Ravo Film and one Client against the approved static presentation; integrate archive/single and existing page components without redesign; preserve placeholder honesty, restricted-media exclusion and current filter/navigation behavior. Resolve richer service media/platform mapping without losing source content. Review frontend equivalence before bulk publishing. Do not begin without approval.
+
+## Phase 4 local pilot completion — 2026-10-05
+
+Scope is limited to one real Ravo Film Project, one distinct Ravo Film Client, and the existing Website & Digital Solutions relationship. This supersedes the earlier recommendation to proceed directly to wider import. No remaining Projects/Clients, development fixture, restricted media, Home or About content was migrated.
+
+### Local records and media
+
+- Project ID **18**, slug `ravo-film`, initially Draft; published only in LocalWP after Admin/data and 1440px/390px draft-preview validation. Public local URL: `http://showmakers-local.local/work/ravo-film/`.
+- Client ID **17**, title Ravo Film, admin-only, published/visible for future reuse. Project's single `client` Post Object references this ID. No logo or website URL is inferred from the separate `clients.json` Ravo record; its empty project association remains untouched. Logo permission stays pending and no empty logo renders publicly.
+- Existing `service` term ID **7**, `website-digital-solutions`; no duplicate term or extra service assignment. All eight terms remain structural vocabulary. Service body/capability/media fields were deliberately not imported in this relationship-first test.
+- Attachment ID **16**: only `assets/images/work/ravo-film.webp` imported, approved, 789×1276, source alt retained. Original upload SHA-256 matches the repository asset. Listing, Hero and core featured image reuse that attachment. Listing fit is contain; no repeated Hero copied into additional image fields. All five optional slots remain empty. No new artwork, download, upscaling or restricted upload.
+- Summary is exactly “ShowMakers created the Ravo Film website.” Year stays empty; Featured false; `sort_order` 4 retained. Source identity/provenance and bounded presentation are import metadata; public `documentation_note` is the existing factual documentation disclaimer, not the private rights note.
+
+### Runtime transition and routes
+
+`archive-project.php`, `template-parts/project-card.php`, `single-project.php` and `inc/projects.php` render eligible CMS Projects exclusively. They never merge Projects JSON into the archive, filters, Next loop or Contact context. Before publication the CMS archive honestly contained zero projects; afterwards it contains one Ravo Film. JSON and generated static HTML remain intact as reference/recovery sources. The existing empty Work Page is retained but the CPT archive owns `/work/`; its content does not drive this archive.
+
+Publication eligibility requires publish + approved and excludes development/placeholder flags. Each selected attachment must separately be approved. An authorized draft preview may render the requested draft's approved images without including it in public queries/counts/context. Pending/restricted project media and pending/restricted attachments are omitted; internal notes/provenance are not output. Raw public uploads are not private storage; no restricted originals were uploaded.
+
+Project routes use native WordPress clean permalinks. Project `query_var` is now false, alongside Service's false query variable: WordPress otherwise interpreted Contact's `?project=ravo-film` as a Project lookup. Rewrites use `post_type=project&name=...`; rules were flushed once after this registration change, never per request. No production redirects or DNS changes. Core may redirect an unknown `/clients/ravo-film/` path to the existing public Project through its normal 404 URL guessing; there is no Client single/archive/template.
+
+The same approved Work filter JS is reused. Counts and populated buttons derive from real CMS service assignments; the eight terms are the valid slug set. Query URL state, refresh and browser back/forward work; unknown filter falls back to All, known empty service shows the existing honest empty state. Project links carry `from`, and the theme's Project JS validates stable slugs before restoring the Back to Work filter. Direct Project visits return to general Work. Next appears only when another eligible CMS Project exists; it is omitted for this one-record pilot, with the inquiry action kept at its original right-side position.
+
+Phase 2 Services/Contact were incomplete shells, so this integration restores their approved existing HTML presentation as guarded reference template parts. Services keeps all eight existing panels, copy, imagery and the original Explorer script; only Related Work visibility/links now derive from CMS relationships. No service content or unrelated media was imported into WordPress. Approved linked theme assets support the unchanged reference panels. Contact preserves the existing form, prototype notice, validation and empty endpoint. Its serialized context includes only eligible CMS slug/title/service/permalink data; the theme-only adapter uses native WordPress source paths rather than .html. No inquiry handler, email request, database inquiry record or fake success was introduced. The static JSON/HTML remain authoritative for unmigrated copy; the reference template parts are frozen presentation snapshots, not a second CMS authoring system.
+
+### Validation and next decision
+
+Admin inspected Client, service selection, contain thumbnail, Hero, empty extra slots, Featured false, approved state and ordering before publication. Draft and published output retain a single H1, meaningful native document title, approved alt, native media size and clean permalink. Detail geometry matches static at both required widths exactly, apart from the logged-in toolbar offset (32px / 46px). Work card dimensions, typography, circle arrow and spacing match; the shorter archive/filter area is expected with one Project rather than the static reference's five real records plus fixture. Desktop 3 columns / tablet 2 / mobile 1 verified; no horizontal overflow or image failures.
+
+Functional flows A–F passed: general Work→Ravo; filtered Work→Ravo; Website service→Related Work→Ravo; Ravo→Contact with visible Ravo reference and Website service; filtered Back to Work restores filter; direct Back to Work goes to general archive. Invalid/empty filter, refresh, back/forward and mobile service/context flows passed. Contact's valid test submission remained unavailable and clearly stated it was not sent. No endpoint was configured. Browser logs had no warnings/errors.
+
+Read-only scripts: `scripts/check_wp_pilot.php` (relationships, counts, unchanged image, free fields, permission fault injection without record changes); `scripts/check_wp_frontend.py` (anonymous routes, assets, safe Contact payload, no duplicate .html Project). Anonymous Home/Work/filtered Work/Ravo/Services/Contact return 200; 44 distinct public image/script/stylesheet assets passed; old Ravo .html path does not duplicate the CMS page. PHP lint, linked assets and unchanged CSS checks pass; original `npm run check` passes with its existing clearly labelled static development fixture. No static rebuild was performed.
+
+Migration helper: `scripts/migrate_wp_ravo.php`, explicitly local-host gated and refusing existing records rather than overwriting staff edits. It imports only this verified draft and one image. It must not be run automatically or used as a bulk importer. Database records/uploads live in LocalWP outside Git; source code, mapping and validation are versioned, not a database/uploads backup. Existing development symlinks still require materialization for future standalone theme packaging.
+
+After user review, recommend **A: migrate the remaining four approved real Projects as drafts**, using the proven renderer and approval checks, then verify each presentation before local publication. Service body/global editing and packaging remain later work. Do not import restricted/placeholder records or infer Client links. Do not start the next phase automatically.

@@ -1,6 +1,6 @@
 # ShowMakers CMS data model
 
-Historical Phase 1 model followed by implementation updates. The Phase 3 free-ACF specification below is authoritative for the current implementation. See [migration plan](WORDPRESS-MIGRATION-PLAN.md) for architecture and decisions; [source map](STATIC-TO-WORDPRESS-MAP.md) for exhaustive JSON mapping.
+Historical Phase 1 model followed by implementation updates. The Phase 3 free-ACF specification and subsequent Phase 4 amendment below define the current implementation. See [migration plan](WORDPRESS-MIGRATION-PLAN.md) for architecture and decisions; [source map](STATIC-TO-WORDPRESS-MAP.md) for exhaustive JSON mapping.
 
 Storage uses WordPress posts, terms, meta and options. IDs are WordPress record/attachment IDs, never staff-entered filesystem paths. “Required” means necessary for publication, not for saving a draft. Public fields render only for eligible records; “private” means explicitly excluded from public HTML/data/REST. Public media approval does not imply private storage security for other uploads.
 
@@ -176,3 +176,9 @@ All four ACF groups have public REST exposure disabled; internal notes are never
 - `service_media` currently holds one image. Existing source media arrays and richer platform descriptions must not be truncated during Phase 4: retain their existing structured source until an approved compatible field extension or Pro upgrade is available.
 - Global copy/contact/footer/hero settings remain in existing structured data/theme code, not duplicated into ACF. A future Pro Options Page can receive these settings through one explicit migration.
 - No SEO plugin or competing SEO fields are added. Future Yoast/Rank Math integration owns title, description, social image, canonical, noindex, sitemap and schema. Map summary/listing image to the chosen plugin; clean project slugs and core featured-image support already exist.
+
+## Phase 4 local pilot amendment
+
+One Ravo Film Project (18), distinct Ravo Film Client (17) and existing website-digital-solutions term (7) are connected; one approved image (16) is reused. The eight term bodies and other records remain unmigrated. Public queries/context use only eligible CMS Projects; an authorized, specifically requested draft preview may show approved draft media before publication. Project `query_var=false` preserves Contact's `?project=` context; native rewrites retain `/work/{slug}/`.
+
+Import-only metadata now present: `source_id` and `_showmakers_provenance` privately identify the source; bounded `presentation` retains original media composition; `documentation_note` is the existing **public** factual disclaimer, separate from private `internal_media_note`. These are seeded metadata, not additional staff-facing ACF design fields. Staff edit title/summary/Client/Services/images/order/approval through existing free fields; future editing of the seeded public disclaimer needs a reviewed simple editorial field, not a layout builder. No Pro field or extra content taxonomy was introduced. See the Phase 4 map/plan for the exact runtime transition and known remaining static sources.

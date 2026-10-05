@@ -1,6 +1,6 @@
 # Static → WordPress migration map
 
-Phase 3 content structure implemented; no business-content import performed. The Phase 3 mapping overrides below supersede earlier Pro-oriented field suggestions. Baseline: `static-approved-v1` / `19e1be22a7952f655003abab5cc1344ac35fbb9b`. Target choices and media eligibility are in [migration plan](WORDPRESS-MIGRATION-PLAN.md); detailed field properties are in [CMS model](CMS-DATA-MODEL.md).
+Phase 4: Ravo Film only imported into local WordPress; all other business content remains reference data. The Phase 3 mapping overrides below supersede earlier Pro-oriented field suggestions. Baseline: `static-approved-v1` / `19e1be22a7952f655003abab5cc1344ac35fbb9b`. Target choices and media eligibility are in [migration plan](WORDPRESS-MIGRATION-PLAN.md); detailed field properties are in [CMS model](CMS-DATA-MODEL.md).
 
 ## Pages, components and source files
 
@@ -184,3 +184,28 @@ This is the active mapping profile; earlier Gallery/Repeater/Options mappings re
 `archive-project.php` currently retains the Phase 2 Work shell, not a CMS grid. `/work/` is now the Project archive route; the existing empty Work Page is retained locally for recovery until Phase 4. `/services/`, `/about/`, `/contact/` remain Page routes; Home keeps its existing static presentation. Rewrite rules flush only at activation/deactivation, not every request. No production redirects have been configured.
 
 Phase 4 output must resolve attachment IDs with WordPress APIs, apply approved-media helpers, preserve native ratios and source alt/captions, escape all public values, use numeric `sort_order` with deterministic ID tie-breaks, and keep query-string service navigation separate from public taxonomy archives. Refer to [current field model](CMS-DATA-MODEL.md#phase-3-implemented-specification--free-acf-authoritative) before importing.
+
+## Phase 4 actual mapping — Ravo Film only
+
+| Source / verified instruction | Local WordPress result |
+|---|---|
+| projects.json `ravo-film` title/slug | Project **18**, Ravo Film; `/work/ravo-film/`; draft validated before local publication |
+| User's explicit Ravo Film Client instruction | New admin-only Client **17**, `source_id=ravo-film`; selected by Project Post Object. Not automatically joined to JSON Client `ravo` |
+| `services[]` website-digital-solutions | Existing `service` term **7**, saved as actual term assignment; no extra services |
+| summary | `short_summary`, exact verified website-creation sentence |
+| year / featured / order | Empty `project_year` / false `featured` / numeric `sort_order=4` |
+| listingThumbnail / heroMedia / repeated media item | One approved attachment **16**, original 789×1276 WebP, reused for listing/Hero/core featured image; contain listing; duplicate Hero omitted from five additional slots |
+| original alt / caption | Existing descriptive alt retained; empty caption remains absent |
+| mediaStatus | Project and attachment separately approved |
+| id / source / presentation / documentationNote | Private `source_id`, `_showmakers_provenance`; bounded `presentation=digital`; public factual `documentation_note` disclaimer. These import metadata values have no new Admin design controls |
+| Client logo / website URL | Empty; no verified association to the separate Ravo marquee asset or documented URL assumed |
+
+CMS now owns local Work archive/card/detail, counts, service→Related Work availability, Next eligibility and Contact's project context list. Public records come only from published approved real Projects. JSON Projects are not fallback cards and are not merged into the collection; this prevents duplicate Ravo Film and leaked placeholders. Before publication the archive is empty; after publication it has one record. Static `work/ravo-film.html` remains outside the LocalWP serving root as a reference, not a second CMS route.
+
+Home uses its untouched approved static template. About stays its existing Phase 2 shell with original static About as reference; it was not migrated. Services uses the approved generated-HTML reference snapshot with original Explorer JS, native WP URLs and CMS-derived Related Work actions. Service body/media term fields stay empty in this pilot; existing source JSON remains the authority for future migration. Contact uses the approved static form snapshot plus a CMS-only public context payload and a theme-only source-path adapter; endpoint stays empty and no submission is sent. No Home Clients/What We Do/Hero CMS conversion occurred. All original JSON and generated static files remain unchanged.
+
+Project→Services resolves term slugs, never display-text joins. Project→Contact uses `project=ravo-film&service=website-digital-solutions`; query variables for the Project CPT and Service taxonomy are disabled to avoid hijacking that Page route. Filtered Work→Project uses `from=website-digital-solutions`; Back returns to the same filter, direct visits return to All. Next omits self when there is no other eligible record. Clean rewrites were refreshed once locally; no production redirect map is applied.
+
+Only the Ravo image was copied into Media Library. Service reference images/icons remain approved theme asset links, not imported attachments or new Project records. The original PNG/WebP/font/JSON sources are preserved; no restricted original, unrelated asset library or placeholder was uploaded. Future staging packaging must materialize the allowlisted symlinks; local database/uploads require their own backup.
+
+Read-only pilot checks and the deliberately one-record local migration helper are in `scripts/`. Import helper refuses existing source/slug matches to protect edits; review existing IDs rather than rerun/overwrite. See the [Phase 4 report](WORDPRESS-MIGRATION-PLAN.md#phase-4-local-pilot-completion--2026-10-05) for QA and next-phase boundaries.

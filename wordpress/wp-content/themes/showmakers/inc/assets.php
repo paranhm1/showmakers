@@ -7,6 +7,8 @@ function showmakers_asset_url( $path ) {
 function showmakers_page_key() {
     if ( is_404() ) return '404';
     if ( is_front_page() ) return 'home';
+    if ( is_singular( 'project' ) ) return 'project';
+    if ( is_post_type_archive( 'project' ) ) return 'work';
     foreach ( array( 'work', 'services', 'about', 'contact' ) as $page ) {
         if ( is_page( $page ) ) return $page;
     }
@@ -25,5 +27,8 @@ add_action( 'wp_enqueue_scripts', function () {
     wp_enqueue_script_module( 'showmakers-global', showmakers_asset_url( 'js/global.js' ), array(), showmakers_asset_version( 'js/global.js' ) );
     if ( is_front_page() ) {
         wp_enqueue_script_module( 'showmakers-home', showmakers_asset_url( 'js/home.js' ), array(), showmakers_asset_version( 'js/home.js' ) );
+    }
+    if ( in_array( $page, array( 'work', 'project', 'services', 'contact' ), true ) ) {
+        wp_enqueue_script_module( 'showmakers-' . $page, showmakers_asset_url( 'js/' . $page . '.js' ), array(), showmakers_asset_version( 'js/' . $page . '.js' ) );
     }
 } );

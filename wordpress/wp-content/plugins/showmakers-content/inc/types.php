@@ -16,6 +16,8 @@ function showmakers_register_content() {
     register_post_type( 'project', array(
         'labels' => array( 'name' => __( 'Projects', 'showmakers-content' ), 'singular_name' => __( 'Project', 'showmakers-content' ), 'add_new_item' => __( 'Add Project', 'showmakers-content' ), 'edit_item' => __( 'Edit Project', 'showmakers-content' ) ),
         'public' => true, 'show_in_rest' => true, 'has_archive' => 'work',
+        // Keep ?project= as inquiry context; clean singles use post_type/name rewrites.
+        'query_var' => false,
         'rewrite' => array( 'slug' => 'work', 'with_front' => false ),
         'supports' => array( 'title', 'thumbnail', 'revisions' ),
         'capability_type' => array( 'project', 'projects' ), 'map_meta_cap' => true,
