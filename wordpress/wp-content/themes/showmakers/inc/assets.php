@@ -21,6 +21,8 @@ function showmakers_asset_version( $path ) {
 add_action( 'wp_enqueue_scripts', function () {
     wp_enqueue_style( 'showmakers-global', showmakers_asset_url( 'css/global.css' ), array(), showmakers_asset_version( 'css/global.css' ) );
     wp_enqueue_style( 'showmakers-components', showmakers_asset_url( 'css/components.css' ), array( 'showmakers-global' ), showmakers_asset_version( 'css/components.css' ) );
+    // Editable shared links must wrap safely without changing the approved normal layout.
+    wp_add_inline_style( 'showmakers-components', '.footer-inner address{min-width:0}.footer-inner address a{overflow-wrap:anywhere}.footer-bottom>span{overflow-wrap:anywhere;min-width:0}' );
     $page = showmakers_page_key();
     $path = 'css/pages/' . $page . '.css';
     wp_enqueue_style( 'showmakers-page', showmakers_asset_url( $path ), array( 'showmakers-components' ), showmakers_asset_version( $path ) );

@@ -383,3 +383,26 @@ QA: actual viewport widths 1440/1024/390 verified for both pages; approved stati
 Regression: checkpoint comparison confirms About Page 9/16 fields/image92, all existing Project/Client/attachment metadata and eight Service term records unchanged (excluding transient edit locks; only two new Services Page fields added). Work All5/Media2/Website2/AI1, Client marquee18/order, Services8, Home taxonomy index intact. Existing pilot, Services, Clients and anonymous frontend tests passed (46 public assets); static `npm run check` and changed PHP syntax passed. Contact context data/empty endpoint preserved. No footer/backend/SEO/roles/manual/staging/production/DNS/Vercel/Supabase/main changes.
 
 Local Page/meta/Reading settings reside in LocalWP DB; no DB/uploads or temporary migration/debug scripts committed. Git scope is theme/content-plugin code, two free ACF JSON groups and these three documents. Keep local content backup separately. Next recommendation: **Contact + global company/footer content**, with scope clarified separately for content versus submission; SEO preparation follows final public content/settings. Do not begin either automatically. No staging environment is created; eventual deployment remains LocalWP QA → checklist → later production → production QA.
+
+
+## Contact backend / shared company and Footer settings — 2026-10-05
+
+This completion supersedes earlier inactive Contact/global-static boundaries. Clean `wordpress-cms` baseline `141ef5a197949c673fd35e7f3ee08ac9cb9ed10a`; main remains `19e1be22a7952f655003abab5cc1344ac35fbb9b`. Existing theme, content plugin, ACF Free and LocalWP confirmed. No redesign or production/staging deployment.
+
+| Existing source | Canonical WordPress runtime |
+|---|---|
+| `site.contact.email` / Contact+Footer | `showmakers_site_settings.contact_email`; also the only mail recipient |
+| `site.contact.phone` / Contact+Footer | `showmakers_site_settings.phone`; tel URI derived |
+| `site.contact.address` / Contact+Footer | `showmakers_site_settings.address` |
+| `site.footer.copyright` | `showmakers_site_settings.footer_copyright` |
+| `site.footer.note` | `showmakers_site_settings.footer_note` |
+| Contact heading two spans | Page10 `contact_heading_line_1`, `contact_heading_line_2` required |
+| Contact introduction two spans | Page10 `contact_intro_line_1`, `contact_intro_line_2` optional |
+| Former null/inactive form endpoint | POST WordPress admin-ajax action `showmakers_contact`, email only |
+| Former unavailable notice | Removed after actual LocalWP Mailpit verification |
+
+Global editing: WP Admin → ShowMakers Settings, `manage_options`, native options/Settings API, not ACF Pro or a fake Page. Contact-specific heading/intro: Pages → Contact → Contact Page Content → Update, four free Text fields. Existing form controls/UI labels stay theme-owned. Service choices remain visible taxonomy terms, Project prefill remains eligible Project data. Privacy Notice still has pending static wording but its email link uses the canonical shared setting. Footer navigation/logo/layout remain theme-controlled. No social settings added because there are no active approved links.
+
+No duplicate static + CMS shared values render. Original `contact.html`, `data/site.json`, CSS and static prototypeJS retained for reference/rollback; WordPress uses its own ContactJS adapter. Email/phone/address verified against 2026Profile37. Exact keys/current values, validation/spam/privacy/transport and admin behavior: [CMS data model](CMS-DATA-MODEL.md#contact-backend--shared-company-and-footer-settings--2026-10-05).
+
+1440/1024/390 field/Footer comparison passed, single H1/no overflow; unavailable notice removal is the intentional spacing change. Long-email wrap and server-error/input preservation/browser-success verified. Existing Home/About/Services/Projects/Clients content unchanged; Work5 (2/2/1), Services8, marquee18/order/context retained. External inbox delivery awaits later Hostinger production QA; pending Privacy Notice remains unresolved. No Inquiry storage, SEO, roles/manual, staging or production. Next recommendation SEO preparation after user review; no automatic start.

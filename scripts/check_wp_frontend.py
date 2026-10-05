@@ -42,7 +42,9 @@ with ThreadPoolExecutor(max_workers=3) as pool:
    assert '/work/ai-assisted-content/' in html
    assert '/services/#website-digital-solutions' in html
   if path.startswith('contact/'):
-   assert d.form['data-endpoint']=='' and d.form.get('onsubmit')=='return false'
+   assert d.form['data-endpoint'].endswith('/wp-admin/admin-ajax.php') and d.form.get('onsubmit')=='return false'
+   assert 'showmakers_contact' in html and 'contact_nonce' in html and 'contact_signature' in html
+   assert 'Online inquiry submission is currently being prepared.' not in html
    assert [p['slug'] for p in d.context]==slugs
    assert d.context[3]['services']==['website-digital-solutions'] and d.context[3]['url'].endswith('/work/ravo-film/')
   print('PASS:',path or '/',status)

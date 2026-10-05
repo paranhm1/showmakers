@@ -4,7 +4,7 @@ add_filter( 'acf/settings/load_json', function ( $paths ) {
     $paths[] = SHOWMAKERS_CONTENT_PATH . 'acf-json';
     return $paths;
 } );
-foreach ( array( 'projects', 'clients', 'services', 'media', 'about', 'home', 'services_page' ) as $group ) {
+foreach ( array( 'projects', 'clients', 'services', 'media', 'about', 'home', 'services_page', 'contact_page' ) as $group ) {
     add_filter( 'acf/settings/save_json/key=group_showmakers_' . $group, function () { return SHOWMAKERS_CONTENT_PATH . 'acf-json'; } );
 }
 // These are plain editorial text fields, not arbitrary executable markup.
@@ -53,7 +53,7 @@ add_filter( 'use_block_editor_for_post', function ( $use, $post ) {
 }, 10, 2 );
 
 // Page-specific copy uses free ACF plain fields; no shared content is duplicated.
-foreach ( array( 'home', 'services_page' ) as $group ) {
+foreach ( array( 'home', 'services_page', 'contact_page' ) as $group ) {
     $definition = json_decode( file_get_contents( SHOWMAKERS_CONTENT_PATH . 'acf-json/group_showmakers_' . $group . '.json' ), true );
     foreach ( $definition['fields'] as $field ) {
         add_filter( 'acf/update_value/key=' . $field['key'], function ( $value ) { return sanitize_textarea_field( (string) $value ); } );
@@ -63,11 +63,11 @@ foreach ( array( 'home', 'services_page' ) as $group ) {
     }
 }
 add_filter( 'use_block_editor_for_post', function ( $use, $post ) {
-    return $post->post_type === 'page' && in_array( (int) $post->ID, array( 95, 8 ), true ) ? false : $use;
+    return $post->post_type === 'page' && in_array( (int) $post->ID, array( 95, 8, 10 ), true ) ? false : $use;
 }, 10, 2 );
 add_action( 'admin_notices', function () {
     $id = absint( $_GET['post'] ?? 0 );
-    $group = $id === 95 ? 'home' : ( $id === 8 ? 'services_page' : '' );
+    $group = $id === 95 ? 'home' : ( $id === 8 ? 'services_page' : ( $id === 10 ? 'contact_page' : '' ) );
     if ( ! $group || ! current_user_can( 'edit_post', $id ) ) return;
     $definition = json_decode( file_get_contents( SHOWMAKERS_CONTENT_PATH . 'acf-json/group_showmakers_' . $group . '.json' ), true );
     $missing = array();

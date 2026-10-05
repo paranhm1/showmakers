@@ -1,10 +1,10 @@
-// No endpoint is configured in this prototype. No requests or success are simulated.
+// WordPress validates and sends email; success requires an accepted backend response.
 const form = document.querySelector('#inquiry-form');
 if (form) {
   const button = form.querySelector('button[type=submit]');
   const status = document.querySelector('#form-status');
   const messages = JSON.parse(form.dataset.states);
-  const controls = [...form.querySelectorAll('input:not([type=hidden]),textarea,select')];
+  const controls = [...form.querySelectorAll('input:not([type=hidden]):not(#website_honeypot),textarea,select')];
   const service = form.querySelector('#service');
   const context = form.querySelector('#inquiry-context');
   const projects = new Map(JSON.parse(context.dataset.projects).map(project => [project.slug, project]));
@@ -81,20 +81,36 @@ if (form) {
     if(invalid.length){setState('validationError');invalid[0].focus();return;}
     const endpoint = form.dataset.endpoint;
     if (!endpoint) { setState('unavailable'); return; }
-    // Future WordPress endpoint: validate on the server, deliver/store the inquiry,
-    // assign createdAt/status there, and return {success:true} only after processing.
     setState('submitting');
     try {
-      const payload = Object.fromEntries(new FormData(form));
       const response = await fetch(endpoint, {
-        method: 'POST', headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(payload)
+        method: 'POST', credentials: 'same-origin', body: new FormData(form)
       });
       const result = await response.json();
-      if (!response.ok || result.success !== true) throw new Error('Inquiry not accepted');
-      setState('success');
+      if (!response.ok || result.success !== true) {
+        setState('error');
+        status.textContent = result.message || messages.error;
+        const fields = result.errors || {};
+        let first;
+        for (const control of controls) {
+          if (!Object.hasOwn(fields, control.name)) continue;
+          const message = form.querySelector('#' + control.id + '-error');
+          message.textContent = fields[control.name];
+          message.hidden = false;
+          control.setAttribute('aria-invalid', 'true');
+          first ||= control;
+        }
+        first?.focus();
+        return;
+      }
       form.reset();
+      if (result.contact_token && result.contact_signature) {
+        form.elements.contact_token.value = result.contact_token;
+        form.elements.contact_signature.value = result.contact_signature;
+      }
       readContext();
+      setState('success');
+      status.textContent = result.message || messages.success;
     } catch { setState('error'); }
   });
 }

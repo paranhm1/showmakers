@@ -1,0 +1,67 @@
+{
+  "key": "group_showmakers_contact_page",
+  "title": "Contact Page Content",
+  "fields": [
+    {
+      "key": "field_showmakers_contact_heading_line_1",
+      "name": "contact_heading_line_1",
+      "label": "Heading Line 1",
+      "type": "text",
+      "required": 1,
+      "instructions": "First line of the Contact heading."
+    },
+    {
+      "key": "field_showmakers_contact_heading_line_2",
+      "name": "contact_heading_line_2",
+      "label": "Heading Line 2",
+      "type": "text",
+      "required": 1,
+      "instructions": "Second line of the Contact heading."
+    },
+    {
+      "key": "field_showmakers_contact_intro_line_1",
+      "name": "contact_intro_line_1",
+      "label": "Introduction Line 1",
+      "type": "text",
+      "required": 0,
+      "instructions": "First short introduction below the heading."
+    },
+    {
+      "key": "field_showmakers_contact_intro_line_2",
+      "name": "contact_intro_line_2",
+      "label": "Introduction Line 2",
+      "type": "text",
+      "required": 0,
+      "instructions": "Second short introduction below the heading."
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "page"
+      },
+      {
+        "param": "page",
+        "operator": "==",
+        "value": "10"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "author"
+  ],
+  "active": true,
+  "show_in_rest": 0,
+  "modified": 1791230000
+}
