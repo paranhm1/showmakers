@@ -398,3 +398,20 @@ Regression: local pre-migration checkpoint compared full Project fields/term ass
 Intentionally retained importer `scripts/migrate_wp_clients.php` is local-host-gated, accepts one approved source entry, refuses existing migrated/staff-edited membership and requires an explicit verified Ravo identity argument before reusing its record. `scripts/check_wp_clients.php` is a read-only reconciliation/safety check. Temporary checkpoints/candidate files stay outside Git. LocalWP database and upload content are not committed; Git checkpoint contains only code/configuration/docs. Preserve a separate local content/uploads backup for handover.
 
 Remaining static: Hero/Home company copy, About shell, Services page introductory/global copy, Contact prototype copy, header/footer/global settings. Original `data/clients.json`, static `index.html` and approved original logo files remain reference/static-baseline material; the WordPress Home does not render a second static logo list. No Contact backend, SEO, roles, staging/production, main, Vercel, DNS or Supabase changes. Stop here. Recommend About content migration next, preserving its approved presentation; do not start automatically.
+
+
+## About Page CMS migration completion — 2026-10-05
+
+Completed on `wordpress-cms` after clean preflight at `f2bce8affac228c1f0d9932981c581e975b27043`. Main remains `19e1be22a7952f655003abab5cc1344ac35fbb9b`.
+
+Existing published About Page **9** (`/about/`) now owns its approved intro, philosophy, people/execution statement, supporting production image and four working steps. The initial Phase 2 placeholder shell was replaced with the full approved static About composition, without redesign. No new CTA or unsupported company facts. Exact source/field/permission inventory and required/optional behavior are recorded in [CMS-DATA-MODEL.md](CMS-DATA-MODEL.md#about-page-cms-migration-completion--2026-10-05).
+
+Free ACF 6.8.10 Local JSON group `group_showmakers_about` contains 16 fields: 14 required plain copy fields, optional image/context alt. Four fixed step pairs use no Pro features. Approved on-set image imported as attachment **92**, unchanged 576 × 1024 WebP; pending/restricted/unavailable media is omitted. About-only native classic fields provide Pages → About → About Page Content → Update workflow, ordered like the public page with clear labels/help. Whitespace required-field save was blocked; original values were restored and saved. Future installation must rebind Page-ID-scoped field/editor location if the canonical About ID changes.
+
+1440/1024/390 comparison: approved typography, color, spacing, media position, wrapping and footer match within 0.1px; no overflow. One H1/six H2s, meaningful alt and 3px keyboard focus retained. Missing-image, pending/restricted-image, fallback-alt and plain-text safety checked. All copy is server-rendered without animation dependency.
+
+Unrelated Projects/Clients/attachments and Services matched the pre-migration checkpoint except transient editor locks. Home Hero/artwork unchanged; What We Do remains taxonomy-driven, marquee Client-driven with approved 18/order; Work 5 (Media 2 / Website 2 / AI 1), Services 8, filtered Back to Work and Ravo/Website Contact prefill verified. Contact endpoint remains empty. Existing PHP, pilot, Services, Clients, anonymous frontend (46 public assets) and static checks passed.
+
+Git scope: theme/plugin code, About ACF Local JSON, existing frontend check and three migration docs. DB/uploads and temporary import/check scripts stay outside Git. Static About reference files retained; local runtime has no static About copy fallback. Local content/uploads need their separate handover backup.
+
+Remaining Home/company copy, Services intro, Contact prototype, header/footer/contact/social globals and Privacy Notice are intentionally deferred. Recommend Home remaining copy/global content as the next separately approved phase before Contact backend. No Options Page/global migration, SEO, roles, staff handover, staging/production, main, DNS, Vercel or Supabase work. Stop after the approved About commit/push.

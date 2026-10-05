@@ -333,3 +333,24 @@ Regression: local pre-migration checkpoint compared full Project fields/term ass
 Intentionally retained importer `scripts/migrate_wp_clients.php` is local-host-gated, accepts one approved source entry, refuses existing migrated/staff-edited membership and requires an explicit verified Ravo identity argument before reusing its record. `scripts/check_wp_clients.php` is a read-only reconciliation/safety check. Temporary checkpoints/candidate files stay outside Git. LocalWP database and upload content are not committed; Git checkpoint contains only code/configuration/docs. Preserve a separate local content/uploads backup for handover.
 
 Remaining static: Hero/Home company copy, About shell, Services page introductory/global copy, Contact prototype copy, header/footer/global settings. Original `data/clients.json`, static `index.html` and approved original logo files remain reference/static-baseline material; the WordPress Home does not render a second static logo list. No Contact backend, SEO, roles, staging/production, main, Vercel, DNS or Supabase changes. Stop here. Recommend About content migration next, preserving its approved presentation; do not start automatically.
+
+
+## About Page CMS migration completion — 2026-10-05
+
+`about.html` → canonical WordPress **Page 9**, `page-about.php` → `template-parts/about-cms.php`, runtime `/about/`. `inc/about.php` reads Page metadata and approved Media Library attachment; no static JSON copy fallback. Original static HTML/JSON/assets remain reference material.
+
+| Approved static source | Page metadata |
+|---|---|
+| `data/site.json`: `about.title`, `about.introduction` | `about_hero_heading`, `about_hero_intro` |
+| `about.philosophyTitle`, `about.philosophyText` | `about_philosophy_heading`, `about_philosophy_body` |
+| `about.approachTitle`, `about.approachText` | `about_approach_heading`, `about_approach_body` |
+| `about.media`, `assets/images/work/on-set.webp` | `about_approach_image` = attachment **92**, `about_approach_image_alt` |
+| `about.steps[0..3].title/text` | `about_step_1_heading/body` through `about_step_4_heading/body` |
+
+Approved static copy is primary; VERIFIED-CONTENT and 2026 Profile pages 6–7/23 corroborate narrative and approved production image. Brand Guidelines remain visual authority. No added claims or About CTA. Image is unchanged 576 × 1024; generic production imagery, no invented project pairing. No restricted photo reuse.
+
+14 copy fields required; image/context alt optional. Free Text/Textarea/Image only, fixed four steps, no Pro. Staff edit Pages → About → About Page Content → Update; theme controls yellow/white/charcoal rhythm, typography, layout, crop, responsive wrapping, numbering and motion. Optional/unsafe images and empty elements are omitted, alt falls back to Media Library, required blank saves blocked and incomplete metadata warned. Detailed field/permission/editor inventory: [CMS-DATA-MODEL.md](CMS-DATA-MODEL.md#about-page-cms-migration-completion--2026-10-05).
+
+1440/1024/390 matches approved static composition without overflow; server-rendered copy, one H1/six H2s, meaningful alt and keyboard focus preserved. Frontend check now includes `/about/` and its Media Library delivery (46 public assets across routes). Home/marquee18, Work5 (2/2/1), Services8 and Ravo/Website Contact context remain unchanged and validated.
+
+Remaining static/global: Home Hero/company copy; Services introduction; Contact prototype; header/footer/contact/social settings and Privacy Notice. No About shell remains. Local Page/media values are DB/uploads only; temporary migration/debug scripts excluded from Git. Recommend separately approved Home/global content next, without beginning it automatically; Contact backend remains inactive.
