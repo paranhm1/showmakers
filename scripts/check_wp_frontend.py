@@ -52,7 +52,11 @@ def asset_status(url):
  with urlopen(url,timeout=20) as r: assert r.status==200,(url,r.status)
 with ThreadPoolExecutor(max_workers=4) as pool: list(pool.map(asset_status,sorted(assets)))
 print('PASS:',len(assets),'unique public image/script/stylesheet assets')
-for path in ['work/'+s+'.html' for s in slugs]+['work/project-06/','work/brand-showcase/']:
+for slug in slugs:
+ with urlopen(urljoin(BASE,'work/'+slug+'.html'),timeout=20) as r:
+  assert r.status==200 and r.geturl()==urljoin(BASE,'work/'+slug+'/'),r.geturl()
+  print('PASS: legacy project redirect',slug)
+for path in ['work/project-06/','work/brand-showcase/']:
  try: fetch(path); raise AssertionError('Unexpected duplicate/public route: '+path)
  except Exception as e:
   assert getattr(e,'code',None)==404,(path,e)

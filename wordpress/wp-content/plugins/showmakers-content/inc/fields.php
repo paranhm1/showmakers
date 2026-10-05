@@ -4,7 +4,7 @@ add_filter( 'acf/settings/load_json', function ( $paths ) {
     $paths[] = SHOWMAKERS_CONTENT_PATH . 'acf-json';
     return $paths;
 } );
-foreach ( array( 'projects', 'clients', 'services', 'media', 'about', 'home', 'services_page', 'contact_page' ) as $group ) {
+foreach ( array( 'projects', 'clients', 'services', 'media', 'about', 'home', 'services_page', 'contact_page', 'seo' ) as $group ) {
     add_filter( 'acf/settings/save_json/key=group_showmakers_' . $group, function () { return SHOWMAKERS_CONTENT_PATH . 'acf-json'; } );
 }
 // These are plain editorial text fields, not arbitrary executable markup.
@@ -74,3 +74,5 @@ add_action( 'admin_notices', function () {
     foreach ( $definition['fields'] as $field ) if ( $field['required'] && trim( (string) get_post_meta( $id, $field['name'], true ) ) === '' ) $missing[] = $field['label'];
     if ( $missing ) echo '<div class="notice notice-warning"><p>Complete the required page headings: ' . esc_html( implode( ', ', $missing ) ) . '.</p></div>';
 } );
+
+foreach ( array( 'seo_title', 'seo_description' ) as $name ) add_filter( 'acf/update_value/name=' . $name, function ( $value ) { return sanitize_textarea_field( (string) $value ); } );

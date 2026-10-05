@@ -1,0 +1,59 @@
+{
+  "key": "group_showmakers_seo",
+  "title": "Search and Sharing",
+  "fields": [
+    {
+      "key": "field_showmakers_seo_title",
+      "name": "seo_title",
+      "label": "SEO Title",
+      "type": "text",
+      "instructions": "Optional. Leave blank to use the page or project title with ShowMakers.",
+      "required": 0
+    },
+    {
+      "key": "field_showmakers_seo_description",
+      "name": "seo_description",
+      "label": "Meta Description",
+      "type": "textarea",
+      "instructions": "Optional. Use only approved public wording. Leave blank to use the existing introduction or project summary.",
+      "required": 0,
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_showmakers_seo_social_image",
+      "name": "seo_social_image",
+      "label": "Social Image",
+      "type": "image",
+      "instructions": "Optional approved image for sharing. Pending/restricted images are never shown. Leave blank for the approved project image or ShowMakers logo.",
+      "required": 0,
+      "return_format": "id",
+      "preview_size": "medium",
+      "mime_types": "jpg,jpeg,png,webp,avif"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "page"
+      }
+    ],
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "project"
+      }
+    ]
+  ],
+  "menu_order": 20,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "show_in_rest": 0,
+  "modified": 1791230000
+}

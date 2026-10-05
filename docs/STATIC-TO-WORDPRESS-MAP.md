@@ -406,3 +406,26 @@ Global editing: WP Admin → ShowMakers Settings, `manage_options`, native optio
 No duplicate static + CMS shared values render. Original `contact.html`, `data/site.json`, CSS and static prototypeJS retained for reference/rollback; WordPress uses its own ContactJS adapter. Email/phone/address verified against 2026Profile37. Exact keys/current values, validation/spam/privacy/transport and admin behavior: [CMS data model](CMS-DATA-MODEL.md#contact-backend--shared-company-and-footer-settings--2026-10-05).
 
 1440/1024/390 field/Footer comparison passed, single H1/no overflow; unavailable notice removal is the intentional spacing change. Long-email wrap and server-error/input preservation/browser-success verified. Existing Home/About/Services/Projects/Clients content unchanged; Work5 (2/2/1), Services8, marquee18/order/context retained. External inbox delivery awaits later Hostinger production QA; pending Privacy Notice remains unresolved. No Inquiry storage, SEO, roles/manual, staging or production. Next recommendation SEO preparation after user review; no automatic start.
+
+## SEO routes and legacy301 map
+
+Runtime canonical architecture: `/`, `/work/`, `/work/{project-slug}/`, `/services/`, `/about/`, `/contact/`. Query parameters remain UX state, never canonical identity. Client and Service archive URLs are not public architecture; no thin archive pages or Service slug changes. Attachment permalink pages redirect to their original media files using native WordPress disabled-attachment-page behavior.
+
+| Known static route | WordPress target |
+| --- | --- |
+| `/index.html` | `/` |
+| `/work.html` | `/work/` |
+| `/services.html` | `/services/` |
+| `/about.html` | `/about/` |
+| `/contact.html` | `/contact/` |
+| `/work/short-form-brand-content.html` | `/work/short-form-brand-content/` |
+| `/work/tid-group.html` | `/work/tid-group/` |
+| `/work/stories-in-the-moment.html` | `/work/stories-in-the-moment/` |
+| `/work/ravo-film.html` | `/work/ravo-film/` |
+| `/work/ai-assisted-content.html` | `/work/ai-assisted-content/` |
+
+Project-owned `showmakers_legacy_routes()` / early `template_redirect` implements exact GET/HEAD301 redirects, not guessed slug matching. Only visible valid service context survives on Work/Contact; `not-sure` survives Contact; eligible Project context survives Contact; visible `from` service survives Project detail. Unknown/tracking/arbitrary parameters are discarded. All ten routes and additional valid/invalid-context cases tested locally without loops. Unknown placeholders/restricted routes remain branded HTTP404/noindex; native WordPress may guess an unknown Client-shaped URL and redirect to a real Project with the same slug, which does not expose a Client single page.
+
+Production host must send missing legacy `.html` requests through the WordPress front controller. If Hostinger serves retained `.html` files or intercepts them before PHP, put these same exact mappings in its supported server301 rules and remove duplicate served files from the deployed WordPress document root. Do not guess additional Project mappings or configure server rules in this phase. At launch retest exact status/location and approved query preservation on the final host.
+
+Metadata/schema/OG URLs derive from WordPress runtime settings, never hardcoded LocalWP URLs. Local noindex/nofollow/Disallow-all and disabled sitemap are intentional. Future public sitemap contains exactly the five main URLs plus the five mapped Project detail URLs; no Client, Service, attachment, author, sample/internal, draft or private entries. One native core sitemap/one schema adapter only; see CMS-DATA-MODEL for editor defaults and approved-media safety. Privacy Notice approval is mandatory before public launch.

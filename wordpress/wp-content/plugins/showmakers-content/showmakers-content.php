@@ -8,6 +8,6 @@
  */
 defined( 'ABSPATH' ) || exit;
 define( 'SHOWMAKERS_CONTENT_PATH', plugin_dir_path( __FILE__ ) );
-foreach ( array( 'types', 'fields', 'media', 'clients', 'settings', 'contact', 'admin' ) as $module ) require_once SHOWMAKERS_CONTENT_PATH . 'inc/' . $module . '.php';
+foreach ( array( 'types', 'fields', 'media', 'clients', 'settings', 'contact', 'seo', 'admin' ) as $module ) require_once SHOWMAKERS_CONTENT_PATH . 'inc/' . $module . '.php';
 register_activation_hook( __FILE__, 'showmakers_content_activate' );
 register_deactivation_hook( __FILE__, function () { flush_rewrite_rules(); } );
