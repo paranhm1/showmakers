@@ -126,3 +126,20 @@ add_action( 'template_redirect', function () {
     wp_safe_redirect( add_query_arg( $query, home_url( $target ) ), 301, 'ShowMakers' );
     exit;
 }, 1 );
+
+// Core's disabled attachment-page redirect does not cover every video query route.
+add_action( 'template_redirect', function () {
+    if ( ! is_attachment() || is_preview() ) return;
+    $id = get_queried_object_id();
+    if ( showmakers_approved_media( $id ) && is_file( (string) get_attached_file( $id ) ) && ( wp_attachment_is_image( $id ) || get_post_mime_type( $id ) === 'video/mp4' ) ) {
+        wp_safe_redirect( wp_get_attachment_url( $id ), 301, 'ShowMakers' );
+        exit;
+    }
+    // Never promote a pending/restricted asset via an attachment-page redirect.
+    global $wp_query;
+    $wp_query->set_404();
+    status_header( 404 );
+    nocache_headers();
+    include get_404_template();
+    exit;
+}, 0 );
