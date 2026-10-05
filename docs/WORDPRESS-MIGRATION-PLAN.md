@@ -1,6 +1,6 @@
 # ShowMakers WordPress CMS migration plan
 
-Status: Phase 6 Services and Home What We Do CMS connection completed with official free ACF. Earlier sections remain history; the latest Phase 6 completion section is authoritative. Updated 2026-10-05.
+Status: dedicated Client / Selected Clients marquee migration completed with official free ACF. Earlier sections remain history; the latest Client migration completion section is authoritative. Updated 2026-10-05.
 
 ## Protected baseline and scope
 
@@ -350,3 +350,51 @@ Future staff workflow: Clients → Add New → name, clean approved logo, Logo A
 Later reconcile the approved 18-logo source against existing Client records, reusing Ravo Film/TID Group only when the identity is documented, with no duplicate records or inferred logo associations. Import/link approved logos, set explicit membership and existing order, then switch the runtime only after equivalent visual/interaction QA. Original source stays until validation. Free ACF is sufficient for these basic future fields; a Pro upgrade may improve gallery/admin UX but must not collapse the separation of permissions or membership.
 
 No Client/Marquee phase starts automatically. About/Home content work may be considered separately after user review while this static marquee remains untouched.
+
+
+## Client / Selected Clients marquee migration completion — 2026-10-05
+
+This explicitly authorized dedicated phase supersedes the earlier current-static boundary. Home Selected Clients now uses the Client CPT only; it remains independent of Projects. No redesign or other Home content migration. Approved static HTML/JSON/logo assets remain reference material and are not combined with CMS records at runtime.
+
+Client total: **19 published**. Existing **Ravo Film ID 17 reused**, after direct user confirmation that the approved Ravo logo is the same company. Its canonical title, slug and Project relationship remain unchanged; logo alt text stays the approved **Ravo**. Existing **TID Group ID 23 retained**, with no logo and no marquee membership. **17 new Clients** represent the other approved static entries. Two Clients have documented Projects (Ravo Film, TID Group); 17 have zero Projects. No new Project relationships inferred.
+
+| Preserved order value | Approved logo label | Client ID | Logo attachment ID | Client action |
+|---:|---|---:|---:|---|
+| 0 | Samsung | 35 | 34 | New |
+| 1 | Ravo | 17 | 37 | Existing Ravo Film reused; identity confirmed by user |
+| 2 | Energizer | 40 | 39 | New |
+| 3 | Dasher | 43 | 42 | New |
+| 4 | Chowdhury | 46 | 45 | New |
+| 5 | Lions International | 49 | 48 | New |
+| 6 | Major Harvest | 52 | 51 | New |
+| 7 | Bika | 55 | 54 | New |
+| 8 | Orvibo | 58 | 57 | New |
+| 9 | Module | 61 | 60 | New |
+| 10 | StaySmart | 64 | 63 | New |
+| 11 | IN Design Lab | 67 | 66 | New |
+| 12 | Inno Kitchen | 70 | 69 | New |
+| 13 | N4 Container | 73 | 72 | New |
+| 14 | The Inn Livehouse | 76 | 75 | New |
+| 15 | Yoru | 79 | 78 | New |
+| 16 | Sedox Performance | 82 | 81 | New |
+| 17 | BamCoal | 85 | 84 | New |
+
+Fields: Client name = core title; existing `client_logo` Image ID, existing `logo_status` Select now labelled **Logo Approval Status**, new `show_in_marquee` True/False default false labelled **Show in Selected Clients**, new `marquee_sort_order` Number labelled **Marquee Sort Order**, existing optional `website_url` retained. Free ACF 6.8.10 only. Existing generic `visible` and `sort_order` definitions/data are retained for compatibility but hidden from Client editing and unused by the marquee. No redundant logo permission field or second Project relationship list.
+
+`showmakers_marquee_clients()` queries published Clients with `show_in_marquee=1`, `logo_status=approved`, and positive `client_logo`; each result must also pass `showmakers_public_client_logo()`. Numeric `marquee_sort_order` ascending, Client ID tie-breaker. There is no Project query, count, service or Featured dependency. Theme `template-parts/clients-marquee.php` preserves original structure/attributes and resolves approved attachment URLs; meaningful attachment alt text falls back to Client name. No automatic external/project links.
+
+Logo safety: actual attachment must be an available supported image with usable image metadata; explicit stored attachment pending/restricted states and known restricted photograph filenames are excluded. A newly uploaded logo with no stored attachment restriction may use its separate Client approval, making the requested staff workflow sufficient. This never writes/approves Project attachment metadata: `showmakers_approved_media()` and Project approval rules remain unchanged. Logo and Project permissions are independent. Imported 18 logos are approved original WebP files with byte-for-byte matching hashes; no source artwork replacement, recoloring, resizing or SVG upload policy change.
+
+Staff: WP Admin → Clients → Add Client → name → approved Client Logo → Logo Approval Status: Approved → enable Show in Selected Clients → Marquee Sort Order → Publish. To remove, disable Show in Selected Clients and Update; logo/Client/Projects remain. Client list columns: Client, Logo Preview, Logo Approval, Selected Clients, Marquee Order, Last Modified. Marquee Order sorting includes relationship-only Clients with missing order metadata. Concise field guidance explains approval, membership, optional URL and lower-number order. Enabled but unavailable/unapproved logos receive an Admin warning/list explanation and no empty public slot.
+
+Before Home switch, candidate HTML was compared to the approved original marquee: identical structure, labels, image attributes/order and artwork basenames, with only delivery URLs changed to Media Library. All 18 source mappings and file hashes validated first. Home runtime replacement was confined to its existing Client section. Hero/artwork, What We Do, fonts, colors, spacing, CSS and JavaScript were unchanged. Original 115-second loop, containment through existing intrinsic aspect-ratio/max-width/max-height rules, generous spacing, edge fades, hover/focus pause and mobile sizes retained. Decorative copy remains aria-hidden and inert with empty alt text; no-JavaScript static fallback retains all logos.
+
+QA: 1440/1024/390 exact logo order, original section dimensions and logo bounds matched the captured pre-migration baseline within 0.01px floating-point tolerance; no page overflow or broken artwork. Lazy images outside the animated viewport load when needed; all 18 were confirmed loaded in static review mode. `?motion=reduce` static layouts tested at all three widths: no animation, no duplicate list, hidden pause button, all 18 usable. Existing native prefers-reduced-motion media-query behavior remains unchanged; OS setting was not changed. Keyboard Enter pause/resume, aria-pressed, 3px focus and focus-within pause passed. Source CSS hover behavior is unchanged.
+
+Actual Ravo Admin saves tested Show in Selected Clients off/on and Logo Approval Pending/Restricted/Approved: public count 17 while excluded, restored to 18 afterward. Read-only `check_wp_clients.php` additionally verifies missing-logo safety, Client with zero Projects, relationship-only TID exclusion, numeric order, explicit attachment restrictions and independent Client/Project approval with filters removed after each check. No fabricated test Clients or Projects. All approved values restored.
+
+Regression: local pre-migration checkpoint compared full Project fields/term assignments, all eight Service fields, and original six Project attachment metadata/captions/file hashes; unchanged. TID Client metadata unchanged. Work All=5, Media Production=2, Website & Digital Solutions=2, AI=1. Work/detail routes, Website filtered Back to Work, Media Related Work, Ravo contextual Contact preselection and empty form endpoint passed. Services and Home What We Do remain WordPress-driven. PHP syntax, free-only field types, `check_wp_clients.php`, updated historical `check_wp_pilot.php`, `check_wp_services.php`, anonymous `check_wp_frontend.py` (44 assets), and original `npm run check` passed. The old pilot's two-Client/no-Ravo-logo assumptions were updated to this approved migration instead of restoring obsolete data.
+
+Intentionally retained importer `scripts/migrate_wp_clients.php` is local-host-gated, accepts one approved source entry, refuses existing migrated/staff-edited membership and requires an explicit verified Ravo identity argument before reusing its record. `scripts/check_wp_clients.php` is a read-only reconciliation/safety check. Temporary checkpoints/candidate files stay outside Git. LocalWP database and upload content are not committed; Git checkpoint contains only code/configuration/docs. Preserve a separate local content/uploads backup for handover.
+
+Remaining static: Hero/Home company copy, About shell, Services page introductory/global copy, Contact prototype copy, header/footer/global settings. Original `data/clients.json`, static `index.html` and approved original logo files remain reference/static-baseline material; the WordPress Home does not render a second static logo list. No Contact backend, SEO, roles, staging/production, main, Vercel, DNS or Supabase changes. Stop here. Recommend About content migration next, preserving its approved presentation; do not start automatically.

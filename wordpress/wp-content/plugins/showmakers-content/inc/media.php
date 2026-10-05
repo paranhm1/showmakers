@@ -54,9 +54,9 @@ add_filter( 'wp_sitemaps_posts_query_args', function ( $args, $type ) {
 }, 10, 2 );
 function showmakers_public_client_logo( $id ) {
     if ( get_post_type( $id ) !== 'client' || get_post_status( $id ) !== 'publish'
-        || ! get_post_meta( $id, 'visible', true ) || get_post_meta( $id, 'logo_status', true ) !== 'approved' ) return 0;
+        || (string) get_post_meta( $id, 'show_in_marquee', true ) !== '1' || get_post_meta( $id, 'logo_status', true ) !== 'approved' ) return 0;
     $logo = absint( get_post_meta( $id, 'client_logo', true ) );
-    return showmakers_approved_media( $logo ) ? $logo : 0;
+    return showmakers_client_logo_asset( $logo ) ? $logo : 0;
 }
 // Protect mixed searches/feeds too; do not filter the authorized editorial Admin.
 add_filter( 'the_posts', function ( $posts ) {

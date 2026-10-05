@@ -7,7 +7,7 @@
       "name": "client_logo",
       "label": "Client Logo",
       "type": "image",
-      "instructions": "Use approved original logo artwork. Separate permission from project images.",
+      "instructions": "Upload the approved client logo. Keep its original artwork and colors.",
       "required": 0,
       "return_format": "id",
       "preview_size": "thumbnail",
@@ -15,21 +15,35 @@
       "mime_types": "jpg,jpeg,png,webp,avif"
     },
     {
-      "key": "field_showmakers_c_visible",
-      "name": "visible",
-      "label": "Visible in Selected Clients",
+      "key": "field_showmakers_c_logo_status",
+      "name": "logo_status",
+      "label": "Logo Approval Status",
+      "type": "select",
+      "instructions": "Only Approved logos can appear publicly. This does not approve project images.",
+      "required": 0,
+      "choices": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "restricted": "Restricted"
+      },
+      "default_value": "pending"
+    },
+    {
+      "key": "field_showmakers_c_show_in_marquee",
+      "name": "show_in_marquee",
+      "label": "Show in Selected Clients",
       "type": "true_false",
-      "instructions": "",
+      "instructions": "Enable this client in the Home Selected Clients marquee. No public project is required.",
       "required": 0,
       "ui": 1,
       "default_value": 0
     },
     {
-      "key": "field_showmakers_c_sort_order",
-      "name": "sort_order",
-      "label": "Sort Order",
+      "key": "field_showmakers_c_marquee_sort_order",
+      "name": "marquee_sort_order",
+      "label": "Marquee Sort Order",
       "type": "number",
-      "instructions": "Lower numbers appear first. This is the only ordering value.",
+      "instructions": "Lower numbers appear first.",
       "required": 0,
       "default_value": 0,
       "min": 0,
@@ -44,18 +58,25 @@
       "required": 0
     },
     {
-      "key": "field_showmakers_c_logo_status",
-      "name": "logo_status",
-      "label": "Logo Permission",
-      "type": "select",
-      "instructions": "",
+      "key": "field_showmakers_c_visible",
+      "name": "visible",
+      "label": "Legacy Visibility",
+      "type": "true_false",
+      "instructions": "Previous setting retained for compatibility. Does not control Selected Clients.",
       "required": 0,
-      "choices": {
-        "pending": "Pending",
-        "approved": "Approved",
-        "restricted": "Restricted"
-      },
-      "default_value": "pending"
+      "ui": 1,
+      "default_value": 0
+    },
+    {
+      "key": "field_showmakers_c_sort_order",
+      "name": "sort_order",
+      "label": "Legacy Sort Order",
+      "type": "number",
+      "instructions": "Previous setting retained for compatibility. Does not control marquee order.",
+      "required": 0,
+      "default_value": 0,
+      "min": 0,
+      "step": 1
     }
   ],
   "location": [
@@ -81,5 +102,5 @@
   ],
   "active": true,
   "show_in_rest": 0,
-  "modified": 1791192837
+  "modified": 1791220000
 }

@@ -1,5 +1,5 @@
 <?php
-/** Read-only Phase 5 local project checks: wp eval-file scripts/check_wp_pilot.php. */
+/** Read-only local project regression checks: wp eval-file scripts/check_wp_pilot.php. */
 if ( ! defined( 'ABSPATH' ) || ! defined( 'WP_CLI' ) || ! WP_CLI ) exit;
 if ( wp_parse_url( home_url(), PHP_URL_HOST ) !== 'showmakers-local.local' ) WP_CLI::error( 'Local pilot only.' );
 function showmakers_pilot_assert( $condition, $label ) { if ( ! $condition ) WP_CLI::error( $label ); WP_CLI::log( 'PASS: ' . $label ); }
@@ -22,10 +22,10 @@ showmakers_pilot_assert( $metadata['width'] === 789 && $metadata['height'] === 1
 showmakers_pilot_assert( hash_file( 'sha256', get_attached_file( $image ) ) === hash_file( 'sha256', $root . '/assets/images/work/ravo-film.webp' ), 'Original attachment unchanged' );
 showmakers_pilot_assert( get_post_meta( $project->ID, 'listing_fit', true ) === 'contain', 'Listing uses contain' );
 for ( $slot = 1; $slot <= 5; ++$slot ) showmakers_pilot_assert( ! get_post_meta( $project->ID, 'project_image_' . $slot, true ), 'Unused additional image ' . $slot . ' empty' );
-showmakers_pilot_assert( ! get_post_meta( $client->ID, 'client_logo', true ) && ! get_post_meta( $client->ID, 'website_url', true ), 'No undocumented logo/URL association' );
+showmakers_pilot_assert( get_post_meta( $client->ID, '_showmakers_marquee_source_id', true ) === 'ravo' && showmakers_public_client_logo( $client->ID ) && ! get_post_meta( $client->ID, 'website_url', true ), 'User-confirmed Ravo logo identity; no invented URL' );
 foreach ( array( 'project', 'client' ) as $type ) {
     $all = get_posts( array( 'post_type' => $type, 'post_status' => array( 'draft', 'publish', 'pending', 'private' ), 'posts_per_page' => -1, 'fields' => 'ids' ) );
-    showmakers_pilot_assert( count( $all ) === ( $type === 'project' ? 5 : 2 ), 'Expected real ' . $type . ' records migrated' );
+    showmakers_pilot_assert( count( $all ) === ( $type === 'project' ? 5 : 19 ), 'Expected real ' . $type . ' records migrated' );
 }
 $expected = 5;
 showmakers_pilot_assert( count( showmakers_visible_projects() ) === $expected, 'Draft excluded / published project counted' );

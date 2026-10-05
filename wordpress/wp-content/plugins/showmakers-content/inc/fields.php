@@ -19,3 +19,8 @@ add_action( 'admin_notices', function () {
         echo '<div class="notice notice-warning"><p>' . esc_html__( 'ShowMakers editorial fields require the official free Advanced Custom Fields plugin.', 'showmakers-content' ) . '</p></div>';
     }
 } );
+
+// Preserve legacy Client metadata without presenting ambiguous marquee controls.
+foreach ( array( 'field_showmakers_c_visible', 'field_showmakers_c_sort_order' ) as $key ) {
+    add_filter( 'acf/prepare_field/key=' . $key, '__return_false' );
+}
