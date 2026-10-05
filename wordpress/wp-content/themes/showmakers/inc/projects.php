@@ -16,6 +16,8 @@ function showmakers_visible_projects() {
 function showmakers_project_services( $id ) {
     $terms = wp_get_object_terms( $id, 'service' );
     if ( is_wp_error( $terms ) ) return array();
+    // Hide public labels/links only; actual Project term assignments remain unchanged.
+    $terms = array_values( array_filter( $terms, 'showmakers_service_is_visible' ) );
     usort( $terms, function ( $a, $b ) {
         return ( (int) get_term_meta( $a->term_id, 'sort_order', true ) <=> (int) get_term_meta( $b->term_id, 'sort_order', true ) ) ?: ( $a->term_id <=> $b->term_id );
     } );

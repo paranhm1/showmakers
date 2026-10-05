@@ -227,3 +227,37 @@ All five locally published/approved; every source year remains empty. Source sum
 Work counts/Related Work/contact payload and Next derive only this eligible CMS set. All5, Media2, Website2, AI1; order 1→2→3→4→5→1. Source URLs remain outside LocalWP, not duplicate public pages. Main is still the static approved baseline. Home marquee/client set, Services Explorer body/media, About reference, Contact prototype/global settings remain for later dedicated phases.
 
 Only runtime refinement: `showmakers_cms_image` portrait max-width now bounds native cap against available width, fixing the inherited TID mobile overflow without altering original source/CSS. See the Phase 5 completion report in WORDPRESS-MIGRATION-PLAN.md for missing verified fields, IDs, QA and phase boundaries. Git does not back up LocalWP content/uploads.
+
+
+## Phase 6 local Services migration completion — 2026-10-05
+
+Services Explorer and Home What We Do now share `showmakers_visible_services()` over the existing `service` taxonomy. No runtime service-copy JSON fallback. Original HTML/JSON and `services-reference.php` remain inactive migration/reference material. Existing CSS, Explorer JavaScript, typography, CTA artwork, Hero and Client marquee are unchanged.
+
+| Order | Service | Term ID | Stable slug | Visible | Approved Media Library IDs |
+|---|---|---:|---|---|---|
+| 01 | Business Consulting | 3 | business-consulting | Yes | None; typography-led |
+| 02 | Social Media Marketing | 4 | social-media-marketing | Yes | None; typography-led |
+| 03 | Media Production | 5 | media-production | Yes | 20, 28 |
+| 04 | AI-Enhanced Content Production | 6 | ai-enhanced-content-production | Yes | 31; AI-assisted caption retained |
+| 05 | Website & Digital Solutions | 7 | website-digital-solutions | Yes | 25, 24 |
+| 06 | Event Management | 8 | event-management | Yes | None; typography-led |
+| 07 | SEO & SEM | 9 | seo-sem | Yes | None; typography-led |
+| 08 | Influencer Marketing | 10 | influencer-marketing | Yes | None; typography-led |
+
+Source: approved `data/services.json`, reconciled against existing terms and verified media permissions. Migrated Service Intro, Service Description, Capabilities, Platforms, Formats where present, Service Image, Sort Order and Visible. Capabilities/Platforms/Formats store one plain-text item per line; blank lines and surrounding whitespace are removed and output escaped. No invented content or filler images. Reused five existing approved attachments, preserving original file bytes, Project metadata and attachment captions. Per-service image captions preserve the approved usage-specific wording, including AI disclosure.
+
+Free ACF remains 6.8.10. Additive fields preserve the approved richer Services presentation without a custom repeater: optional `service_media_2`, `service_media_caption`, `service_media_2_caption`, and four optional textareas `platform_facebook_description`, `platform_instagram_description`, `platform_xiaohongshu_description`, `platform_tiktok_description`. Existing field names remain stable. The four platform identities/icons and editorial order remain fixed approved presentation; descriptions are CMS-managed. This bounded interim approach does not offer arbitrary platform subgroups or unlimited images. Future Pro: capabilities/platforms/formats can migrate to Repeaters; two service images/captions to a Gallery or image/caption Repeater; four platform passages to a platform Repeater. Global settings remain outside ACF until an explicitly approved Options Page migration.
+
+Visibility: only `visible=1` terms appear in Explorer, Home index, Work filters, public Project service labels/links, and Contact choices/context. A hidden term's Project assignments are retained internally, and those Projects remain eligible in All Work; hiding a Service never deletes relationships. Invalid/hidden Work filter contexts fall back to All through existing validation. Direct hidden Explorer anchors use the first visible service rather than expose the hidden panel. Public Project service wrappers are omitted if no visible service remains. Sort Order is numeric, with term ID as deterministic tie-breaker; staff should retain unique 1–8 values.
+
+Related Work is shown only when real eligible published Projects exist for that term: All=5, Media Production=2, Website & Digital Solutions=2, AI-Enhanced Content Production=1; other five=0 and omit the action. Existing approval/placeholder/development safety checks remain active. No Project/Client relationships changed. Services→Work uses stable `?service=slug`; Contact uses the same visible terms and preselects the slug, preserving the prototype notice and empty submission endpoint. Home renders only names, numbering and `/services/#slug` links—no descriptions/media.
+
+Admin term edit screen reviewed with populated Social Media Marketing content: plain-language labels, one-item-per-line instructions, optional media/caption guidance, ordering and visibility explanations. No Pro field types, gallery, repeater, options page or custom serialization introduced.
+
+QA: all eight panels at 1440/1024/390 compared to approved static Services: matching text/headings, image rectangles and panel dimensions (floating-point rounding only), loaded media, no horizontal overflow. Home same eight ordered links and typography, no overflow at all three widths. Media/Website direct anchors and Home→Website tested; all eight Service→Contact preselected correctly; Media and Website→Related Work selected their two-project filters; Ravo→Website and browser back/forward preserved context. Keyboard ArrowDown/Home/End movement, Enter activation, visible 3px focus, aria-pressed, live status and heading structure passed. Existing reduced-motion media-query branch retained; runtime `?motion=reduce` mode showed the active panel with no console errors. Native OS reduced-motion setting was not changed. Server-rendered anchor/panel fallback retains all content without JavaScript; no information depends on animation.
+
+Read-only `check_wp_services.php` verifies every source field/media mapping, newline sanitation, five unchanged Projects, hidden-term behavior and restricted-media exclusion using metadata filters removed after checks (no database test writes). `check_wp_pilot.php`, `check_wp_frontend.py` (44 public assets and five real detail routes), PHP syntax checks and original `npm run check` passed. Original static development placeholder stays reference-only; no placeholder imported into LocalWP.
+
+Local-host-gated `migrate_wp_services.php` seeds existing empty editorial fields once, validates identities and approved original attachments, writes a local temporary term-metadata checkpoint, and refuses already migrated/staff-edited records. It is not a runtime synchronization tool; future edits happen in WordPress. Database content and uploads are local and are not included in Git.
+
+Remaining static: Services page introductory/global copy, Home Hero/Client marquee/global copy, About shell, Contact prototype copy and global settings. Work/Project and Service editorial content are CMS-driven. No About, backend, SEO, production, Vercel, DNS, Supabase or main changes. Stop after Phase 6. Recommend Client marquee migration next, reusing Clients CPT/logo/visibility/order after matching the verified 18-logo reference; do not start automatically.

@@ -2,9 +2,7 @@
 /** Exclusive CMS archive: never merge JSON projects into WordPress results. */
 defined( 'ABSPATH' ) || exit;
 $projects = showmakers_visible_projects();
-$services = get_terms( array( 'taxonomy' => 'service', 'hide_empty' => false ) );
-if ( is_wp_error( $services ) ) $services = array();
-usort( $services, function ( $a, $b ) { return (int) get_term_meta( $a->term_id, 'sort_order', true ) <=> (int) get_term_meta( $b->term_id, 'sort_order', true ); } );
+$services = showmakers_visible_services();
 get_header();
 ?>
 <div class="page-intro-surface"><div class="shell page-intro"><h1>Work</h1><p>Selected projects from ShowMakers.</p></div></div>

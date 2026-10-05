@@ -1,5 +1,5 @@
 <?php
-/** Static approved Home shell. CMS integration is intentionally deferred. */
+/** Approved Home shell; What We Do alone is connected to CMS services. */
 defined( 'ABSPATH' ) || exit;
 get_header();
 get_template_part( 'template-parts/home-static' );

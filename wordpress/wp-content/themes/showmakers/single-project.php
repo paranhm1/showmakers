@@ -25,13 +25,13 @@ foreach ( $projects as $index => $item ) {
 get_header();
 ?>
 <div class="shell project-detail detail-<?php echo esc_attr( $presentation ); ?>">
-<a class="text-link back-to-work" data-valid-services="<?php echo esc_attr( implode( ' ', array_keys( showmakers_service_definitions() ) ) ); ?>" href="<?php echo esc_url( home_url( '/work/' ) ); ?>">Back to Work</a>
+<a class="text-link back-to-work" data-valid-services="<?php echo esc_attr( implode( ' ', wp_list_pluck( showmakers_visible_services(), 'slug' ) ) ); ?>" href="<?php echo esc_url( home_url( '/work/' ) ); ?>">Back to Work</a>
 <div class="detail-heading"><span class="editorial-number"><?php echo esc_html( sprintf( '%02d', (int) get_post_meta( $id, 'sort_order', true ) ) ); ?></span>
 <?php if ( $client && $client !== $project->post_title ) : ?><div class="project-client"><?php echo esc_html( $client ); ?></div><?php endif; ?>
 <h1><?php echo esc_html( $project->post_title ); ?></h1><p><?php echo esc_html( get_post_meta( $id, 'short_summary', true ) ); ?></p>
-<div class="project-services"><span>Services</span><br>
+<?php if ( $services ) : ?><div class="project-services"><span>Services</span><br>
 <?php foreach ( $services as $index => $service ) : if ( $index ) echo ' · '; ?><a href="<?php echo esc_url( home_url( '/services/#' . $service->slug ) ); ?>"><?php echo esc_html( $service->name ); ?></a><?php endforeach; ?>
-</div></div>
+</div><?php endif; ?></div>
 <?php if ( isset( $images['hero_media'] ) ) : ?><figure class="detail-hero"><?php echo showmakers_cms_image( $images['hero_media'], false ); $caption = wp_get_attachment_caption( $images['hero_media'] ); if ( $caption ) : ?><figcaption><?php echo esc_html( $caption ); ?></figcaption><?php endif; ?></figure><?php endif; ?>
 <?php
 $extras = array_unique( array_filter( array_intersect_key( $images, array_flip( array( 'project_image_1', 'project_image_2', 'project_image_3', 'project_image_4', 'project_image_5' ) ) ), function ( $image ) use ( $images ) { return $image !== ( $images['hero_media'] ?? 0 ); } ) );
