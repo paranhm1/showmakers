@@ -209,3 +209,21 @@ Project→Services resolves term slugs, never display-text joins. Project→Cont
 Only the Ravo image was copied into Media Library. Service reference images/icons remain approved theme asset links, not imported attachments or new Project records. The original PNG/WebP/font/JSON sources are preserved; no restricted original, unrelated asset library or placeholder was uploaded. Future staging packaging must materialize the allowlisted symlinks; local database/uploads require their own backup.
 
 Read-only pilot checks and the deliberately one-record local migration helper are in `scripts/`. Import helper refuses existing source/slug matches to protect edits; review existing IDs rather than rerun/overwrite. See the [Phase 4 report](WORDPRESS-MIGRATION-PLAN.md#phase-4-local-pilot-completion--2026-10-05) for QA and next-phase boundaries.
+
+## Phase 5 actual mapping — all five real projects
+
+This section supersedes earlier one-project runtime/count descriptions. Local WordPress is now runtime authority for these five records; JSON and generated HTML remain unchanged migration/reference sources.
+
+| Source ID → native slug | Project ID / order | Client ID | Service term ID | Listing / Hero / supporting attachment IDs |
+|---|---|---|---|---|
+| brand-content → short-form-brand-content | 21 / 1 | None verified | 5 | 20 / 20 / none |
+| tid-group → tid-group | 26 / 2 | 23 TID Group | 7 | 24 / 24 / 25 in project_image_1 |
+| short-form → stories-in-the-moment | 29 / 3 | None verified | 5 | 28 / 28 / none |
+| ravo-film → ravo-film | 18 / 4 | 17 Ravo Film | 7 | 16 / 16 / none |
+| ai-content → ai-assisted-content | 32 / 5 | None verified | 6 | 31 / 31 / none |
+
+All five locally published/approved; every source year remains empty. Source summaries, Featured booleans, listing fit, presentation, documentation notes, ordered supporting media and service assignments preserved. TID Client alone created during Phase 5, deliberately no logo/URL; Ravo Film retained unchanged. No display-name logo joins. Attachment 20/24/25/28/31 are the only new Media Library files; all preserve original bytes and approved source alt/caption. No supporting-media capacity overflow.
+
+Work counts/Related Work/contact payload and Next derive only this eligible CMS set. All5, Media2, Website2, AI1; order 1→2→3→4→5→1. Source URLs remain outside LocalWP, not duplicate public pages. Main is still the static approved baseline. Home marquee/client set, Services Explorer body/media, About reference, Contact prototype/global settings remain for later dedicated phases.
+
+Only runtime refinement: `showmakers_cms_image` portrait max-width now bounds native cap against available width, fixing the inherited TID mobile overflow without altering original source/CSS. See the Phase 5 completion report in WORDPRESS-MIGRATION-PLAN.md for missing verified fields, IDs, QA and phase boundaries. Git does not back up LocalWP content/uploads.

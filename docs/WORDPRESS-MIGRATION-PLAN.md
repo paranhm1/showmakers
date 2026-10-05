@@ -1,6 +1,6 @@
 # ShowMakers WordPress CMS migration plan
 
-Status: Phase 4 one-project local CMS pilot completed with official free ACF. Earlier phase sections remain planning history; the latest Phase 4 completion section is authoritative. Updated 2026-10-05.
+Status: Phase 5 five-project local CMS migration completed with official free ACF. Earlier phase sections remain history; the latest Phase 5 completion section is authoritative. Updated 2026-10-05.
 
 ## Protected baseline and scope
 
@@ -264,3 +264,31 @@ Read-only scripts: `scripts/check_wp_pilot.php` (relationships, counts, unchange
 Migration helper: `scripts/migrate_wp_ravo.php`, explicitly local-host gated and refusing existing records rather than overwriting staff edits. It imports only this verified draft and one image. It must not be run automatically or used as a bulk importer. Database records/uploads live in LocalWP outside Git; source code, mapping and validation are versioned, not a database/uploads backup. Existing development symlinks still require materialization for future standalone theme packaging.
 
 After user review, recommend **A: migrate the remaining four approved real Projects as drafts**, using the proven renderer and approval checks, then verify each presentation before local publication. Service body/global editing and packaging remain later work. Do not import restricted/placeholder records or infer Client links. Do not start the next phase automatically.
+
+## Phase 5 local project migration completion — 2026-10-05
+
+Authoritative current state: all five verified real projects are locally published. Each remaining source was imported as a Draft, previewed against its approved static detail at 1440/1024/390, then published and checked in Work before continuing. No bulk project publication or Client-logo import occurred.
+
+| Project / WP ID | Client / ID | Verified Service / term ID | Published | Unique media IDs / count | Media status | Sort order | Missing verified fields |
+|---|---|---|---|---|---|---|---|
+| Short-form brand content / 21 | Empty | Media Production / 5 | Local yes | 20 / 1 | approved | 1 | Original project name, Client, date, detailed responsibilities, results |
+| TID Group / 26 | TID Group / 23 | Website & Digital Solutions / 7 | Local yes | 24,25 / 2 | approved | 2 | Date, extra scope/credits, technology, results; Client logo/URL |
+| Stories in the moment. / 29 | Empty | Media Production / 5 | Local yes | 28 / 1 | approved | 3 | Original project name, Client, date, detailed responsibilities, results |
+| Ravo Film / 18 | Ravo Film / 17 | Website & Digital Solutions / 7 | Local yes | 16 / 1 | approved | 4 | Date, detailed scope, technology, results; Client logo/URL |
+| AI-assisted content / 32 | Empty | AI-Enhanced Content Production / 6 | Local yes | 31 / 1 | approved | 5 | Original project name, Client, date, detailed responsibilities, results |
+
+Client 23 is the only new Client. Existing source-ID/slug/name matches are checked before creation; no duplicate Client was created. Both Clients are admin-only and intentionally have no logo or website URL, with `logo_status=pending`. Images containing visible brand text do not establish a new Client relationship. In particular no Ravo-logo association was inferred for the two unidentified content examples.
+
+Media map: attachment 20 = brand-content.webp; 24 = tid-detail.webp; 25 = tid-home.webp; 28 = short-form.webp; 31 = ai-content.webp; existing 16 = ravo-film.webp. Five new assets, six unique project attachments total. Original SHA-256 integrity verified; source descriptive alt text preserved, AI-assisted caption/disclosure preserved. TID uses 24 for listing/Hero and 25 for `project_image_1`; all other additional slots remain empty, repeated Hero imagery is not duplicated. No project exceeds five supporting-image slots and no source supporting media was dropped. Restricted Tommy/Samsung images, Project 06, pending/hidden records and unrelated media were not imported.
+
+CMS controls Work collection, five detail routes, title/summary/Client/service/media/Featured/order fields, filter counts, Related Work availability, Next sequence and Contact project-context payload. All=5; Media Production=2; Website & Digital Solutions=2; AI-Enhanced Content Production=1. Other five Services have zero real projects and no filter button. Eight existing terms remain unchanged. Featured remains true for Short-form brand content and TID, false for the other three.
+
+Next follows numeric order: Short-form brand content → TID Group → Stories in the moment. → Ravo Film → AI-assisted content → Short-form brand content. Work links to each project passed. All three populated filter controls, Service→Related Work for all three, filtered Back for all three, direct Project→general Work, and TID/AI Project→Contact visible reference/service preselection passed. Project/Service query-var conflict fix remains intact; Contact sending remains disabled.
+
+Responsive QA: Work and all five published details checked at 1440/1024/390. Grid 3/2/1; frames respectively 410.25×307.69, 441.35×331.01, 331×248.25. Detail typography, summary wrapping, image composition/native ratios and spacing match static references apart from the logged-in WP toolbar (32/46px). One inherited static defect was corrected only in the CMS image helper: native portrait width cap now uses `max-width:min(100%,Npx)` so TID's 440px supporting screenshot fits the 331px mobile content area without distortion. Desktop unchanged, original CSS/static HTML unchanged. No final overflow, missing project image, single-H1 violation or PHP warnings found; actual heading/body font-weight load checks pass. Work filter wrapping remains intentional. 49 public image/script/stylesheet resources return 200. Old detail `.html` routes and excluded Project06/Tommy routes return 404. SEO title/description/social metadata and staging redirect policy remain later-phase work; no SEO plugin installed.
+
+Admin list shows five published Projects with Client, Services, Status, Featured, Sort Order, Media Status and Last Modified columns; Client list contains only Ravo Film and TID Group. Read-only source reconciliation checks verify all five field/media mappings and approval guards. The former one-record Phase 4 check assumptions were updated for Phase 5 rather than restoring obsolete empty/one-card UI. The importer is local-host-gated, allowlisted, one-project per invocation, refuses existing Projects and never publishes automatically.
+
+Home/Hero/Selected Clients/What We Do, original JSON/static files, global CSS/fonts/CTA system are untouched. Services descriptions/media still use the reference snapshot, not term-field migration. About remains the Phase 2 shell; Contact remains the safe prototype. Globals stay outside ACF; Free ACF 6.8.10 remains active. No main merge, production/Vercel/DNS/Supabase/backend/SEO changes. Database records/uploads live only in LocalWP and require a separate backup; this Git checkpoint is code/docs, not a database export.
+
+Stop after Phase 5. Recommended next target: dedicated Services Explorer content migration, first resolving its richer platform subgroups and multiple media against free-ACF capacity without losing approved content. Do not begin automatically.

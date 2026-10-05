@@ -51,7 +51,7 @@ function showmakers_cms_image( $id, $lazy = true ) {
     if ( ! function_exists( 'showmakers_approved_media' ) || ! showmakers_approved_media( $id ) ) return '';
     $image = wp_get_attachment_image_src( $id, 'full' );
     if ( ! $image ) return '';
-    $native = $image[2] > $image[1] * 1.4 ? ' style="max-width:' . absint( $image[1] ) . 'px"' : '';
+    $native = $image[2] > $image[1] * 1.4 ? ' style="max-width:min(100%,' . absint( $image[1] ) . 'px)"' : '';
     return '<img class="" src="' . esc_url( $image[0] ) . '" alt="' . esc_attr( get_post_meta( $id, '_wp_attachment_image_alt', true ) )
         . '" width="' . absint( $image[1] ) . '" height="' . absint( $image[2] ) . '"'
         . ( $lazy ? ' loading="lazy"' : '' ) . ' decoding="async"' . $native . '>';

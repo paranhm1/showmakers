@@ -1,5 +1,5 @@
 <?php
-/** Read-only Phase 4 local pilot checks: wp eval-file scripts/check_wp_pilot.php. */
+/** Read-only Phase 5 local project checks: wp eval-file scripts/check_wp_pilot.php. */
 if ( ! defined( 'ABSPATH' ) || ! defined( 'WP_CLI' ) || ! WP_CLI ) exit;
 if ( wp_parse_url( home_url(), PHP_URL_HOST ) !== 'showmakers-local.local' ) WP_CLI::error( 'Local pilot only.' );
 function showmakers_pilot_assert( $condition, $label ) { if ( ! $condition ) WP_CLI::error( $label ); WP_CLI::log( 'PASS: ' . $label ); }
@@ -25,12 +25,39 @@ for ( $slot = 1; $slot <= 5; ++$slot ) showmakers_pilot_assert( ! get_post_meta(
 showmakers_pilot_assert( ! get_post_meta( $client->ID, 'client_logo', true ) && ! get_post_meta( $client->ID, 'website_url', true ), 'No undocumented logo/URL association' );
 foreach ( array( 'project', 'client' ) as $type ) {
     $all = get_posts( array( 'post_type' => $type, 'post_status' => array( 'draft', 'publish', 'pending', 'private' ), 'posts_per_page' => -1, 'fields' => 'ids' ) );
-    showmakers_pilot_assert( count( $all ) === 1, 'Only one real ' . $type . ' migrated' );
+    showmakers_pilot_assert( count( $all ) === ( $type === 'project' ? 5 : 2 ), 'Expected real ' . $type . ' records migrated' );
 }
-$expected = get_post_status( $project->ID ) === 'publish' ? 1 : 0;
+$expected = 5;
 showmakers_pilot_assert( count( showmakers_visible_projects() ) === $expected, 'Draft excluded / published project counted' );
-showmakers_pilot_assert( showmakers_service_project_count( 'website-digital-solutions' ) === $expected, 'Relationship-derived service count' );
-showmakers_pilot_assert( showmakers_service_project_count( 'media-production' ) === 0, 'Unmigrated service has zero work' );
+showmakers_pilot_assert( showmakers_service_project_count( 'website-digital-solutions' ) === 2, 'Relationship-derived website service count' );
+showmakers_pilot_assert( showmakers_service_project_count( 'media-production' ) === 2, 'Two verified media-production projects' );
+$source_records = json_decode( file_get_contents( $root . '/data/projects.json' ), true );
+$expected_slugs = array();
+foreach ( $source_records as $source ) {
+    if ( !$source['published'] || $source['isPlaceholder'] || !empty($source['developmentOnly']) || $source['mediaStatus'] !== 'approved' ) continue;
+    $p = get_page_by_path($source['slug'], OBJECT, 'project');
+    showmakers_pilot_assert($p && get_post_status($p->ID) === 'publish' && showmakers_public_project($p->ID), $source['slug'].' published and eligible');
+    foreach(array('short_summary'=>'summary','sort_order'=>'order','featured'=>'featured','listing_fit'=>null) as $field=>$source_key) {
+        $value = $source_key ? $source[$source_key] : $source['listingThumbnail']['fit']; if($field==='featured') $value=(int)$value;
+        showmakers_pilot_assert((string)get_post_meta($p->ID,$field,true) === (string)$value, $source['slug'].' '.$field.' matches approved source');
+    }
+    showmakers_pilot_assert(!get_post_meta($p->ID,'project_year',true), 'Unknown year remains empty');
+    $actual = wp_get_object_terms($p->ID,'service',array('fields'=>'slugs')); $wanted=$source['services']; sort($actual); sort($wanted);
+    showmakers_pilot_assert($actual===$wanted, 'Only verified services for '.$source['slug']);
+    showmakers_pilot_assert(showmakers_project_client_name($p->ID)===($source['client']??''), 'Exact verified Client or blank');
+    foreach(array('listing_thumbnail'=>'listingThumbnail','hero_media'=>'heroMedia') as $field=>$source_field) showmakers_pilot_assert(get_post_meta((int)get_post_meta($p->ID,$field,true),'_showmakers_source_asset',true)===$source[$source_field]['src'], 'Correct '.$field.' asset');
+    $extra_paths=array_values(array_map(function($item){return $item['src'];},array_filter($source['media'],function($item)use($source){return $item['src']!==$source['heroMedia']['src'];})));
+    for($slot=1;$slot<=5;$slot++){ $aid=(int)get_post_meta($p->ID,'project_image_'.$slot,true); showmakers_pilot_assert($aid ? get_post_meta($aid,'_showmakers_source_asset',true)===($extra_paths[$slot-1]??null) : !isset($extra_paths[$slot-1]), 'Correct additional slot '.$slot); }
+    $images=showmakers_renderable_project_images($p->ID);
+    foreach($images as $attachment) {
+        $path=get_post_meta($attachment,'_showmakers_source_asset',true);
+        showmakers_pilot_assert(showmakers_approved_media($attachment) && is_file($root.'/'.$path) && hash_file('sha256',get_attached_file($attachment))===hash_file('sha256',$root.'/'.$path), 'Approved unchanged media for '.$source['slug']);
+    }
+    $expected_slugs[$source['order']]=$source['slug'];
+}
+ksort($expected_slugs);
+showmakers_pilot_assert(array_map(function($p){return $p->post_name;},showmakers_visible_projects())===array_values($expected_slugs), 'Numeric sort_order sequence preserved');
+showmakers_pilot_assert(showmakers_service_project_count('ai-enhanced-content-production')===1, 'One verified AI project');
 // Read-only fault injection: no change to real records, permissions or attachment files.
 foreach ( array( 'pending', 'restricted' ) as $state ) {
     $guard = function ( $value, $id, $key ) use ( $project, $state ) { return $id === $project->ID && $key === 'media_status' ? $state : $value; };
