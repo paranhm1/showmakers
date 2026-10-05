@@ -62,11 +62,11 @@ Fixed initial slugs: `business-consulting`, `social-media-marketing`, `media-pro
 |---|---|---|---|---|---|---|
 | Client Name | Core title | Required | clients.name | Staff | Public in approved logo context | Genuine clients confirmed by supplied reference. |
 | Stable ID / Slug | Core slug + immutable source ID | Required | clients.id | Admin/import | Public identity / private source ID | No standalone client pages. |
-| Logo | Image attachment ID | Required when visible | clients.image | Staff | Public approved logo only | Preserve original artwork/colors; aspect ratio contained. |
-| Visible | Boolean + core publish status | Required, draft default on import | clients.published | Staff | Private control | Show marquee only if publish, visible and approved logo. |
-| Sort Order | Integer sort_order post meta | Required | clients.order | Staff | Private control | Broad 18-logo selection; never hardcode only 6–8. |
+| Client Logo | Image attachment ID (`client_logo`) | Required only for future marquee rendering | clients.image | Staff | Public approved logo only | Independent of Project media; preserve artwork/colors and aspect ratio. |
+| Show in Selected Clients — future | Dedicated Boolean `show_in_marquee` | Default false | Explicit staff curation | Staff | Private control | Not inferred from generic `visible`, Project existence or publication. Current marquee remains static. |
+| Marquee Sort Order — future | Number `marquee_sort_order` | Required for future marquee selection | Existing curated clients.order | Staff | Private control | Preserve approved 18-logo order; do not infer from Project order. |
 | Optional Website | Validated URL | Optional | No current source | Staff | Public if later explicitly used | Does not automatically turn existing logos into external links. |
-| Logo Permission | approved/pending/restricted enum | Required | VERIFIED-CONTENT.md | Staff/admin | Private | Imported supplied logos approved; independent from project photo rights. |
+| Logo Approval Status | approved/pending/restricted enum, existing `logo_status` | Required | VERIFIED-CONTENT.md | Staff/admin | Private | Semantically separate from Project and attachment media_status; no mutual approval inference. |
 | Associated Projects | Derived reverse Client relation | Not separate storage | clients.projects[] if documented | Set relationship on Project | Public only for documented relationship | No current associations; validate imported references explicitly. |
 
 Website/archive visibility is not equivalent to Admin availability: client records remain admin-managed but exposed publicly only through eligible theme output. No logo implies endorsement, results or campaign responsibilities.
@@ -189,3 +189,27 @@ Import-only metadata now present: `source_id` and `_showmakers_provenance` priva
 Existing Service field names/term IDs remain stable. To preserve approved two-image and four-platform Services content, add optional `service_media_2` (Image ID), `service_media_caption` and `service_media_2_caption` (Textarea), and `platform_facebook_description`, `platform_instagram_description`, `platform_xiaohongshu_description`, `platform_tiktok_description` (Textarea). This is a bounded temporary free-ACF model, not a custom repeater. Capabilities/Platforms/Formats remain newline textareas. Usage captions do not overwrite attachment captions. Approved media guard applies to both image slots. Only Visible services appear publicly; Project term assignments survive hiding.
 
 Future Pro: newline lists → Repeaters, image slots → Gallery/image-caption Repeater, platform descriptions → platform Repeater, explicitly approved globals → Options Page. Keep stable concepts and provide a deliberate migration; do not silently reinterpret existing field values. See Phase 6 completion in WORDPRESS-MIGRATION-PLAN.md for exact ID/media map, source and QA.
+
+
+## Client / Project / Selected Clients architecture clarification — 2026-10-05
+
+This clarification supersedes earlier automatic Client-marquee assumptions and the Phase 6 recommendation to begin marquee migration next. It is documentation only: Phase 6 is complete; no Client field configuration, logo records, runtime, imagery, motion or accessibility behavior changes here.
+
+Current Home Selected Clients remains the separately curated static source with the same approved 18 logos, order, sizing, pause and reduced-motion behavior. Do not connect it to Client CPT during Services, Home or Project migration. A public Project neither adds its Client to the marquee nor removes a Client with no public Projects. Client CPT is the canonical company/brand entity, currently used primarily for Project relationships.
+
+Permanent relationships:
+
+- Client → optional Projects, derived from Projects referencing a Client; never maintain a second manual Project list.
+- Client → optional explicit Selected Clients membership, independent of public Project count, service, Featured state or publication.
+- Project → project-specific listing thumbnail, Hero, image slots and future video; never automatically substitute a Client Logo.
+- Client Logo Permission ≠ Project Media Permission. Approved Samsung logo with restricted Samsung photography is valid. Approved Project media does not approve a Client Logo.
+
+Future dedicated Client/Marquee phase requires explicit authorization. Target fields: WordPress title (Client Name), existing `client_logo`, existing `logo_status` labelled Logo Approval Status (approved/pending/restricted), dedicated `show_in_marquee` labelled Show in Selected Clients (default false), dedicated `marquee_sort_order` Number, optional `website_url`. Existing generic `visible` and `sort_order` are not automatically reinterpreted as marquee controls. Keep the current stable permission field rather than rename it merely to match the illustrative `logo_approval_status` name.
+
+Future renderer selects eligible published Client records only when Show in Selected Clients is true, logo status is approved and an approved logo exists, ordered by Marquee Sort Order. Attachment safety checks must also permit the logo; never infer Project permission from logo approval. Skip missing/pending/restricted logo items safely and explain their state in Admin. A Project without a Client logo/marquee presence remains publishable; a Client with an approved logo and zero Projects is valid.
+
+Future staff workflow: Clients → Add New → name, clean approved logo, Logo Approval Status, Show in Selected Clients, Marquee Sort Order → Publish. No HTML/JSON/CSS paths or public Project required. Theme normalizes logos in consistent contained containers, preserves aspect ratio, spacing and supplied colors, and never automatically recolors. PNG/WebP supported; SVG only if safely permitted by the installation. Exact equal image dimensions are unnecessary.
+
+Later reconcile the approved 18-logo source against existing Client records, reusing Ravo Film/TID Group only when the identity is documented, with no duplicate records or inferred logo associations. Import/link approved logos, set explicit membership and existing order, then switch the runtime only after equivalent visual/interaction QA. Original source stays until validation. Free ACF is sufficient for these basic future fields; a Pro upgrade may improve gallery/admin UX but must not collapse the separation of permissions or membership.
+
+No Client/Marquee phase starts automatically. About/Home content work may be considered separately after user review while this static marquee remains untouched.

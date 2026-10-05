@@ -261,3 +261,27 @@ Read-only `check_wp_services.php` verifies every source field/media mapping, new
 Local-host-gated `migrate_wp_services.php` seeds existing empty editorial fields once, validates identities and approved original attachments, writes a local temporary term-metadata checkpoint, and refuses already migrated/staff-edited records. It is not a runtime synchronization tool; future edits happen in WordPress. Database content and uploads are local and are not included in Git.
 
 Remaining static: Services page introductory/global copy, Home Hero/Client marquee/global copy, About shell, Contact prototype copy and global settings. Work/Project and Service editorial content are CMS-driven. No About, backend, SEO, production, Vercel, DNS, Supabase or main changes. Stop after Phase 6. Recommend Client marquee migration next, reusing Clients CPT/logo/visibility/order after matching the verified 18-logo reference; do not start automatically.
+
+
+## Client / Project / Selected Clients architecture clarification — 2026-10-05
+
+This clarification supersedes earlier automatic Client-marquee assumptions and the Phase 6 recommendation to begin marquee migration next. It is documentation only: Phase 6 is complete; no Client field configuration, logo records, runtime, imagery, motion or accessibility behavior changes here.
+
+Current Home Selected Clients remains the separately curated static source with the same approved 18 logos, order, sizing, pause and reduced-motion behavior. Do not connect it to Client CPT during Services, Home or Project migration. A public Project neither adds its Client to the marquee nor removes a Client with no public Projects. Client CPT is the canonical company/brand entity, currently used primarily for Project relationships.
+
+Permanent relationships:
+
+- Client → optional Projects, derived from Projects referencing a Client; never maintain a second manual Project list.
+- Client → optional explicit Selected Clients membership, independent of public Project count, service, Featured state or publication.
+- Project → project-specific listing thumbnail, Hero, image slots and future video; never automatically substitute a Client Logo.
+- Client Logo Permission ≠ Project Media Permission. Approved Samsung logo with restricted Samsung photography is valid. Approved Project media does not approve a Client Logo.
+
+Future dedicated Client/Marquee phase requires explicit authorization. Target fields: WordPress title (Client Name), existing `client_logo`, existing `logo_status` labelled Logo Approval Status (approved/pending/restricted), dedicated `show_in_marquee` labelled Show in Selected Clients (default false), dedicated `marquee_sort_order` Number, optional `website_url`. Existing generic `visible` and `sort_order` are not automatically reinterpreted as marquee controls. Keep the current stable permission field rather than rename it merely to match the illustrative `logo_approval_status` name.
+
+Future renderer selects eligible published Client records only when Show in Selected Clients is true, logo status is approved and an approved logo exists, ordered by Marquee Sort Order. Attachment safety checks must also permit the logo; never infer Project permission from logo approval. Skip missing/pending/restricted logo items safely and explain their state in Admin. A Project without a Client logo/marquee presence remains publishable; a Client with an approved logo and zero Projects is valid.
+
+Future staff workflow: Clients → Add New → name, clean approved logo, Logo Approval Status, Show in Selected Clients, Marquee Sort Order → Publish. No HTML/JSON/CSS paths or public Project required. Theme normalizes logos in consistent contained containers, preserves aspect ratio, spacing and supplied colors, and never automatically recolors. PNG/WebP supported; SVG only if safely permitted by the installation. Exact equal image dimensions are unnecessary.
+
+Later reconcile the approved 18-logo source against existing Client records, reusing Ravo Film/TID Group only when the identity is documented, with no duplicate records or inferred logo associations. Import/link approved logos, set explicit membership and existing order, then switch the runtime only after equivalent visual/interaction QA. Original source stays until validation. Free ACF is sufficient for these basic future fields; a Pro upgrade may improve gallery/admin UX but must not collapse the separation of permissions or membership.
+
+No Client/Marquee phase starts automatically. About/Home content work may be considered separately after user review while this static marquee remains untouched.
