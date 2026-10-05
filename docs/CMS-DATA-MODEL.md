@@ -1,5 +1,6 @@
 # ShowMakers CMS data model
 
+Current confirmed production website: **https://showmakers.my/**. Verified enquiry/privacy email remains **sales@showmakers.org**. Approved bilingual Privacy Notice is published locally at `/privacy/` (Page 120); historical pending-Privacy-Notice statements below are superseded by the completed Privacy Notice section. Production deployment is not performed.
 Historical Phase 1 model followed by implementation updates. The Phase 3 free-ACF specification and subsequent Phase 4 amendment below define the current implementation. See [migration plan](WORDPRESS-MIGRATION-PLAN.md) for architecture and decisions; [source map](STATIC-TO-WORDPRESS-MAP.md) for exhaustive JSON mapping.
 
 Storage uses WordPress posts, terms, meta and options. IDs are WordPress record/attachment IDs, never staff-entered filesystem paths. “Required” means necessary for publication, not for saving a draft. Public fields render only for eligible records; “private” means explicitly excluded from public HTML/data/REST. Public media approval does not imply private storage security for other uploads.
@@ -414,3 +415,19 @@ Site Title `ShowMakers Local` is intentional development naming; Tagline is empt
 User-confirmed real-upload video workflow is approved. Existing manual-test Media Library asset is retained untouched; the current five published Projects remain Image in the audited database. No actual Project was changed for this SEO follow-up. All original Page/Project/Client/Service data match the prior checkpoint; the newer manual-test attachment is the only pre-existing addition since the earlier phase. It is not a public Project or sitemap entry.
 
 Final attachment audit found that the real approved MP4 query URL still rendered a thin HTML page despite the native disabled-attachment option. The SEO adapter now explicitly intercepts attachment pages: available approved image/MP4 redirects301 to the original file; pending/restricted/missing/unsupported attachments return branded404/noindex without canonical/schema. This supersedes reliance on native image-only redirect coverage; raw-upload permissions and actual media records are unchanged.
+
+## Completed Privacy Notice — native Page
+
+| Concept | Storage / behavior |
+|---|---|
+| Privacy Notice | Normal published WordPress Page 120; title Privacy Notice; slug `/privacy/`. |
+| Approved legal copy | Native `post_content`, English then Bahasa Malaysia; region languages `en` / `ms`. No ACF legal fields or hardcoded legal copy. |
+| Staff workflow | Pages → Privacy Notice → native Visual/Text content editor → Update; theme controls layout. |
+| Native privacy setting | `wp_page_for_privacy_policy=120`; old default draft retained. |
+| Internal links | Footer existing legal slot and Contact acknowledgement use runtime `/privacy/`. No consent checkbox. |
+| Data handling | Existing email-only enquiry delivery; no persistent Inquiry database or CRM; no new analytics/cookie consent. Security and shared settings unchanged. |
+| Confirmed website / email | `https://showmakers.my/` / `sales@showmakers.org` intentionally use different domains. |
+| SEO | Native SEO title Privacy Notice &#124; ShowMakers; factual description; optional existing Page SEO fields. Runtime canonical; future production URL `https://showmakers.my/privacy/`. |
+| Indexing | Page eligible for public sitemap alongside five other Pages/five Projects; LocalWP remains noindex/nofollow with public sitemap disabled. |
+
+Move native Page content and the privacy-page option with the future authorised WordPress content/database migration. This Git phase contains no database or uploads export. Historical Privacy-copy-pending statements above are superseded; no production launch or tracking work is implied.

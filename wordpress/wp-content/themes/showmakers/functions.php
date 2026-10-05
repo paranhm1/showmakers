@@ -15,3 +15,8 @@ add_action( 'after_setup_theme', function () {
 function showmakers_page_copy( $page, $field ) {
     return trim( sanitize_textarea_field( (string) get_post_meta( $page, $field, true ) ) );
 }
+
+// Normal editable Page wording without unnecessary block layout/style controls.
+add_filter( 'use_block_editor_for_post', function ( $use, $post ) {
+    return $post->post_type === 'page' && $post->post_name === 'privacy' ? false : $use;
+}, 10, 2 );

@@ -1,0 +1,12 @@
+/* Native bilingual Page content, using the approved global brand system. */
+.privacy-page{padding-block:var(--space-section)}
+.privacy-page h1{font-size:var(--type-project-display);max-width:18ch;margin-bottom:48px}
+.privacy-content{max-width:72ch;font-size:var(--type-body-large);line-height:1.65}
+.privacy-content section+section{margin-top:64px;padding-top:48px;border-top:1px solid var(--color-border-subtle)}
+.privacy-content h2{font-size:var(--type-h2);margin-bottom:32px}
+.privacy-content h3{font-size:var(--type-h3);margin-block:32px 16px}
+.privacy-content p,.privacy-content ul{margin-bottom:20px}
+.privacy-content ul{padding-inline-start:24px}
+.privacy-content li+li{margin-top:8px}
+.privacy-content a{text-decoration:underline;text-underline-offset:4px;overflow-wrap:anywhere}
+@media(max-width:600px){.privacy-page h1{margin-bottom:32px}.privacy-content{font-size:18px}.privacy-content section+section{margin-top:48px;padding-top:32px}}

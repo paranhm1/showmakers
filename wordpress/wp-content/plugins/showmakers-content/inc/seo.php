@@ -7,7 +7,7 @@ function showmakers_seo_local() {
 }
 function showmakers_seo_pages() {
     $pages = array( 'home' => absint( get_option( 'page_on_front' ) ) );
-    foreach ( array( 'work', 'services', 'about', 'contact' ) as $slug ) {
+    foreach ( array( 'work', 'services', 'about', 'contact', 'privacy' ) as $slug ) {
         $page = get_page_by_path( $slug, OBJECT, 'page' );
         if ( $page && $page->post_status === 'publish' ) $pages[$slug] = $page->ID;
     }
@@ -27,7 +27,7 @@ function showmakers_seo_text( $text ) {
 }
 function showmakers_seo_metadata( $entity ) {
     $id = $entity['id'];
-    $titles = array( 'home' => 'ShowMakers | Marketing Agency', 'work' => 'Our Work | ShowMakers', 'services' => 'Marketing Services | ShowMakers', 'about' => 'About ShowMakers | Marketing Agency', 'contact' => 'Contact ShowMakers' );
+    $titles = array( 'home' => 'ShowMakers | Marketing Agency', 'work' => 'Our Work | ShowMakers', 'services' => 'Marketing Services | ShowMakers', 'about' => 'About ShowMakers | Marketing Agency', 'contact' => 'Contact ShowMakers', 'privacy' => 'Privacy Notice | ShowMakers' );
     $title = showmakers_seo_text( get_post_meta( $id, 'seo_title', true ) ) ?: ( $titles[$entity['kind']] ?? showmakers_seo_text( get_the_title( $id ) ) . ' | ShowMakers' );
     $description = showmakers_seo_text( get_post_meta( $id, 'seo_description', true ) );
     if ( $description === '' ) {
@@ -36,6 +36,7 @@ function showmakers_seo_metadata( $entity ) {
         foreach ( $fields[$entity['kind']] ?? array() as $field ) $parts[] = get_post_meta( $id, $field, true );
         $description = showmakers_seo_text( implode( ' ', $parts ) );
         if ( $entity['kind'] === 'work' ) $description = 'Selected projects from ShowMakers.';
+        if ( $entity['kind'] === 'privacy' ) $description = 'How ShowMakers handles personal information submitted through website enquiries, in English and Bahasa Malaysia.';
     }
     $image = absint( get_post_meta( $id, 'seo_social_image', true ) );
     if ( ! showmakers_seo_image( $image ) && $entity['kind'] === 'project' ) {

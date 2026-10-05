@@ -7,7 +7,7 @@ from concurrent.futures import ThreadPoolExecutor
 import json,re
 BASE='http://showmakers-local.local/'
 slugs=['short-form-brand-content','tid-group','stories-in-the-moment','ravo-film','ai-assisted-content']
-paths=['','work/','services/','about/','contact/']+['work/'+s+'/' for s in slugs]
+paths=['','work/','services/','about/','contact/','privacy/']+['work/'+s+'/' for s in slugs]
 class Doc(HTMLParser):
  def __init__(self):super().__init__();self.meta={};self.canon=[];self.headings=[];self.images=[];self.links=[];self.assets=set();self.ids=set();self.json=[];self.ld=False;self.title=False;self.titles=[]
  def handle_starttag(self,t,attrs):
@@ -88,7 +88,8 @@ for p,name in [('','home'),('work/','work'),('services/','services'),('about/','
  if before.exists():
   old=before.read_text();new=get(p)[1]
   def visible(s):
-   s=s[s.index('<body'):]
+   s=s[s.index('<body'):s.index('<footer')]
+   s=re.sub(r'<p class="privacy-acknowledgement">.*?</p>\n?','',s,flags=re.S)
    return re.sub(r'(name="contact_(?:nonce|token|signature)" value=")[^"]*',r'\1TOKEN',s)
-  assert visible(old)==visible(new),(name,'visible body changed')
-  print('PASS: exact unchanged visible body',name)
+  assert visible(old)==visible(new),(name,'unrelated visible body changed')
+  print('PASS: unchanged main/header (approved privacy acknowledgement excluded)',name)

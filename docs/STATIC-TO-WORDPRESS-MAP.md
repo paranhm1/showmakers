@@ -1,5 +1,6 @@
 # Static → WordPress migration map
 
+Current confirmed production website: **https://showmakers.my/**. Verified enquiry/privacy email remains **sales@showmakers.org**. Approved bilingual Privacy Notice is published locally at `/privacy/` (Page 120); historical pending-Privacy-Notice statements below are superseded by the completed Privacy Notice section. Production deployment is not performed.
 Phase 4: Ravo Film only imported into local WordPress; all other business content remains reference data. The Phase 3 mapping overrides below supersede earlier Pro-oriented field suggestions. Baseline: `static-approved-v1` / `19e1be22a7952f655003abab5cc1344ac35fbb9b`. Target choices and media eligibility are in [migration plan](WORDPRESS-MIGRATION-PLAN.md); detailed field properties are in [CMS model](CMS-DATA-MODEL.md).
 
 ## Pages, components and source files
@@ -445,3 +446,15 @@ Existing ten exact301 mappings in the table above remain the complete redirect m
 Five main URLs + five eligible Projects remain the intended future sitemap. Local HTTP sitemap stays disabled/noindex; core provider/XML projection verified ten entries. Client/Service archives stay internal, attachments retain native redirect-to-file behavior, drafts/private/sample/internal pages excluded. The user's manual-test upload is retained, not promoted to a Project or sitemap. Site Title's Local suffix is development-only and does not appear in the explicit public SEO titles. Final host/HTTPS/www configuration and indexability checks remain later authorized production work; Privacy Notice approval still required.
 
 Attachment follow-up: the real MP4 `?attachment_id=` route required an explicit SEO adapter guard in addition to native disabled pages. Approved available image/MP4 → original file301; unavailable/unapproved/unsupported attachment → branded404/noindex. Approved About image and real uploaded MP4 redirects tested. No new public detail routes or raw-file access policy.
+
+## Completed Privacy Notice mapping
+
+- User-approved EN/BM wording → published native **Page 120**, `/privacy/`, English then Bahasa Malaysia. Future text edits use **Pages → Privacy Notice → edit content → Update**; no source-file editing required.
+- Theme `page-privacy.php` → existing header/footer, one Page-title H1 and native `the_content()`; scoped `assets/css/pages/privacy.css` controls restrained typography, content width and spacing. Native classic editor prevents block layout controls for this Page.
+- Footer legal slot → normal runtime `/privacy/` anchor replacing the old pending-notice disclosure, without adding a footer section.
+- Contact submit area → exact acknowledgement text with only Privacy Notice linked; no checkbox and no backend changes.
+- SEO Page allowlist → six Pages plus five Projects; Privacy title **Privacy Notice | ShowMakers**, factual description, environment-derived canonical. Local indexing/sitemap settings remain disabled.
+- Confirmed future website **https://showmakers.my/**; verified email remains **sales@showmakers.org**. No LocalWP hostname is embedded in native legal copy.
+- Existing email-only enquiries create no persistent Inquiry database. No analytics, tracking or cookie consent was introduced.
+
+Page content/option live in WordPress and must accompany later authorised content migration; neither database nor uploads are versioned here. QA at 1440/1024/390px and existing frontend/CMS/media/Contact regression checks passed. No production deployment was performed.

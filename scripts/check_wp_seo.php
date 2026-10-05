@@ -14,13 +14,13 @@ $provider=new WP_Sitemaps_Posts();
 $pages=$provider->get_url_list(1,'page');$projects=$provider->get_url_list(1,'project');
 $expected=array_map(fn($kind)=>home_url($kind==='home'?'/':'/'.$kind.'/'),array_keys(showmakers_seo_pages()));
 $actual=array_column($pages,'loc');sort($actual);sort($expected);
-sm_seo_assert($actual===$expected&&count($actual)===5,'Core Page sitemap projection: exact five approved URLs');
+sm_seo_assert($actual===$expected&&count($actual)===6,'Core Page sitemap projection: exact six approved URLs');
 $slugs=array('short-form-brand-content','tid-group','stories-in-the-moment','ravo-film','ai-assisted-content');
 $expected=array_map(fn($slug)=>home_url('/work/'.$slug.'/'),$slugs);$actual=array_column($projects,'loc');sort($actual);sort($expected);
 sm_seo_assert($actual===$expected,'Core Project sitemap projection: exact five eligible Projects');
 $xml=(new WP_Sitemaps_Renderer())->get_sitemap_xml(array_merge($pages,$projects));
 $parsed=simplexml_load_string($xml);
-sm_seo_assert($parsed!==false&&count($parsed->url)===10,'Core XML renderer: ten valid URL entries without enabling local HTTP sitemap');
+sm_seo_assert($parsed!==false&&count($parsed->url)===11,'Core XML renderer: eleven valid URL entries without enabling local HTTP sitemap');
 sm_seo_assert(array_keys($provider->get_object_subtypes())===array('page','project'),'No Posts/Clients/attachments sitemap subtypes');
 sm_seo_assert(apply_filters('wp_sitemaps_add_provider',new stdClass(),'users')===false&&apply_filters('wp_sitemaps_add_provider',new stdClass(),'taxonomies')===false,'No author/taxonomy sitemap providers');
 foreach($slugs as $slug){$p=get_page_by_path($slug,OBJECT,'project');$m=showmakers_seo_metadata(array('kind'=>'project','id'=>$p->ID,'url'=>get_permalink($p)));sm_seo_assert($m['title']===get_the_title($p).' | ShowMakers'&&$m['description']===showmakers_seo_text(get_post_meta($p->ID,'short_summary',true)),'Project fallback '.$slug);}

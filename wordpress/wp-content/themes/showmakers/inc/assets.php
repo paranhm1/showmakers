@@ -9,7 +9,7 @@ function showmakers_page_key() {
     if ( is_front_page() ) return 'home';
     if ( is_singular( 'project' ) ) return 'project';
     if ( is_post_type_archive( 'project' ) ) return 'work';
-    foreach ( array( 'work', 'services', 'about', 'contact' ) as $page ) {
+    foreach ( array( 'work', 'services', 'about', 'contact', 'privacy' ) as $page ) {
         if ( is_page( $page ) ) return $page;
     }
     return 'about'; // Safe shared typography for the fallback shell.
