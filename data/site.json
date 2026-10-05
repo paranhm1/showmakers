@@ -1,0 +1,187 @@
+{
+  "name": "ShowMakers",
+  "logo": "assets/images/showmakers-logo.webp",
+  "navigation": [
+    {
+      "label": "Work",
+      "url": "work.html"
+    },
+    {
+      "label": "Services",
+      "url": "services.html"
+    },
+    {
+      "label": "About",
+      "url": "about.html"
+    },
+    {
+      "label": "Contact",
+      "url": "contact.html"
+    }
+  ],
+  "hero": {
+    "headline": [
+      "Marketing ideas.",
+      "Made to happen."
+    ],
+    "introduction": "We’re ShowMakers.",
+    "description": "A marketing agency bringing strategy, creative thinking and hands-on execution together.",
+    "action": {
+      "label": "View Work",
+      "url": "work.html"
+    }
+  },
+  "home": {
+    "clientsTitle": "Selected clients",
+    "servicesTitle": "What we do",
+    "servicesAction": "All Services"
+  },
+  "work": {
+    "title": "Work",
+    "introduction": "Selected projects from ShowMakers.",
+    "note": "Some entries are capability imagery rather than fully documented case studies. Descriptive titles identify the work without implying unverified scope or results."
+  },
+  "services": {
+    "title": "Services",
+    "introduction": "Marketing thinking, creative content and execution across channels. Eight individual services, connected by the needs of your brand.",
+    "indexTitle": "Explore our services"
+  },
+  "about": {
+    "title": "Ideas need people.",
+    "introduction": "We’re ShowMakers, a marketing agency with creative and execution capabilities across content, digital and live experiences.",
+    "philosophyTitle": "Understand the brand. Make the work matter.",
+    "philosophyText": "Our marketing ideas begin with brand goals and audience behaviour. We bring creative thinking and practical execution together, with internal review to maintain consistency.",
+    "approachTitle": "Human ideas. Hands-on execution.",
+    "approachText": "Our creative team leads strategy, design, shooting, editing and brand storytelling. AI supports selected research, ideation, scripting, visual direction and content planning. Human judgment and internal review guide the final delivery.",
+    "steps": [
+      {
+        "title": "Think",
+        "text": "Understand the business, brand goals and audience before shaping the marketing direction."
+      },
+      {
+        "title": "Create",
+        "text": "Develop concepts, content and visual direction with the creative team."
+      },
+      {
+        "title": "Execute",
+        "text": "Turn ideas into media, digital assets and physical brand experiences."
+      },
+      {
+        "title": "Review",
+        "text": "Review the work internally for quality, accuracy and brand consistency."
+      }
+    ],
+    "media": {
+      "type": "image",
+      "src": "assets/images/work/on-set.webp",
+      "alt": "A camera operator on a ShowMakers production set.",
+      "caption": "General production imagery; not paired with a specific finished project."
+    },
+    "source": "2026 Company Profile, pages 6–7 and 23. Steps are an editorial summary, not a claimed contractual workflow."
+  },
+  "contact": {
+    "title": "LET’S MAKE\nSOMETHING HAPPEN.",
+    "introduction": "Have a project in mind?\nTell us a little about it.",
+    "email": "sales@showmakers.org",
+    "phone": "+6012-687 8775",
+    "address": "No.13-2, First Floor, Jalan Radin Bagus 6, Bandar Baru Sri Petaling, 57000 Kuala Lumpur.",
+    "whatsapp": null,
+    "socialLinks": [],
+    "form": {
+      "title": "Tell us a little about you.",
+      "note": "Form delivery is not connected yet. Nothing entered here will be sent. To start a conversation now, email sales@showmakers.org.",
+      "endpoint": null,
+      "submitLabel": "Send Inquiry",
+      "notSureLabel": "Not sure yet",
+      "servicePlaceholder": "Choose a service",
+      "states": {
+        "ready": "",
+        "validationError": "Please complete the required fields and check your email address.",
+        "unavailable": "Your inquiry has not been sent. Form delivery is not connected yet. Please email sales@showmakers.org to start the conversation.",
+        "submitting": "Sending your inquiry…",
+        "success": "Thank you. Your inquiry has been received.",
+        "error": "Your inquiry could not be sent. Please try again or email sales@showmakers.org."
+      },
+      "fields": [
+        {
+          "name": "name",
+          "label": "Hi, my name is",
+          "type": "text",
+          "autocomplete": "name",
+          "placeholder": "Your name",
+          "required": true
+        },
+        {
+          "name": "company",
+          "label": "I’m from",
+          "type": "text",
+          "autocomplete": "organization",
+          "placeholder": "Company / brand",
+          "required": false
+        },
+        {
+          "name": "service",
+          "label": "I’m looking for help with",
+          "type": "select",
+          "required": true
+        },
+        {
+          "name": "goal",
+          "label": "I’m hoping to",
+          "type": "textarea",
+          "placeholder": "Tell us what you’d like to achieve.",
+          "required": true
+        },
+        {
+          "name": "email",
+          "label": "You can reach me at",
+          "type": "email",
+          "autocomplete": "email",
+          "placeholder": "Your email address",
+          "required": true
+        },
+        {
+          "name": "additionalDetails",
+          "label": "Anything else we should know?",
+          "type": "textarea",
+          "placeholder": "A little more context, if you’d like.",
+          "required": false
+        }
+      ]
+    }
+  },
+  "footer": {
+    "contactLabel": "Have a project in mind?",
+    "contactAction": "Get in touch",
+    "copyright": "ShowMakers E&M",
+    "note": "Visual prototype · Provisional copy",
+    "privacyNotice": {
+      "label": "Privacy Notice",
+      "text": "Privacy Notice content is pending confirmation. For questions about an inquiry, contact"
+    }
+  },
+  "labels": {
+    "close": "Close",
+    "pause": "Pause logos",
+    "resume": "Resume logos",
+    "menu": "Menu",
+    "relatedWork": "Related work",
+    "provides": "What we provide",
+    "platforms": "Platforms",
+    "formats": "Formats",
+    "viewProject": "View Project",
+    "backToWork": "Back to Work",
+    "nextProject": "Next Project",
+    "startProject": "Start a project",
+    "emptyWork": "No published projects are available for this service yet.",
+    "projectReference": "Project reference",
+    "removeReference": "Remove reference"
+  },
+  "logoLight": "assets/images/showmakers-logo-light.png",
+  "notFound": {
+    "title": "404",
+    "message": "Looks like this idea wandered off.",
+    "homeLabel": "Back Home",
+    "workLabel": "View Work"
+  }
+}

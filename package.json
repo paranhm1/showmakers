@@ -1,0 +1,9 @@
+{
+  "name": "showmakers-visual-prototype",
+  "private": true,
+  "scripts": {
+    "build": "python3 scripts/build_site.py",
+    "dev": "python3 scripts/build_site.py && python3 -m http.server 8765 --bind 127.0.0.1",
+    "check": "python3 scripts/check_site.py"
+  }
+}

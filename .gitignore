@@ -1,0 +1,17 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+.vercel/
+node_modules/
+__pycache__/
+*.pyc
+*.log
+*.tmp
+.agents/
+review/
+prototype/
+references/*
+!references/VERIFIED-CONTENT.md
+.vercel
+.env*

@@ -1,0 +1,7 @@
+.page-404{background:var(--color-surface-brand)}
+.page-404 .header-surface{background:var(--color-surface-brand)}
+.not-found{padding-block:64px 100px}
+.not-found h1{font-size:clamp(100px,17vw,220px)}
+.not-found>p{font-size:var(--type-h3);margin-top:24px;max-width:28ch}
+.not-found>div{display:flex;flex-wrap:wrap;gap:32px 48px;margin-top:40px}
+@media(max-width:600px){.not-found{padding-block:44px 64px}.page-404 .site-header nav{background:var(--color-surface-brand)}}

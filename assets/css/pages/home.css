@@ -1,0 +1,33 @@
+/* Approved yellow opening, editorial two-column composition. */
+.hero{background:var(--color-surface-brand)}
+.hero-inner{display:grid;grid-template-columns:58fr 34fr;gap:8%;min-height:540px;padding-top:88px;padding-bottom:100px;align-items:start}
+.hero h1{font-size:var(--type-display);color:var(--color-text-strong)}.hero h1 span{display:block;white-space:nowrap}
+.hero-support{padding-top:4px;max-width:40ch}.hero-explanation>p{font-size:var(--type-body-large);line-height:1.55}
+.hero-explanation .hero-introduction{font-size:var(--type-h3);font-weight:var(--weight-heading);margin-bottom:12px}
+.hero-support>.arrow-link{margin-top:27px}
+.hero.is-ready .hero-intro{animation:hero-place var(--motion-reveal) var(--ease-standard) .1s both}
+.hero.is-ready .hero-explanation{animation:hero-place var(--motion-standard) var(--ease-standard) .5s both}
+.hero.is-ready .hero-support>.arrow-link{animation:hero-place var(--motion-standard) var(--ease-standard) .65s both}
+@keyframes hero-place{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.clients{padding-block:38px 44px;border-bottom:1px solid var(--color-border-subtle)}
+.clients-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}
+.clients-heading h2{font-family:var(--font-body);font-size:var(--type-body);letter-spacing:0}
+.clients-heading button{background:none;padding:8px 0;font-size:var(--type-meta)}
+.marquee{overflow:hidden;mask-image:linear-gradient(to right,transparent,var(--color-black) 6%,var(--color-black) 94%,transparent)}
+.marquee-track{display:flex;width:max-content;animation:client-loop var(--motion-marquee) linear infinite}
+.logo-list{display:flex;align-items:center;gap:74px;padding:0 74px 0 0;margin:0;list-style:none}
+.logo-list li{width:120px;height:74px;display:grid;place-items:center;flex-shrink:0}.logo-list img{max-width:120px;max-height:64px;width:auto;height:auto}
+.clients:hover .marquee-track,.clients:focus-within .marquee-track,.clients[data-paused=true] .marquee-track{animation-play-state:paused}
+@keyframes client-loop{to{transform:translateX(-50%)}}
+.clients.is-static .marquee{mask-image:none}.clients.is-static .marquee-track{width:100%;animation:none}
+.clients.is-static .logo-list{flex-wrap:wrap;justify-content:center;gap:38px 54px;padding-inline:var(--gutter)}.clients.is-static .logo-copy{display:none!important}
+.home-services{padding-block:56px 64px}
+.home-services-heading{display:flex;justify-content:space-between;align-items:baseline;gap:24px;margin-bottom:32px}
+.home-services-heading h2{font-size:var(--type-h2)}
+.home-services-route{border:0;padding:0}
+.home-service-index{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,auto);grid-auto-flow:column;gap:24px 8%;list-style:none;padding:0;margin:0}
+.home-service-index a{display:flex;align-items:baseline;gap:20px;font-family:var(--font-display);font-size:var(--type-h3);font-weight:var(--weight-heading);line-height:1.3}
+.home-service-number{font-family:var(--font-body);font-size:var(--type-meta);font-weight:400;flex-shrink:0;border-bottom:2px solid var(--color-brand-yellow);padding-bottom:3px}
+.home-service-index a:hover{text-decoration:underline;text-decoration-color:var(--color-brand-yellow);text-underline-offset:6px}
+@media(max-width:900px){.hero-inner{display:flex;flex-direction:column;min-height:0;gap:40px;padding-block:48px 64px}.hero-support{padding-top:0}}
+@media(max-width:600px){.hero-inner{padding-block:38px 40px;gap:32px}.hero-support{max-width:34ch}.hero-explanation>p{font-size:var(--type-body)}.hero-explanation .hero-introduction{font-size:var(--type-body-large);margin-bottom:10px}.hero-support>.arrow-link{margin-top:24px}.clients{padding-block:30px 34px}.clients-heading{margin-bottom:22px}.logo-list{gap:44px;padding-right:44px}.logo-list li{width:104px;height:65px}.logo-list img{max-width:104px;max-height:55px}.marquee{mask-image:linear-gradient(to right,transparent,var(--color-black) 5%,var(--color-black) 95%,transparent)}.clients.is-static .logo-list{display:grid;grid-template-columns:1fr 1fr;gap:28px 35px}.home-services{padding-block:40px 48px}.home-services-heading{gap:16px;margin-bottom:28px}.home-services-heading h2{font-size:var(--type-h3)}.home-service-index{display:flex;flex-direction:column;gap:20px}.home-service-index a{font-size:22px;gap:16px}}

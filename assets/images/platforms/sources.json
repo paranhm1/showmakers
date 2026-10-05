@@ -1,0 +1,34 @@
+{
+  "provider": "Simple Icons",
+  "repository": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/",
+  "purpose": "Monochrome platform identification, no partnership or endorsement implied",
+  "icons": [
+    {
+      "title": "Facebook",
+      "hex": "0866FF",
+      "source": "https://about.meta.com/brand/resources/facebook/logo",
+      "guidelines": "https://about.meta.com/brand/resources/facebook/logo"
+    },
+    {
+      "title": "Instagram",
+      "hex": "FF0069",
+      "source": "https://about.meta.com/brand/resources/instagram",
+      "guidelines": "https://about.meta.com/brand/resources/instagram"
+    },
+    {
+      "title": "TikTok",
+      "hex": "000000",
+      "source": "https://tiktok.com"
+    },
+    {
+      "title": "Xiaohongshu",
+      "hex": "FF2442",
+      "source": "https://pro.xiaohongshu.com",
+      "aliases": {
+        "loc": {
+          "zh-CN": "\u5c0f\u7ea2\u4e66"
+        }
+      }
+    }
+  ]
+}

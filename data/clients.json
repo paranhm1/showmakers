@@ -1,0 +1,146 @@
+[
+  {
+    "name": "Samsung",
+    "image": "assets/images/clients/samsung.webp",
+    "id": "samsung",
+    "order": 0,
+    "published": true,
+    "projects": []
+  },
+  {
+    "name": "Ravo",
+    "image": "assets/images/clients/ravo.webp",
+    "id": "ravo",
+    "order": 1,
+    "published": true,
+    "projects": []
+  },
+  {
+    "name": "Energizer",
+    "image": "assets/images/clients/energizer.webp",
+    "id": "energizer",
+    "order": 2,
+    "published": true,
+    "projects": []
+  },
+  {
+    "name": "Dasher",
+    "image": "assets/images/clients/dasher.webp",
+    "id": "dasher",
+    "order": 3,
+    "published": true,
+    "projects": []
+  },
+  {
+    "name": "Chowdhury",
+    "image": "assets/images/clients/chowdhury.webp",
+    "id": "chowdhury",
+    "order": 4,
+    "published": true,
+    "projects": []
+  },
+  {
+    "name": "Lions International",
+    "image": "assets/images/clients/lions-international.webp",
+    "id": "lions-international",
+    "order": 5,
+    "published": true,
+    "projects": []
+  },
+  {
+    "name": "Major Harvest",
+    "image": "assets/images/clients/major-harvest.webp",
+    "id": "major-harvest",
+    "order": 6,
+    "published": true,
+    "projects": []
+  },
+  {
+    "name": "Bika",
+    "image": "assets/images/clients/bika.webp",
+    "id": "bika",
+    "order": 7,
+    "published": true,
+    "projects": []
+  },
+  {
+    "name": "Orvibo",
+    "image": "assets/images/clients/orvibo.webp",
+    "id": "orvibo",
+    "order": 8,
+    "published": true,
+    "projects": []
+  },
+  {
+    "name": "Module",
+    "image": "assets/images/clients/module.webp",
+    "id": "module",
+    "order": 9,
+    "published": true,
+    "projects": []
+  },
+  {
+    "name": "StaySmart",
+    "image": "assets/images/clients/staysmart.webp",
+    "id": "staysmart",
+    "order": 10,
+    "published": true,
+    "projects": []
+  },
+  {
+    "name": "IN Design Lab",
+    "image": "assets/images/clients/in-design-lab.webp",
+    "id": "in-design-lab",
+    "order": 11,
+    "published": true,
+    "projects": []
+  },
+  {
+    "name": "Inno Kitchen",
+    "image": "assets/images/clients/inno-kitchen.webp",
+    "id": "inno-kitchen",
+    "order": 12,
+    "published": true,
+    "projects": []
+  },
+  {
+    "name": "N4 Container",
+    "image": "assets/images/clients/n4-container.webp",
+    "id": "n4-container",
+    "order": 13,
+    "published": true,
+    "projects": []
+  },
+  {
+    "name": "The Inn Livehouse",
+    "image": "assets/images/clients/the-inn-livehouse.webp",
+    "id": "the-inn-livehouse",
+    "order": 14,
+    "published": true,
+    "projects": []
+  },
+  {
+    "name": "Yoru",
+    "image": "assets/images/clients/yoru.webp",
+    "id": "yoru",
+    "order": 15,
+    "published": true,
+    "projects": []
+  },
+  {
+    "name": "Sedox Performance",
+    "image": "assets/images/clients/sedox-performance.webp",
+    "id": "sedox-performance",
+    "order": 16,
+    "published": true,
+    "projects": []
+  },
+  {
+    "name": "BamCoal",
+    "image": "assets/images/clients/bamcoal.webp",
+    "id": "bamcoal",
+    "order": 17,
+    "published": true,
+    "projects": []
+  }
+]

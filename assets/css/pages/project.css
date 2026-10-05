@@ -1,0 +1,15 @@
+/* One shared detail template: verified material, no speculative case-study sections. */
+.project-detail{padding-top:32px;padding-bottom:var(--space-section)}
+.detail-heading{max-width:65ch;padding-top:40px;padding-bottom:40px}
+.detail-heading>.editorial-number{margin-bottom:24px}.detail-heading h1{font-size:var(--type-project-display);max-width:18ch;color:var(--color-text-primary)}
+.detail-heading>p{font-size:var(--type-body-large);max-width:48ch;margin-top:24px}
+.detail-heading .project-services{margin-top:20px}
+.detail-hero img{width:100%;height:auto}
+.detail-portrait .detail-hero{max-width:540px}.detail-digital .detail-hero{max-width:950px}
+.detail-gallery{margin-top:64px;max-width:950px}.detail-gallery figure+figure{margin-top:48px}
+.detail-documentation{font-size:var(--type-body-small);max-width:60ch;color:var(--color-text-secondary);margin-top:40px}
+.detail-route{display:flex;justify-content:space-between;gap:24px;margin-top:64px}
+@media(max-width:600px){.project-detail{padding-top:24px}.detail-heading{padding-block:32px}.detail-heading h1{font-size:var(--type-h2)}.detail-heading>p{font-size:var(--type-body)}.detail-gallery{margin-top:36px}.detail-route{margin-top:40px;flex-wrap:wrap}}
+/* Preserve native resolution and full aspect ratio of long website captures. */
+.detail-digital .detail-hero{margin-inline:auto}
+.detail-digital .detail-hero img,.detail-digital .detail-gallery img{margin-inline:auto;height:auto}

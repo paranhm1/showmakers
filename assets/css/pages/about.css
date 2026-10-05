@@ -1,0 +1,14 @@
+.about-philosophy{display:grid;grid-template-columns:5fr 6fr;gap:8.333%;padding-bottom:75px}.about-philosophy h2{line-height:1.12;letter-spacing:var(--tracking-heading);max-width:16ch;font-weight:var(--weight-heading)}.about-philosophy p{line-height:1.7;max-width:44ch}.working-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;padding-block:80px}.working-steps>div{padding-top:20px;}.working-steps h2{letter-spacing:var(--tracking-heading);margin-top:18px;font-weight:var(--weight-heading)}.working-steps p{line-height:1.7;margin-top:16px}
+@media(max-width:900px){.working-steps{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.about-philosophy{display:block;padding-bottom:44px}.about-philosophy h2{margin-bottom:24px}.working-steps{display:block;padding-block:44px}.working-steps>div+div{margin-top:30px}.working-steps h2{margin-top:12px}.working-steps p{margin-top:12px}}
+.approach{background:var(--color-surface-dark);color:var(--color-text-inverse);--color-focus:var(--color-white)}
+.approach-inner{display:grid;grid-template-columns:7fr 3fr;gap:16.666%;padding-block:68px;align-items:center}
+.approach-copy h2{max-width:15ch}.approach-copy p{margin-top:28px;max-width:48ch}.approach-image{width:100%;aspect-ratio:1;object-fit:cover}
+@media(max-width:900px){.approach-inner{grid-template-columns:6fr 3fr;gap:8.333%}}
+@media(max-width:600px){.approach-inner{display:block;padding-block:44px}.approach-image{width:62%;aspect-ratio:1.1;margin-top:32px}}
+
+/* Shared responsive typography roles. */
+.about-philosophy h2{font-size:var(--type-h2)}.about-philosophy p{font-size:var(--type-body-large)}.working-steps span{font-size:var(--type-meta)}.working-steps h2{font-size:var(--type-h3)}.working-steps p{font-size:var(--type-body-small)}
+
+.page-about .page-intro{padding-top:48px;padding-bottom:56px}.about-philosophy{padding-top:64px}
+@media(max-width:600px){.page-about .page-intro{padding-top:32px;padding-bottom:40px}.about-philosophy{padding-top:40px}}

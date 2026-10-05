@@ -1,0 +1,335 @@
+[
+  {
+    "id": "brand-content",
+    "slug": "short-form-brand-content",
+    "title": "Short-form brand content",
+    "client": null,
+    "summary": "A frame from ShowMakers’ short-video portfolio.",
+    "services": [
+      "media-production"
+    ],
+    "featured": true,
+    "thumbnail": {
+      "type": "image",
+      "src": "assets/images/work/brand-content.webp",
+      "alt": "A child playing beside a window in a brand video frame.",
+      "caption": ""
+    },
+    "media": [
+      {
+        "type": "image",
+        "src": "assets/images/work/brand-content.webp",
+        "alt": "A child playing beside a window in a brand video frame.",
+        "caption": ""
+      }
+    ],
+    "year": null,
+    "order": 1,
+    "published": true,
+    "presentation": "landscape",
+    "detailUrl": "work/short-form-brand-content.html",
+    "source": "2026 Company Profile, page 21. Short-video work; no campaign name, distribution platform or results inferred.",
+    "heroMedia": {
+      "type": "image",
+      "src": "assets/images/work/brand-content.webp",
+      "alt": "A child playing beside a window in a brand video frame.",
+      "caption": ""
+    },
+    "documentationNote": "Portfolio material from the 2026 ShowMakers Company Profile. The original project name, client, date and detailed responsibilities are not documented.",
+    "listingThumbnail": {
+      "type": "image",
+      "src": "assets/images/work/brand-content.webp",
+      "alt": "A child playing beside a window in a brand video frame.",
+      "caption": "",
+      "fit": "cover"
+    },
+    "isPlaceholder": false,
+    "mediaStatus": "approved"
+  },
+  {
+    "id": "tid-group",
+    "slug": "tid-group",
+    "title": "TID Group",
+    "client": "TID Group",
+    "summary": "Company website planning and construction for an interior fit-out business.",
+    "services": [
+      "website-digital-solutions"
+    ],
+    "featured": true,
+    "thumbnail": {
+      "type": "image",
+      "src": "assets/images/work/tid-home.webp",
+      "alt": "TID Group website showing company information and interior fit-out work.",
+      "caption": ""
+    },
+    "media": [
+      {
+        "type": "image",
+        "src": "assets/images/work/tid-home.webp",
+        "alt": "TID Group company website.",
+        "caption": ""
+      },
+      {
+        "type": "image",
+        "src": "assets/images/work/tid-detail.webp",
+        "alt": "TID Group website project detail.",
+        "caption": ""
+      }
+    ],
+    "year": null,
+    "order": 2,
+    "published": true,
+    "presentation": "digital",
+    "detailUrl": "work/tid-group.html",
+    "source": "2026 Company Profile, page 27. No satisfaction guarantees or results reproduced.",
+    "heroMedia": {
+      "type": "image",
+      "src": "assets/images/work/tid-detail.webp",
+      "alt": "TID Group website project detail.",
+      "caption": ""
+    },
+    "documentationNote": "Portfolio material from the 2026 ShowMakers Company Profile. The date and additional project scope or credits are not documented.",
+    "listingThumbnail": {
+      "type": "image",
+      "src": "assets/images/work/tid-detail.webp",
+      "alt": "TID Group website project detail.",
+      "caption": "",
+      "fit": "contain"
+    },
+    "isPlaceholder": false,
+    "mediaStatus": "approved"
+  },
+  {
+    "id": "short-form",
+    "slug": "stories-in-the-moment",
+    "title": "Stories in the moment.",
+    "client": null,
+    "summary": "A portrait frame from ShowMakers’ short-form video portfolio.",
+    "services": [
+      "media-production"
+    ],
+    "featured": false,
+    "thumbnail": {
+      "type": "image",
+      "src": "assets/images/work/short-form.webp",
+      "alt": "A performer beneath illuminated lanterns.",
+      "caption": ""
+    },
+    "media": [
+      {
+        "type": "image",
+        "src": "assets/images/work/short-form.webp",
+        "alt": "A performer beneath illuminated lanterns.",
+        "caption": ""
+      }
+    ],
+    "year": null,
+    "order": 3,
+    "published": true,
+    "presentation": "portrait",
+    "detailUrl": "work/stories-in-the-moment.html",
+    "source": "2026 Company Profile, page 21. Descriptive title; project scope and date not established.",
+    "heroMedia": {
+      "type": "image",
+      "src": "assets/images/work/short-form.webp",
+      "alt": "A performer beneath illuminated lanterns.",
+      "caption": ""
+    },
+    "documentationNote": "Portfolio material from the 2026 ShowMakers Company Profile. The original project name, client, date and detailed responsibilities are not documented.",
+    "listingThumbnail": {
+      "type": "image",
+      "src": "assets/images/work/short-form.webp",
+      "alt": "A performer beneath illuminated lanterns.",
+      "caption": "",
+      "fit": "contain"
+    },
+    "isPlaceholder": false,
+    "mediaStatus": "approved"
+  },
+  {
+    "id": "brand-showcase",
+    "slug": "brand-showcase",
+    "title": "A brand, brought into the world.",
+    "client": "Tommy Hilfiger",
+    "summary": "A Tommy Hilfiger brand showcase from the ShowMakers portfolio.",
+    "services": [
+      "event-management"
+    ],
+    "featured": false,
+    "thumbnail": {
+      "type": "image",
+      "src": "assets/images/placeholders/project-pending-charcoal.png",
+      "alt": "ShowMakers placeholder: project media to be added.",
+      "caption": "",
+      "fit": "cover"
+    },
+    "media": [],
+    "year": null,
+    "order": 4,
+    "published": false,
+    "presentation": "landscape",
+    "detailUrl": "work/brand-showcase.html",
+    "source": "2026 Company Profile, page 32. No campaign strategy, results or specific responsibilities inferred.",
+    "heroMedia": {
+      "type": "image",
+      "src": "assets/images/placeholders/project-pending-charcoal.png",
+      "alt": "ShowMakers placeholder: project media to be added.",
+      "caption": "",
+      "fit": "cover"
+    },
+    "documentationNote": "Portfolio material from the 2026 ShowMakers Company Profile. The date and additional project scope or credits are not documented.",
+    "listingThumbnail": {
+      "type": "image",
+      "src": "assets/images/placeholders/project-pending-charcoal.png",
+      "alt": "ShowMakers placeholder: project media to be added.",
+      "caption": "",
+      "fit": "cover"
+    },
+    "isPlaceholder": true,
+    "mediaStatus": "restricted",
+    "developmentOnly": false
+  },
+  {
+    "id": "ai-content",
+    "slug": "ai-assisted-content",
+    "title": "AI-assisted content",
+    "client": null,
+    "summary": "A frame shown in the profile’s AI Video Creation portfolio.",
+    "services": [
+      "ai-enhanced-content-production"
+    ],
+    "featured": false,
+    "thumbnail": {
+      "type": "image",
+      "src": "assets/images/work/ai-content.webp",
+      "alt": "A man in a vehicle in an AI-assisted brand-content example.",
+      "caption": "AI-assisted content example."
+    },
+    "media": [
+      {
+        "type": "image",
+        "src": "assets/images/work/ai-content.webp",
+        "alt": "A man in a vehicle in an AI-assisted brand-content example.",
+        "caption": "AI-assisted content example."
+      }
+    ],
+    "year": null,
+    "order": 5,
+    "published": true,
+    "presentation": "landscape",
+    "detailUrl": "work/ai-assisted-content.html",
+    "source": "2026 Company Profile, page 25. Not represented as an entirely physical shoot or a documented campaign.",
+    "heroMedia": {
+      "type": "image",
+      "src": "assets/images/work/ai-content.webp",
+      "alt": "A man in a vehicle in an AI-assisted brand-content example.",
+      "caption": "AI-assisted content example."
+    },
+    "documentationNote": "Portfolio material from the 2026 ShowMakers Company Profile. The original project name, client, date and detailed responsibilities are not documented.",
+    "listingThumbnail": {
+      "type": "image",
+      "src": "assets/images/work/ai-content.webp",
+      "alt": "A man in a vehicle in an AI-assisted brand-content example.",
+      "caption": "AI-assisted content example.",
+      "fit": "cover"
+    },
+    "isPlaceholder": false,
+    "mediaStatus": "approved"
+  },
+  {
+    "id": "layout-placeholder-06",
+    "slug": "project-06",
+    "title": "Project 06",
+    "client": null,
+    "summary": "Development placeholder only. No real project is documented.",
+    "services": [
+      "social-media-marketing",
+      "influencer-marketing"
+    ],
+    "featured": false,
+    "thumbnail": {
+      "type": "image",
+      "src": "assets/images/placeholders/project-pending-gray.png",
+      "alt": "ShowMakers development placeholder: project image pending.",
+      "caption": "",
+      "fit": "cover"
+    },
+    "listingThumbnail": {
+      "type": "image",
+      "src": "assets/images/placeholders/project-pending-gray.png",
+      "alt": "ShowMakers development placeholder: project image pending.",
+      "caption": "",
+      "fit": "cover"
+    },
+    "heroMedia": {
+      "type": "image",
+      "src": "assets/images/placeholders/project-pending-gray.png",
+      "alt": "ShowMakers development placeholder: project image pending.",
+      "caption": "",
+      "fit": "cover"
+    },
+    "media": [],
+    "year": null,
+    "order": 6,
+    "published": true,
+    "presentation": "landscape",
+    "detailUrl": null,
+    "isPlaceholder": true,
+    "developmentOnly": true,
+    "source": "Layout-development placeholder. Service assignments exist only for UI/filter testing and do not document ShowMakers work.",
+    "documentationNote": "Project details pending.",
+    "mediaStatus": "pending"
+  },
+  {
+    "id": "ravo-film",
+    "slug": "ravo-film",
+    "title": "Ravo Film",
+    "client": "Ravo Film",
+    "summary": "ShowMakers created the Ravo Film website.",
+    "services": [
+      "website-digital-solutions"
+    ],
+    "projectType": "Website",
+    "featured": false,
+    "thumbnail": {
+      "type": "image",
+      "src": "assets/images/work/ravo-film.webp",
+      "alt": "Ravo Film website screenshot from the 2026 Company Profile.",
+      "caption": "",
+      "fit": "contain"
+    },
+    "listingThumbnail": {
+      "type": "image",
+      "src": "assets/images/work/ravo-film.webp",
+      "alt": "Ravo Film website screenshot from the 2026 Company Profile.",
+      "caption": "",
+      "fit": "contain"
+    },
+    "heroMedia": {
+      "type": "image",
+      "src": "assets/images/work/ravo-film.webp",
+      "alt": "Ravo Film website screenshot from the 2026 Company Profile.",
+      "caption": "",
+      "fit": "contain"
+    },
+    "media": [
+      {
+        "type": "image",
+        "src": "assets/images/work/ravo-film.webp",
+        "alt": "Ravo Film website screenshot from the 2026 Company Profile.",
+        "caption": "",
+        "fit": "contain"
+      }
+    ],
+    "year": null,
+    "order": 4,
+    "published": true,
+    "presentation": "digital",
+    "detailUrl": "work/ravo-film.html",
+    "isPlaceholder": false,
+    "developmentOnly": false,
+    "mediaStatus": "approved",
+    "source": "ShowMakers direct confirmation; 2026 Company Profile page 28 website artwork X12.",
+    "documentationNote": "Project date, detailed scope, technology and results are not documented."
+  }
+]

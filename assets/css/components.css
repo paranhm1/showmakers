@@ -1,0 +1,116 @@
+/* Shared components. Page files control composition rather than brand roles. */
+.header-surface { background: var(--color-surface-primary); }
+:is(.page-home,.page-work,.page-services,.page-about,.page-contact) .header-surface { background: var(--color-surface-brand); }
+.site-header { height: 120px; display: flex; align-items: center; justify-content: space-between; }
+.brand { display: inline-block; width: 152px; flex-shrink: 0; }
+.brand img { width: 100%; height: auto; }
+.site-header nav { display: flex; align-items: center; gap: 38px; }
+.site-header nav a { font-size: var(--type-nav); font-weight: var(--weight-label); position: relative; padding-block: 12px; text-underline-offset: 7px; }
+.site-header nav a:hover, .site-header nav a:focus-visible { text-decoration: underline; }
+.site-header nav a[aria-current=page] { text-decoration: underline; text-decoration-thickness: 2px; box-shadow: inset 0 -3px var(--color-brand-yellow-secondary); }
+.menu-toggle { display: none; }
+.page-intro { padding-top: 70px; padding-bottom: var(--space-section); }
+.page-intro h1::before { content: ""; display: block; width: 30px; height: 4px; background: var(--color-brand-yellow-secondary); margin-bottom: 24px; }
+.page-contact .page-intro h1::before { background: var(--color-text-primary); }
+.page-intro h1 { color: var(--color-text-strong); max-width: 12ch; }
+.page-intro>p { font-size: var(--type-body-large); line-height: var(--leading-body); max-width: 48ch; margin-top: var(--space-4); }
+.text-link,.text-button { font-size: var(--type-body-small); text-decoration: underline; text-underline-offset: 5px; }
+.text-link:hover,.text-button:hover { text-decoration-thickness: 2px; }
+.text-button { padding: 0; background: none; }
+.section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; margin-bottom: 38px; }
+.section-heading p { font-size: var(--type-body-small); color: var(--color-text-secondary); }
+.section-route { margin-top: 36px; }
+.project-media { display: block; width: 100%; padding: 0; background: var(--color-surface-muted); overflow: hidden; position: relative; }
+.project-media img { width: 100%; height: auto; }
+.project-portrait .project-media { aspect-ratio: 591/1280; }
+.project-digital .project-media { aspect-ratio: 1.03; display: flex; gap: 5%; align-items: flex-start; padding: 9% 8%; }
+.project-digital .screen-primary { width: 53%; box-shadow: var(--shadow-media); }
+.project-digital .screen-secondary { width: 48%; margin-top: 20%; box-shadow: var(--shadow-media); }
+.project-info { margin-top: 23px; }
+.project-info :is(h2,h3) { font-size: var(--type-project); color: var(--color-text-strong); line-height: 1.15; }
+.project-info p { font-size: var(--type-body-small); line-height: var(--leading-body); margin-top: 9px; max-width: 43ch; color: var(--color-text-secondary); }
+.project-services { font-size: var(--type-meta); line-height: var(--leading-body); margin-top: 14px; }
+.project-services a { text-decoration: underline; text-decoration-color: var(--color-border-control); text-underline-offset: 4px; }
+.project-services a:hover { text-decoration-color: currentColor; }
+figcaption { font-size: var(--type-caption); line-height: var(--leading-body); color: var(--color-text-secondary); margin-top: 12px; }
+.site-footer { background: var(--color-surface-muted); padding-top: 32px; }
+.footer-route { display: flex; justify-content: space-between; align-items: center; padding-top: 8px; padding-bottom: 28px; margin-bottom: 24px; }
+.footer-route>p { font-size: var(--type-body); }
+.footer-inner { display: grid; grid-template-columns: 1fr 1.3fr 1fr; gap: 60px; align-items: start; }
+.footer-inner .brand { width: 130px; }
+.footer-inner address { font-size: var(--type-meta); line-height: 1.8; max-width: 32ch; }
+.footer-inner address a { text-decoration: underline; text-underline-offset: 3px; }
+.footer-links { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; font-size: var(--type-body-small); }
+.footer-links a:hover,.footer-links a[aria-current=page] { text-decoration: underline; text-underline-offset: 5px; }
+.footer-bottom { display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; margin-top: 46px; padding-block: 20px; font-size: var(--type-meta); color: var(--color-text-secondary); }
+.privacy-notice { max-width: 50ch; }
+.privacy-notice summary { cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+.privacy-notice p { margin-top: 14px; }
+.privacy-notice a { text-decoration: underline; }
+html:not(.js) .menu-toggle { display: none !important; }
+@media(max-width:900px) { .site-header { height: 100px; } .site-header nav { gap: 24px; } .footer-inner { gap: 30px; } }
+@media(max-width:600px) {
+ .site-header { height: 88px; position: relative; z-index: 5; }
+ .brand { width: 122px; }
+ .menu-toggle { display: flex; align-items: center; gap: 16px; background: none; padding: 12px 0; font-size: var(--type-body-small); }
+ .menu-toggle span { font-size: 22px; }
+ .site-header nav { display: none; position: absolute; top: 88px; left: 0; right: 0; background: var(--color-surface-primary); padding: 10px var(--gutter) 24px; border-bottom: 1px solid var(--color-border-subtle); }
+ :is(.page-home,.page-work,.page-services,.page-about,.page-contact) .site-header nav { background: var(--color-surface-brand); }
+ .site-header nav.is-open { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+ .site-header nav a { padding-block: 13px; }
+ .site-header nav a[aria-current=page] { box-shadow: none; }
+ .section-heading { display: block; margin-bottom: 25px; }
+ .section-heading p { margin-top: 8px; }
+ .page-intro { padding-top: 40px; padding-bottom: 48px; }
+ .page-intro>p { margin-top: 24px; }
+ .project-info { margin-top: 18px; }
+ .footer-route { display: block; padding-bottom: 28px; margin-bottom: 28px; }
+ .footer-route>p { margin-bottom: 24px; }
+ .footer-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
+ .footer-inner .brand { width: 116px; grid-column: 1/-1; }
+ .footer-links { gap: 16px 12px; }
+ .footer-bottom { margin-top: 30px; gap: 12px; }
+ html:not(.js) .site-header { height: auto; min-height: 88px; flex-wrap: wrap; gap: 18px; padding-block: 20px; }
+ html:not(.js) .site-header nav { position: static; display: flex; flex-wrap: wrap; flex-direction: row; padding: 0; gap: 14px; border: 0; }
+ html:not(.js) .site-header nav a { font-size: var(--type-body-small); padding: 6px 0; }
+}
+
+/* One editorial identity and interaction language. */
+.text-link:hover,.project-services a:hover{text-decoration-color:var(--color-text-primary);box-shadow:0 2px var(--color-brand-yellow-secondary)}
+.project-client{font-size:var(--type-meta);font-weight:var(--weight-label);margin-bottom:10px;display:flex;align-items:center;gap:16px}
+.project-client img{max-width:90px;max-height:30px;width:auto;height:auto}
+.project-route{margin-top:18px;font-size:var(--type-body-small)}
+.editorial-number{font-size:var(--type-meta);background:var(--color-brand-yellow);color:var(--color-text-primary);padding:2px 6px;display:inline-block;line-height:1.4}
+
+.keep-word{white-space:nowrap}
+
+/* Shared narrative surfaces: brand introduction, content canvas, dark closing. */
+.page-intro-surface{background:var(--color-surface-brand)}
+.page-intro-surface .page-intro h1::before{background:var(--color-brand-charcoal)}
+.site-footer{background:var(--color-surface-dark);color:var(--color-text-inverse);--color-text-primary:var(--color-white);--color-text-secondary:color-mix(in srgb,var(--color-white) 78%,var(--color-brand-charcoal));--color-focus:var(--color-brand-yellow)}
+.site-footer .brand-light{width:112px}
+.site-footer a:hover,.site-footer summary:hover{color:var(--color-brand-yellow)}
+.site-footer .footer-links a[aria-current=page]{text-decoration-color:var(--color-brand-yellow-secondary)}
+
+.site-footer{padding-top:40px}
+
+/* ShowMakers CTA system: one SVG geometry, three restrained applications. */
+.ui-arrow{display:block;width:64px;height:16px;flex-shrink:0;transition:transform var(--motion-fast) var(--ease-standard),color var(--motion-fast) var(--ease-standard),opacity var(--motion-fast) var(--ease-standard)}
+.arrow-link{display:inline-flex;align-items:center;gap:28px;font-size:var(--type-cta);font-weight:var(--weight-label);line-height:1.5;border-bottom:1px solid currentColor;padding-block:8px;white-space:nowrap;color:var(--color-brand-charcoal)}
+.arrow-link:is(:hover,:focus-visible) .ui-arrow{transform:translateX(5px);color:var(--color-brand-yellow-secondary)}
+:is(.hero,.page-intro-surface,.contact-opening,.not-found) .arrow-link:is(:hover,:focus-visible) .ui-arrow{color:inherit}
+.site-footer .arrow-link{color:var(--color-white)}
+.site-footer .arrow-link:is(:hover,:focus-visible) .ui-arrow{color:var(--color-brand-yellow)}
+.cta-nudge .ui-arrow{width:24px}
+.portfolio-title{display:flex;justify-content:space-between;align-items:baseline;gap:18px}
+.project-arrow{display:inline-flex;justify-content:center;align-items:center;align-self:center;width:30px;height:30px;flex:0 0 30px;border:1px solid var(--color-border-control);border-radius:50%;color:var(--color-brand-charcoal);transition:background-color var(--motion-fast) var(--ease-standard),color var(--motion-fast) var(--ease-standard)}
+.project-arrow .ui-arrow{width:20px;height:14px}
+.portfolio-card:is(:hover,:focus-visible) .project-arrow{background:var(--color-brand-charcoal);color:var(--color-brand-yellow);border-color:var(--color-brand-charcoal)}
+.portfolio-card:is(:hover,:focus-visible) .project-arrow .ui-arrow{transform:translateX(2px)}
+.cta-reveal .ui-arrow{opacity:0;transform:translateX(-4px)}
+.cta-reveal:is(:hover,:focus-visible):not(:disabled) .ui-arrow{opacity:1;transform:none}
+@media(max-width:600px){.arrow-link{gap:20px}.arrow-link .ui-arrow{width:52px}.cta-nudge .ui-arrow{width:24px}}
+@media(hover:none){.cta-reveal .ui-arrow{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.ui-arrow{transition:none!important;transform:none!important}.cta-reveal .ui-arrow{opacity:1}}
+.reduce-motion .ui-arrow{transition:none!important;transform:none!important}
+.reduce-motion .cta-reveal .ui-arrow{opacity:1}

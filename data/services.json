@@ -1,0 +1,321 @@
+[
+  {
+    "id": "business-consulting",
+    "slug": "business-consulting",
+    "title": "Business Consulting",
+    "shortDescription": "Marketing direction grounded in your business.",
+    "description": "Business understanding and strategic marketing planning focused on relevant brand goals and growth opportunities.",
+    "deliverables": [
+      "Business understanding",
+      "Strategic marketing planning",
+      "Selection of relevant marketing strategies"
+    ],
+    "platforms": [],
+    "media": [],
+    "relatedProjects": [],
+    "order": 1,
+    "published": true,
+    "source": {
+      "document": "2026 Company Profile",
+      "pages": [
+        9
+      ]
+    },
+    "subsections": []
+  },
+  {
+    "id": "social-media-marketing",
+    "slug": "social-media-marketing",
+    "title": "Social Media Marketing",
+    "shortDescription": "A consistent brand presence across social channels.",
+    "description": "Audience-focused content and communication, supported by planning, platform management and advertising.",
+    "deliverables": [
+      "Monthly content planning",
+      "Poster and reel direction",
+      "Caption writing",
+      "Community engagement",
+      "Ad creation, targeting and monitoring",
+      "Campaign reporting"
+    ],
+    "platforms": [
+      "Facebook",
+      "Instagram",
+      "TikTok",
+      "XiaoHongShu"
+    ],
+    "media": [],
+    "relatedProjects": [],
+    "order": 2,
+    "published": true,
+    "source": {
+      "document": "2026 Company Profile",
+      "pages": [
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    "subsections": [
+      {
+        "title": "Facebook",
+        "text": "Ad management, interactive content, community engagement and conversion analysis.",
+        "icon": "assets/images/platforms/facebook.svg"
+      },
+      {
+        "title": "Instagram",
+        "text": "Visual storytelling, content strategy and management, and influencer collaborations.",
+        "icon": "assets/images/platforms/instagram.svg"
+      },
+      {
+        "title": "XiaoHongShu",
+        "text": "Localized content, platform-specific communication and influencer collaborations.",
+        "icon": "assets/images/platforms/xiaohongshu.svg"
+      },
+      {
+        "title": "TikTok",
+        "text": "Trend-aware content strategy, short-form video, paid campaigns and influencer collaborations.",
+        "icon": "assets/images/platforms/tiktok.svg"
+      }
+    ]
+  },
+  {
+    "id": "media-production",
+    "slug": "media-production",
+    "title": "Media Production",
+    "shortDescription": "Visual content that puts the brand story to work.",
+    "description": "Photography and video for brands, campaigns, products and events, from short-form content to commercial shoots and editing.",
+    "deliverables": [
+      "Professional photography",
+      "Product and lifestyle photography",
+      "Event photography",
+      "Short-form video production",
+      "Commercial videography",
+      "Post-production editing"
+    ],
+    "platforms": [
+      "Instagram",
+      "TikTok",
+      "Facebook"
+    ],
+    "media": [
+      {
+        "type": "image",
+        "src": "assets/images/work/brand-content.webp",
+        "alt": "A child playing beside a window in a short-video frame.",
+        "caption": ""
+      },
+      {
+        "type": "image",
+        "src": "assets/images/work/short-form.webp",
+        "alt": "A performer in a portrait short-video frame.",
+        "caption": ""
+      }
+    ],
+    "relatedProjects": [
+      "brand-content",
+      "short-form"
+    ],
+    "order": 3,
+    "published": true,
+    "source": {
+      "document": "2026 Company Profile",
+      "pages": [
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ]
+    },
+    "subsections": []
+  },
+  {
+    "id": "ai-enhanced-content-production",
+    "slug": "ai-enhanced-content-production",
+    "title": "AI-Enhanced Content Production",
+    "shortDescription": "Creative tools, directed by people.",
+    "description": "AI supports ideation, visual development, storyboard creation, video concepts and selected production tasks. The creative team leads judgment and final review.",
+    "deliverables": [
+      "Creative concept development",
+      "Storyboard and visual direction",
+      "AI image generation and video scene creation",
+      "Script and voiceover drafting",
+      "Pre-production visualization"
+    ],
+    "platforms": [],
+    "media": [
+      {
+        "type": "image",
+        "src": "assets/images/work/ai-content.webp",
+        "alt": "A frame from an AI-assisted content example.",
+        "caption": "AI-assisted example from the profile; not a physical production photograph."
+      }
+    ],
+    "relatedProjects": [
+      "ai-content"
+    ],
+    "order": 4,
+    "published": true,
+    "source": {
+      "document": "2026 Company Profile",
+      "pages": [
+        7,
+        24,
+        25
+      ]
+    },
+    "subsections": []
+  },
+  {
+    "id": "website-digital-solutions",
+    "slug": "website-digital-solutions",
+    "title": "Website & Digital Solutions",
+    "shortDescription": "A useful digital home for the business.",
+    "description": "Website structure, user experience, visual design and business functionality, with mobile-friendly presentation.",
+    "deliverables": [
+      "Company websites",
+      "Landing pages",
+      "E-commerce websites",
+      "Website redesign",
+      "UI/UX planning",
+      "Digital system support",
+      "Mobile-friendly design"
+    ],
+    "platforms": [],
+    "media": [
+      {
+        "type": "image",
+        "src": "assets/images/work/tid-home.webp",
+        "alt": "TID Group company website screenshot.",
+        "caption": ""
+      },
+      {
+        "type": "image",
+        "src": "assets/images/work/tid-detail.webp",
+        "alt": "TID Group project detail screenshot.",
+        "caption": ""
+      }
+    ],
+    "relatedProjects": [
+      "tid-group",
+      "ravo-film"
+    ],
+    "order": 5,
+    "published": true,
+    "source": {
+      "document": "2026 Company Profile",
+      "pages": [
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    "subsections": []
+  },
+  {
+    "id": "event-management",
+    "slug": "event-management",
+    "title": "Event Management",
+    "shortDescription": "Brand experiences made tangible.",
+    "description": "From concept planning to on-ground management, ShowMakers supports physical experiences that bring brands and audiences together.",
+    "deliverables": [
+      "Concept planning",
+      "Production coordination",
+      "Venue setup and stage design",
+      "Logistics",
+      "Talent coordination",
+      "On-ground management"
+    ],
+    "platforms": [],
+    "media": [],
+    "relatedProjects": [],
+    "order": 6,
+    "published": true,
+    "source": {
+      "document": "2026 Company Profile",
+      "pages": [
+        30,
+        31,
+        32,
+        33,
+        34
+      ]
+    },
+    "subsections": [],
+    "formats": [
+      "Corporate events",
+      "Product launches",
+      "Brand activations",
+      "Pop-up events",
+      "Music and entertainment events",
+      "Sports events",
+      "Roadshows",
+      "Exhibitions"
+    ]
+  },
+  {
+    "id": "seo-sem",
+    "slug": "seo-sem",
+    "title": "SEO & SEM",
+    "shortDescription": "Search visibility, organic and paid.",
+    "description": "Improve online discoverability through search engine optimization and paid search campaign management.",
+    "deliverables": [
+      "On-page SEO",
+      "Technical SEO",
+      "Keyword planning",
+      "Website content optimization",
+      "Google Ads management",
+      "Search campaign monitoring",
+      "Performance review"
+    ],
+    "platforms": [
+      "Google Ads"
+    ],
+    "media": [],
+    "relatedProjects": [],
+    "order": 7,
+    "published": true,
+    "source": {
+      "document": "2026 Company Profile",
+      "pages": [
+        35
+      ]
+    },
+    "subsections": []
+  },
+  {
+    "id": "influencer-marketing",
+    "slug": "influencer-marketing",
+    "title": "Influencer Marketing",
+    "shortDescription": "The right creators for the brand conversation.",
+    "description": "Support suitable influencer and content-creator collaborations through selection, briefing, content direction and coordination.",
+    "deliverables": [
+      "Influencer identification",
+      "KOL shortlisting",
+      "Campaign briefing",
+      "Content direction",
+      "Posting coordination",
+      "Performance tracking",
+      "Campaign reporting"
+    ],
+    "platforms": [],
+    "media": [],
+    "relatedProjects": [],
+    "order": 8,
+    "published": true,
+    "source": {
+      "document": "2026 Company Profile",
+      "pages": [
+        36
+      ]
+    },
+    "subsections": []
+  }
+]
