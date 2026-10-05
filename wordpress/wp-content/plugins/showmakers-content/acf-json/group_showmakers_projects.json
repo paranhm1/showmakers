@@ -123,6 +123,61 @@
       "default_value": "cover"
     },
     {
+      "key": "field_showmakers_p_project_media_type",
+      "name": "project_media_type",
+      "label": "Project Media Type",
+      "type": "select",
+      "instructions": "Choose whether this Project uses an image or short video as its main media.",
+      "required": 0,
+      "choices": {
+        "image": "Image",
+        "video": "Video"
+      },
+      "default_value": "image",
+      "allow_null": 0
+    },
+    {
+      "key": "field_showmakers_p_project_video",
+      "name": "project_video",
+      "label": "Project Video",
+      "type": "file",
+      "instructions": "Upload a web-ready MP4: H.264, 1080p or smaller, 10 seconds or less. Aim below 20–30 MB; your server upload limit still applies. Approve the video in Media Library before publishing. Essential speech needs captions; this player is intended for visual clips without essential dialogue.",
+      "required": 0,
+      "return_format": "id",
+      "library": "all",
+      "mime_types": "mp4",
+      "conditional_logic": [
+        [
+          {
+            "field": "field_showmakers_p_project_media_type",
+            "operator": "==",
+            "value": "video"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "field_showmakers_p_project_video_poster",
+      "name": "project_video_poster",
+      "label": "Video Poster Image",
+      "type": "image",
+      "instructions": "Image shown before the video starts and when motion is reduced. Choose approved artwork; required before publishing a Video Project.",
+      "required": 0,
+      "return_format": "id",
+      "preview_size": "thumbnail",
+      "library": "all",
+      "mime_types": "jpg,jpeg,png,webp,avif",
+      "conditional_logic": [
+        [
+          {
+            "field": "field_showmakers_p_project_media_type",
+            "operator": "==",
+            "value": "video"
+          }
+        ]
+      ]
+    },
+    {
       "key": "field_showmakers_p_hero_media",
       "name": "hero_media",
       "label": "Hero Media",
@@ -268,5 +323,5 @@
   ],
   "active": true,
   "show_in_rest": 0,
-  "modified": 1791192837
+  "modified": 1791239000
 }

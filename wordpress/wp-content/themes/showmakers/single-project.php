@@ -32,7 +32,25 @@ get_header();
 <?php if ( $services ) : ?><div class="project-services"><span>Services</span><br>
 <?php foreach ( $services as $index => $service ) : if ( $index ) echo ' · '; ?><a href="<?php echo esc_url( home_url( '/services/#' . $service->slug ) ); ?>"><?php echo esc_html( $service->name ); ?></a><?php endforeach; ?>
 </div><?php endif; ?></div>
-<?php if ( isset( $images['hero_media'] ) ) : ?><figure class="detail-hero"><?php echo showmakers_cms_image( $images['hero_media'], false ); $caption = wp_get_attachment_caption( $images['hero_media'] ); if ( $caption ) : ?><figcaption><?php echo esc_html( $caption ); ?></figcaption><?php endif; ?></figure><?php endif; ?>
+<?php
+$video_mode = showmakers_project_media_type( $id ) === 'video';
+$video = $video_mode ? showmakers_project_video( $id ) : null;
+$poster = $video_mode ? showmakers_video_poster( $id ) : 0;
+if ( $video && $poster ) :
+    $poster_src = wp_get_attachment_image_src( $poster, 'full' );
+    $width = $video['width'] ?: $poster_src[1]; $height = $video['height'] ?: $poster_src[2];
+?>
+<figure class="detail-hero detail-video" data-project-video style="--video-ratio:<?php echo absint( $width ); ?>/<?php echo absint( $height ); ?><?php if ( $height > $width ) echo ';max-width:min(100%,' . absint( min( $width, 540 ) ) . 'px)'; ?>">
+<video id="project-video" width="<?php echo absint( $width ); ?>" height="<?php echo absint( $height ); ?>" poster="<?php echo esc_url( $poster_src[0] ); ?>" muted playsinline controls preload="metadata" aria-label="<?php echo esc_attr( $project->post_title . ' project video' ); ?>">
+<source src="<?php echo esc_url( $video['url'] ); ?>" type="video/mp4">
+Your browser does not support this video.
+</video>
+<div class="video-fallback" hidden><?php echo showmakers_cms_image( $poster, false ); ?></div>
+<button class="video-toggle" type="button" aria-controls="project-video" hidden>Play video</button>
+<span class="video-status screen-reader-text" role="status"></span>
+</figure>
+<?php elseif ( $video_mode && $poster ) : ?><figure class="detail-hero"><?php echo showmakers_cms_image( $poster, false ); ?></figure>
+<?php else : ?><?php if ( isset( $images['hero_media'] ) ) : ?><figure class="detail-hero"><?php echo showmakers_cms_image( $images['hero_media'], false ); $caption = wp_get_attachment_caption( $images['hero_media'] ); if ( $caption ) : ?><figcaption><?php echo esc_html( $caption ); ?></figcaption><?php endif; ?></figure><?php endif; ?><?php endif; ?>
 <?php
 $extras = array_unique( array_filter( array_intersect_key( $images, array_flip( array( 'project_image_1', 'project_image_2', 'project_image_3', 'project_image_4', 'project_image_5' ) ) ), function ( $image ) use ( $images ) { return $image !== ( $images['hero_media'] ?? 0 ); } ) );
 if ( $extras ) : ?><div class="detail-gallery"><?php foreach ( $extras as $image ) : ?><figure><?php echo showmakers_cms_image( $image ); $caption = wp_get_attachment_caption( $image ); if ( $caption ) : ?><figcaption><?php echo esc_html( $caption ); ?></figcaption><?php endif; ?></figure><?php endforeach; ?></div><?php endif; ?>

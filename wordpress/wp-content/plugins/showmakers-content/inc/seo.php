@@ -38,7 +38,12 @@ function showmakers_seo_metadata( $entity ) {
         if ( $entity['kind'] === 'work' ) $description = 'Selected projects from ShowMakers.';
     }
     $image = absint( get_post_meta( $id, 'seo_social_image', true ) );
-    if ( ! showmakers_seo_image( $image ) && $entity['kind'] === 'project' ) $image = absint( get_post_meta( $id, 'hero_media', true ) );
+    if ( ! showmakers_seo_image( $image ) && $entity['kind'] === 'project' ) {
+        if ( showmakers_project_media_type( $id ) === 'video' ) {
+            $image = showmakers_video_poster( $id );
+            if ( ! showmakers_seo_image( $image ) ) $image = absint( get_post_meta( $id, 'listing_thumbnail', true ) );
+        } else $image = absint( get_post_meta( $id, 'hero_media', true ) );
+    }
     $media = showmakers_seo_image( $image );
     if ( ! $media ) $media = array( 'url' => get_theme_file_uri( '/assets/images/showmakers-logo.webp' ), 'width' => 838, 'height' => 342, 'alt' => 'ShowMakers' );
     return array( 'title' => $title, 'description' => $description, 'image' => $media );
