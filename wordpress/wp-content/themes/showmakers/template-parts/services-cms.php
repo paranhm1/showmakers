@@ -1,8 +1,11 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 $services = $args['services'];
+$page = get_queried_object_id();
+$heading = showmakers_page_copy( $page, 'services_page_heading' ) ?: get_the_title( $page );
+$intro = showmakers_page_copy( $page, 'services_page_intro' );
 ?>
-<div class="page-intro-surface"><div class="shell page-intro"><h1>Services</h1><p>Marketing thinking, creative content and execution across channels. Eight individual services, connected by the needs of your brand.</p></div></div>
+<div class="page-intro-surface"><div class="shell page-intro"><h1><?php echo esc_html( $heading ); ?></h1><?php if ( $intro !== '' ) : ?><p><?php echo esc_html( $intro ); ?></p><?php endif; ?></div></div>
 <?php if ( $services ) : ?>
 <div class="shell services-layout" id="service-explorer"><nav class="service-navigation" aria-label="Service index"><p>Explore our services</p>
 <?php foreach ( $services as $term ) : ?><a href="#<?php echo esc_attr( $term->slug ); ?>"><span><?php echo esc_html( sprintf( '%02d', (int) get_term_meta( $term->term_id, 'sort_order', true ) ) ); ?></span><?php echo esc_html( $term->name ); ?></a><?php endforeach; ?>

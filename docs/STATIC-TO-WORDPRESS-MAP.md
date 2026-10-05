@@ -354,3 +354,32 @@ Approved static copy is primary; VERIFIED-CONTENT and 2026 Profile pages 6–7/2
 1440/1024/390 matches approved static composition without overflow; server-rendered copy, one H1/six H2s, meaningful alt and keyboard focus preserved. Frontend check now includes `/about/` and its Media Library delivery (46 public assets across routes). Home/marquee18, Work5 (2/2/1), Services8 and Ravo/Website Contact context remain unchanged and validated.
 
 Remaining static/global: Home Hero/company copy; Services introduction; Contact prototype; header/footer/contact/social settings and Privacy Notice. No About shell remains. Local Page/media values are DB/uploads only; temporary migration/debug scripts excluded from Git. Recommend separately approved Home/global content next, without beginning it automatically; Contact backend remains inactive.
+
+
+## Home remaining copy / Services intro migration — 2026-10-05
+
+Completed narrow page-copy migration; no design or global settings migration. Clean preflight on `wordpress-cms` at `e29dae77e3eb38b67eb25e4c894f66dd40b51ae3`; ShowMakers theme/content plugin and official free ACF active. No Home Page existed: `page_on_front=0`, theme-only homepage. Created canonical published **Home Page 95** and assigned `show_on_front=page`, `page_on_front=95`. This necessary local Page binding preserves `/` and the existing front-page template; no builder/CPT or new public section. Existing **Services Page 8** retains `/services/`.
+
+| Group / Page | Field | Required | Exact migrated wording |
+|---|---|---|---|
+| Home Page Content / 95 | `home_hero_line_1` | Yes | Marketing ideas. |
+| Home Page Content / 95 | `home_hero_line_2` | Yes | Made to happen. |
+| Home Page Content / 95 | `home_hero_introduction` | No | We’re ShowMakers. |
+| Home Page Content / 95 | `home_hero_supporting_copy` | No | A marketing agency bringing strategy, creative thinking and hands-on execution together. |
+| Home Page Content / 95 | `home_hero_cta_label` | No | View Work |
+| Services Page Content / 8 | `services_page_heading` | Yes | Services |
+| Services Page Content / 8 | `services_page_intro` | No | Marketing thinking, creative content and execution across channels. Eight individual services, connected by the needs of your brand. |
+
+Source: approved current runtime templates, matching static `index.html`/`services.html`. No rewriting/unsupported claims. Two Hero span fields preserve editorial line structure without stored HTML/manual breaks. Plain Text/Textarea only, sanitized on save and escaped on output. Whitespace-only required headings rejected. Missing optional text/CTA omits its element; no empty explanation/support wrapper. Missing all required Hero lines falls back to Page title; Services heading falls back to Page title. Admin warnings flag incomplete heading metadata. Actual Home whitespace save was blocked and approved value restored/saved successfully.
+
+Staff: Pages → Home → Home Page Content → edit → Update; fields ordered Hero Line 1, Hero Line 2, Introduction, Supporting Copy, Hero CTA Label. Pages → Services → Services Page Content → Services Heading, Services Introduction → Update. Plain labels/help observed in actual Admin. Native classic field editor applies only to those two Pages (existing About setting preserved). JSON groups `group_showmakers_home`, `group_showmakers_services_page` scoped to Page IDs 95/8. Future installation must deliberately rebind location/editor IDs and front-page assignment if IDs differ; Git alone does not transport local content or Reading settings.
+
+Theme still controls Hero artwork/delivery/crop/dimensions/semantics/reveal, typography, yellow surface, section order, spacing, CTA SVG and `/work/` destination. No image uploads/changes. What We Do names/order/visibility remain Service-taxonomy-driven. Selected Clients remains independent Client-CPT-driven with 18 approved logos/order. Section labels “Selected clients”, “What we do”, “All Services” and Explorer UI prompt remain theme interface labels, not duplicated page fields. Individual descriptions/capabilities/platforms/media belong only to Service terms. Shared Footer/contact/social/Privacy Notice/global content remains deferred; no Options Page.
+
+Runtime templates read Page metadata only for migrated wording; existing file name `home-static.php` is retained to avoid unnecessary template renaming, but Hero copy is CMS-owned. Original static HTML/JSON retained for rollback/reference, never concatenated with CMS wording. Exact pre/post main markup comparison passed for Home and Services, including artwork, marquee and Explorer.
+
+QA: actual viewport widths 1440/1024/390 verified for both pages; approved static/CMS Hero/intro/Explorer dimensions matched within 0.1px, no horizontal overflow, one H1 each, original fonts/colors/wrapping. Mobile screenshots visually reviewed. Services keyboard ArrowDown moves focus between existing controls. Existing JS/CSS, reduced-motion and marquee behavior unchanged. All migrated copy remains server-rendered. Read-only empty optional Home text/CTA test omitted support wrapper/action safely; all required filters reject whitespace.
+
+Regression: checkpoint comparison confirms About Page 9/16 fields/image92, all existing Project/Client/attachment metadata and eight Service term records unchanged (excluding transient edit locks; only two new Services Page fields added). Work All5/Media2/Website2/AI1, Client marquee18/order, Services8, Home taxonomy index intact. Existing pilot, Services, Clients and anonymous frontend tests passed (46 public assets); static `npm run check` and changed PHP syntax passed. Contact context data/empty endpoint preserved. No footer/backend/SEO/roles/manual/staging/production/DNS/Vercel/Supabase/main changes.
+
+Local Page/meta/Reading settings reside in LocalWP DB; no DB/uploads or temporary migration/debug scripts committed. Git scope is theme/content-plugin code, two free ACF JSON groups and these three documents. Keep local content backup separately. Next recommendation: **Contact + global company/footer content**, with scope clarified separately for content versus submission; SEO preparation follows final public content/settings. Do not begin either automatically. No staging environment is created; eventual deployment remains LocalWP QA → checklist → later production → production QA.
