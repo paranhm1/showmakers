@@ -1,6 +1,6 @@
 # Static → WordPress migration map
 
-Architecture proposal only; no import or conversion performed. Baseline: `static-approved-v1` / `19e1be22a7952f655003abab5cc1344ac35fbb9b`. Target choices and media eligibility are in [migration plan](WORDPRESS-MIGRATION-PLAN.md); detailed field properties are in [CMS model](CMS-DATA-MODEL.md).
+Phase 3 content structure implemented; no business-content import performed. The Phase 3 mapping overrides below supersede earlier Pro-oriented field suggestions. Baseline: `static-approved-v1` / `19e1be22a7952f655003abab5cc1344ac35fbb9b`. Target choices and media eligibility are in [migration plan](WORDPRESS-MIGRATION-PLAN.md); detailed field properties are in [CMS model](CMS-DATA-MODEL.md).
 
 ## Pages, components and source files
 
@@ -53,7 +53,7 @@ Architecture proposal only; no import or conversion performed. Baseline: `static
 | title | Core post_title. |
 | client | Confirmed fallback name text unless documented Client-ID mapping exists; no text-based automatic join. |
 | summary | Short summary meta, or one controlled core excerpt; choose one canonical location. Recommended core excerpt. |
-| services[] | sm_service term relationships by stable source slug → term ID map. |
+| services[] | service term relationships by stable source slug → term ID map. |
 | listingThumbnail | Listing attachment + usage alt/caption + fit enum; authoritative listing source. |
 | thumbnail | Legacy fallback only if listingThumbnail absent; no duplicate editable thumbnail field. |
 | heroMedia | Hero attachment + type/alt/caption. Fallback to thumbnail only if approved and verified. |
@@ -87,7 +87,7 @@ Nested media objects currently carry `type`, `src`, `alt`, `caption`, optional `
 
 | Source field | Destination / transformation |
 |---|---|
-| id, slug | sm_service term slug; equal in all eight current records; store private original ID if needed for importer. |
+| id, slug | service term slug; equal in all eight current records; store private original ID if needed for importer. |
 | title | Term name. |
 | shortDescription | Intro term meta. |
 | description | Term description, rendered as controlled text. |
@@ -157,3 +157,30 @@ Hero collage source is outside site.json today (renderer hardcoded); seed the pr
 4. Validate every relation/media placement and public output, then publish approved genuine records. Exclude Project 06 and restricted entries from counts, related queries, Next, contact context, REST/search/feed/sitemap.
 5. Document imported record/attachment counts and exceptions. Import is explicit and one-time; re-run only against approved IDs with backup and conflict report. Never overwrite staff edits silently.
 6. Test .html redirect mappings and query/hash preservation on staging before any production cutover. Content/database/uploads are backed up separately from theme Git commits.
+
+## Phase 3 mapping overrides — free ACF
+
+This is the active mapping profile; earlier Gallery/Repeater/Options mappings remain future upgrade intent. No content import was performed.
+
+| Static source concept | Actual Phase 3 destination / handling |
+|---|---|
+| projects.title / slug | `project` title / post_name; `/work/{slug}/` |
+| projects.client | `client` Post Object ID when documented; otherwise verified `client_name`, never display-name matching |
+| projects.summary / year | `short_summary` Textarea / optional `project_year`; no invented dates |
+| projects.services[] | Actual `service` term assignments via ACF `services`; eight individual services remain canonical |
+| projects.order | `sort_order` numeric post meta, superseding proposed menu_order |
+| projects.listingThumbnail / fit | `listing_thumbnail` Image ID / `listing_fit` cover or contain |
+| projects.heroMedia | `hero_media` Image ID; video requires a later approved extension |
+| projects.media[] | Five optional `project_image_1`…`project_image_5` IDs, preserving ordered additional media; omit repeated hero; do not silently drop source items above the temporary limit |
+| projects.featured / published / mediaStatus | `featured` boolean / core post status / `media_status` enum; no redundant visible flag |
+| clients.name / logo / visible / order / website | Client title / `client_logo` ID / `visible` / `sort_order` / `website_url`; `logo_status` independent from project permission |
+| services intro / description / capabilities / platforms / formats | `service_intro`, `service_description`, `capabilities`, `platforms`, `formats`; plain Textarea, list fields one item per line |
+| services.media[] | One `service_media` ID available; preserve any additional source items separately until compatible expansion is approved |
+| services rich platform subgroups | Newline names cannot encode all richer descriptions/icons; retain source structured data until an explicit migration preserves them |
+| services order / visibility | Term `sort_order` / `visible` |
+| site.json global settings | Existing structured data/theme code for now; future Pro Options Page, one canonical source |
+| rights metadata | Attachment `media_status` + private `internal_media_note`; Project approval separate; no restricted originals in public uploads |
+
+`archive-project.php` currently retains the Phase 2 Work shell, not a CMS grid. `/work/` is now the Project archive route; the existing empty Work Page is retained locally for recovery until Phase 4. `/services/`, `/about/`, `/contact/` remain Page routes; Home keeps its existing static presentation. Rewrite rules flush only at activation/deactivation, not every request. No production redirects have been configured.
+
+Phase 4 output must resolve attachment IDs with WordPress APIs, apply approved-media helpers, preserve native ratios and source alt/captions, escape all public values, use numeric `sort_order` with deterministic ID tie-breaks, and keep query-string service navigation separate from public taxonomy archives. Refer to [current field model](CMS-DATA-MODEL.md#phase-3-implemented-specification--free-acf-authoritative) before importing.

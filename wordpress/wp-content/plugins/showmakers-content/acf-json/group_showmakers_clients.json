@@ -1,0 +1,85 @@
+{
+  "key": "group_showmakers_clients",
+  "title": "Client Details",
+  "fields": [
+    {
+      "key": "field_showmakers_c_client_logo",
+      "name": "client_logo",
+      "label": "Client Logo",
+      "type": "image",
+      "instructions": "Use approved original logo artwork. Separate permission from project images.",
+      "required": 0,
+      "return_format": "id",
+      "preview_size": "thumbnail",
+      "library": "all",
+      "mime_types": "jpg,jpeg,png,webp,avif"
+    },
+    {
+      "key": "field_showmakers_c_visible",
+      "name": "visible",
+      "label": "Visible in Selected Clients",
+      "type": "true_false",
+      "instructions": "",
+      "required": 0,
+      "ui": 1,
+      "default_value": 0
+    },
+    {
+      "key": "field_showmakers_c_sort_order",
+      "name": "sort_order",
+      "label": "Sort Order",
+      "type": "number",
+      "instructions": "Lower numbers appear first. This is the only ordering value.",
+      "required": 0,
+      "default_value": 0,
+      "min": 0,
+      "step": 1
+    },
+    {
+      "key": "field_showmakers_c_website_url",
+      "name": "website_url",
+      "label": "Website URL",
+      "type": "url",
+      "instructions": "Optional. Does not automatically make a logo link.",
+      "required": 0
+    },
+    {
+      "key": "field_showmakers_c_logo_status",
+      "name": "logo_status",
+      "label": "Logo Permission",
+      "type": "select",
+      "instructions": "",
+      "required": 0,
+      "choices": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "restricted": "Restricted"
+      },
+      "default_value": "pending"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "client"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "author"
+  ],
+  "active": true,
+  "show_in_rest": 0,
+  "modified": 1791192837
+}

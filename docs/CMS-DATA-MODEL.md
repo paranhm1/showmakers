@@ -1,6 +1,6 @@
 # ShowMakers CMS data model
 
-Phase 1 proposal only. No WordPress fields, records, plugins or tables have been created. See [migration plan](WORDPRESS-MIGRATION-PLAN.md) for architecture and decisions; [source map](STATIC-TO-WORDPRESS-MAP.md) for exhaustive JSON mapping.
+Historical Phase 1 model followed by implementation updates. The Phase 3 free-ACF specification below is authoritative for the current implementation. See [migration plan](WORDPRESS-MIGRATION-PLAN.md) for architecture and decisions; [source map](STATIC-TO-WORDPRESS-MAP.md) for exhaustive JSON mapping.
 
 Storage uses WordPress posts, terms, meta and options. IDs are WordPress record/attachment IDs, never staff-entered filesystem paths. “Required” means necessary for publication, not for saving a draft. Public fields render only for eligible records; “private” means explicitly excluded from public HTML/data/REST. Public media approval does not imply private storage security for other uploads.
 
@@ -14,14 +14,14 @@ Storage uses WordPress posts, terms, meta and options. IDs are WordPress record/
 | Client record | Optional Client post ID | Optional | clients.projects documented association | Staff | Public identity when documented | No display-text matching; all current client associations empty. |
 | Client name fallback | Text | Optional | projects.client | Staff | Public | TID Group/Ravo Film can keep confirmed names without invented marquee associations. Show Client-record name when relationship exists, else text; no duplicate canonical client name. |
 | Short Summary | Textarea | Required | projects.summary | Staff | Public | No inferred results, dates or scope. |
-| Services | Multiple sm_service term IDs | Required for genuine publish | projects.services[] | Staff assigns existing terms | Public | Eight individual services, many-to-many; no pillars taxonomy. |
+| Services | Multiple service term IDs | Required for genuine publish | projects.services[] | Staff assigns existing terms | Public | Eight individual services, many-to-many; no pillars taxonomy. |
 | Listing Thumbnail | Image attachment ID + usage alt/caption | Required for approved publish | projects.listingThumbnail | Staff | Public approved media only | Separate from detail hero; safe missing-media handling. |
 | Listing Fit | Enum cover/contain | Required, default cover | listingThumbnail.fit | Staff bounded choice | Public presentation | Preserve Ravo Film contain; no custom CSS input. |
 | Hero Media | Attachment ID + usage alt/caption/type | Required for detail publish | projects.heroMedia | Staff | Public approved media only | Current type image; future video requires reviewed playback behavior. |
 | Gallery / Media | Ordered rows: attachment ID, type, alt, caption, fit | Optional | projects.media[] excluding repeated hero | Staff add/replace/reorder | Public approved items only | Keep native ratios. Empty gallery renders no section. |
 | Featured | Boolean | Optional, default false | projects.featured | Staff | Private control | Retain data for future controlled usage; current Home has no project feature section. |
 | Published | Core status | Required, draft default | projects.published | Staff publish with validation | Public only if publish + eligible | No redundant published meta flag. Import as draft first. |
-| Sort Order | Integer menu_order | Required, default 0 | projects.order | Staff | Private control | Deterministic tie-break by ID; drives archive and real-project Next loop. |
+| Sort Order | Integer sort_order post meta | Required, default 0 | projects.order | Staff | Private control | Deterministic tie-break by ID; drives archive and real-project Next loop. |
 | Media Status | approved/pending/restricted enum | Required, default pending | projects.mediaStatus | Staff; restricted release admin-reviewed | Private control | Guard all public queries/media renderers. Does not secure direct upload URLs. |
 | Attachment permission | Approved/pending/restricted metadata on each selected media record | Required, pending default | Verified asset permissions + import manifest | Staff/admin per rights policy | Private | Asset guard shared with service/about/client media. Restricted originals not uploaded publicly. |
 | Development Only | Boolean | Required, default false | projects.developmentOnly | Developer/admin | Private | Excluded from every public query irrespective of post status. |
@@ -34,7 +34,7 @@ Storage uses WordPress posts, terms, meta and options. IDs are WordPress record/
 
 Eligibility: publish AND mediaStatus approved AND not developmentOnly AND not placeholder; each referenced media asset must also pass permission checks. Gallery cannot cause an approved project to leak restricted attachments. Unknown client/date stay empty. A project name never proves Client-logo association.
 
-## SERVICE — `sm_service` taxonomy terms with content fields
+## SERVICE — `service` taxonomy terms with content fields
 
 Services is an editable Admin area, not a separate CPT synchronized to taxonomy. No independent service single/term archive. A visibility flag replaces the proposed Published field because terms have no native post-status publishing lifecycle; content remains available privately for relationship integrity.
 
@@ -64,7 +64,7 @@ Fixed initial slugs: `business-consulting`, `social-media-marketing`, `media-pro
 | Stable ID / Slug | Core slug + immutable source ID | Required | clients.id | Admin/import | Public identity / private source ID | No standalone client pages. |
 | Logo | Image attachment ID | Required when visible | clients.image | Staff | Public approved logo only | Preserve original artwork/colors; aspect ratio contained. |
 | Visible | Boolean + core publish status | Required, draft default on import | clients.published | Staff | Private control | Show marquee only if publish, visible and approved logo. |
-| Sort Order | Integer menu_order | Required | clients.order | Staff | Private control | Broad 18-logo selection; never hardcode only 6–8. |
+| Sort Order | Integer sort_order post meta | Required | clients.order | Staff | Private control | Broad 18-logo selection; never hardcode only 6–8. |
 | Optional Website | Validated URL | Optional | No current source | Staff | Public if later explicitly used | Does not automatically turn existing logos into external links. |
 | Logo Permission | approved/pending/restricted enum | Required | VERIFIED-CONTENT.md | Staff/admin | Private | Imported supplied logos approved; independent from project photo rights. |
 | Associated Projects | Derived reverse Client relation | Not separate storage | clients.projects[] if documented | Set relationship on Project | Public only for documented relationship | No current associations; validate imported references explicitly. |
@@ -128,3 +128,51 @@ Not implemented; only needed if inquiry storage is approved. Email-only processi
 | Notification Outcome | Minimal delivery processing state | Optional | Server | Read-only | Private | Transport acceptance is not confirmed inbox delivery; no sensitive payload in public logs. |
 
 Retention, mail transport, privacy policy and who can access stored inquiries require approval before collection. No IP tracking, analytics, budget field, testimonials or performance-result structure is introduced.
+
+## Phase 3 implemented specification — FREE ACF (authoritative)
+
+Official free Advanced Custom Fields 6.8.10 is active locally. No Pro dependency, Repeater, Gallery, Flexible Content, Clone, Options Page or ACF Block is used. The earlier tables describe the eventual model; this section defines the fields actually available now. No real projects or clients have been imported.
+
+### Registered structures and relationships
+
+- `project`: public CPT; title, featured image and revisions; REST enabled. Archive `/work/`, singles `/work/{slug}/`. No author/editor/excerpt UI; `short_summary` is the canonical summary. Core status controls publishing, without a duplicate visible flag.
+- `client`: admin-only CPT; title and revisions. No public query, archive, single rewrite or REST collection.
+- `service`: nonhierarchical Project taxonomy, multiple assignments; no public term archive/query variable. This intentionally supersedes the original `sm_service` name; disabling its query variable preserves existing `?service=` filter syntax. The three editorial capability groups are not taxonomy terms.
+- Eight structural terms only: `business-consulting`, `social-media-marketing`, `media-production`, `ai-enhanced-content-production`, `website-digital-solutions`, `event-management`, `seo-sem`, `influencer-marketing`. Activation inserts missing terms without overwriting existing fields. New unapproved slugs are rejected; existing slugs stay stable on edit. Administrator retains term-management authority; staff permissions remain a later task.
+- Ordering: `sort_order` Number on all three types, lower first; Project/Client use post meta, Service uses term meta. Do not also use `menu_order`. Later frontend queries should sort numerically then by stable ID. Admin Project/Client lists support numeric sorting.
+
+### Actual fields
+
+| Group | Stored field names and free field types |
+|---|---|
+| Project Information | `client` Post Object (one Client ID, optional); `client_name` Text (verified fallback only); `short_summary` Textarea; `project_year` optional Number; `sort_order` Number |
+| Project Relationships | `services` Taxonomy multi-select, returning IDs and saving/loading actual `service` terms |
+| Project Media | `listing_thumbnail` Image ID; `listing_fit` Select cover/contain; `hero_media` Image ID; `project_image_1` through `project_image_5` optional Image IDs |
+| Project Display / Governance | `featured` True/False; `media_status` Select approved/pending/restricted, default pending; `internal_media_note` private Textarea |
+| Client | Core title; `client_logo` Image ID; `visible` True/False default false; `sort_order` Number; `website_url` URL; separate `logo_status` Select approved/pending/restricted default pending |
+| Service term | `service_intro`, `service_description`, `capabilities`, `platforms`, `formats` Textarea; `service_media` Image ID; `sort_order` Number; `visible` True/False |
+| Attachment permission | `media_status` Select approved/pending/restricted default pending; `internal_media_note` private Textarea |
+
+Additional project media uses five optional numbered image slots rather than post content: the current frontend is image-led, so bounded fields are easier to understand and preserve order without accepting arbitrary layout markup. Empty slots are omitted. This is temporary, not a custom gallery framework. Hero is currently an Image, not a File/video playback system. Capabilities/platforms/formats use one item per line, plain text, not serialized rows. Later renderers must split on line boundaries, trim and omit blank values.
+
+### Configuration and staff workflow
+
+Plugin: `wordpress/wp-content/plugins/showmakers-content/`; modules: `inc/types.php`, `inc/fields.php`, `inc/admin.php`, `inc/media.php`. Four versioned groups live in `acf-json/group_showmakers_{projects,clients,services,media}.json`. ACF loads JSON directly; save paths are scoped to these groups so unrelated ACF configuration is not redirected. JSON sync is not required to render the local definitions. Never commit license keys.
+
+Staff workflow: create/edit Clients first when a relationship is documented; create Project draft; select one Client and any relevant individual Services; enter verified summary/year; choose images from Media Library; set Project and each attachment approval independently; adjust sort order; review before publishing. Unknown Client/year/media can remain empty. Use Services under Projects to edit term content. Admin tabs separate information, relationships, media, display and governance; help text explains public use and unknown facts.
+
+Projects list: Project, Client, Services, Status, Featured, Sort Order, Media Status, Last Modified. Clients list: Client, small Logo preview, Visible, Sort Order, Last Modified. Custom CPT/taxonomy capabilities are granted only to the existing Administrator at activation. Future staff role should receive selected content/media capabilities, without plugin/theme editors or site configuration; that role is not created now. Core revisions are supported and `sort_order` is registered for revisions; do not assume every ACF value has full historical restore coverage without testing the later editorial workflow.
+
+### Media and public safety
+
+`showmakers_public_project()` requires published + approved and excludes development/placeholder flags. `showmakers_approved_media()` requires an approved attachment and rejects known restricted `brand-showcase` / `samsung-experience` filename prefixes. `showmakers_project_images()` returns only approved IDs for eligible projects. Archive/single main queries, anonymous REST, sitemap queries and mixed public query results exclude ineligible Projects. `showmakers_public_client_logo()` independently requires a published visible Client, approved logo permission and approved attachment. Client approval never grants project-photo permission.
+
+All four ACF groups have public REST exposure disabled; internal notes are never emitted by this plugin. Text fields are sanitized; Admin output is escaped. Phase 4 must use the guards consistently, escape text/attributes/URLs and allow only reviewed rich text through `wp_kses_post` if introduced. An attachment approval flag does **not** protect its raw upload URL or WordPress attachment endpoint. Never upload restricted originals to the public Media Library; keep them outside deployable assets. Known-name rejection is an additional safeguard, not a substitute for rights review. Static approved presentation remains separate until Phase 4.
+
+### Future Pro upgrade (not performed)
+
+- `capabilities` and `platforms` concepts may become Repeaters. Back up and explicitly transform newline strings into rows before changing field types; preserve stable conceptual names and validate frontend output.
+- Numbered project image IDs migrate in slot order into a Gallery (`project_gallery`), preserving attachment IDs/alt/captions. Retain old fields during validation and remove only after a confirmed migration.
+- `service_media` currently holds one image. Existing source media arrays and richer platform descriptions must not be truncated during Phase 4: retain their existing structured source until an approved compatible field extension or Pro upgrade is available.
+- Global copy/contact/footer/hero settings remain in existing structured data/theme code, not duplicated into ACF. A future Pro Options Page can receive these settings through one explicit migration.
+- No SEO plugin or competing SEO fields are added. Future Yoast/Rank Math integration owns title, description, social image, canonical, noindex, sitemap and schema. Map summary/listing image to the chosen plugin; clean project slugs and core featured-image support already exist.

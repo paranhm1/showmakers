@@ -1,0 +1,103 @@
+{
+  "key": "group_showmakers_services",
+  "title": "Service Details",
+  "fields": [
+    {
+      "key": "field_showmakers_s_service_intro",
+      "name": "service_intro",
+      "label": "Service Intro",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0
+    },
+    {
+      "key": "field_showmakers_s_service_description",
+      "name": "service_description",
+      "label": "Service Description",
+      "type": "textarea",
+      "instructions": "",
+      "required": 0
+    },
+    {
+      "key": "field_showmakers_s_capabilities",
+      "name": "capabilities",
+      "label": "Capabilities",
+      "type": "textarea",
+      "instructions": "One capability per line. No HTML or layout instructions.",
+      "required": 0
+    },
+    {
+      "key": "field_showmakers_s_platforms",
+      "name": "platforms",
+      "label": "Platforms",
+      "type": "textarea",
+      "instructions": "One platform per line.",
+      "required": 0
+    },
+    {
+      "key": "field_showmakers_s_formats",
+      "name": "formats",
+      "label": "Formats",
+      "type": "textarea",
+      "instructions": "Optional; one format per line.",
+      "required": 0
+    },
+    {
+      "key": "field_showmakers_s_service_media",
+      "name": "service_media",
+      "label": "Service Media",
+      "type": "image",
+      "instructions": "Optional approved image. Do not substitute restricted project imagery.",
+      "required": 0,
+      "return_format": "id",
+      "preview_size": "thumbnail",
+      "library": "all",
+      "mime_types": "jpg,jpeg,png,webp,avif"
+    },
+    {
+      "key": "field_showmakers_s_sort_order",
+      "name": "sort_order",
+      "label": "Sort Order",
+      "type": "number",
+      "instructions": "Lower numbers appear first. This is the only ordering value.",
+      "required": 0,
+      "default_value": 0,
+      "min": 0,
+      "step": 1
+    },
+    {
+      "key": "field_showmakers_s_visible",
+      "name": "visible",
+      "label": "Visible",
+      "type": "true_false",
+      "instructions": "",
+      "required": 0,
+      "ui": 1,
+      "default_value": 1
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "taxonomy",
+        "operator": "==",
+        "value": "service"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "author"
+  ],
+  "active": true,
+  "show_in_rest": 0,
+  "modified": 1791192837
+}

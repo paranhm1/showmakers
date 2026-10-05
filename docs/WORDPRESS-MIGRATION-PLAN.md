@@ -1,6 +1,6 @@
 # ShowMakers WordPress CMS migration plan
 
-Status: Phase 1 architecture proposal; implementation requires review and approval. Prepared 2026-10-05.
+Status: Phase 3 implemented with official free ACF. Earlier phase sections remain as planning history; the Phase 3 completion section is authoritative. Updated 2026-10-05.
 
 ## Protected baseline and scope
 
@@ -48,7 +48,7 @@ Recommended content model:
 
 1. `project` CPT: public archive `/work/`, singles `/work/<slug>/`.
 2. `client` CPT: admin-managed, no standalone public archive/single/search/feed; approved visible records supply the marquee and documented client associations.
-3. `sm_service` non-hierarchical taxonomy attached to projects: eight controlled terms with editable term metadata. Its admin label is Services; it supplies the entire Services Explorer, not just tags. No duplicate Service CPT. Public term archives are disabled; public entry point remains `/services/#<slug>`. Staff can edit term content and visibility, but adding/deleting/renaming slugs requires administrator review. Taxonomy assignment is many-to-many. Term visibility controls Services presentation, not automatic rewriting of project associations.
+3. `service` non-hierarchical taxonomy attached to projects: eight controlled terms with editable term metadata. Its admin label is Services; it supplies the entire Services Explorer, not just tags. No duplicate Service CPT. Public term archives are disabled; public entry point remains `/services/#<slug>`. Staff can edit term content and visibility, but adding/deleting/renaming slugs requires administrator review. Taxonomy assignment is many-to-many. Term visibility controls Services presentation, not automatic rewriting of project associations.
 4. Controlled Home, Services, About and Contact Pages; Work is the Project archive, not a duplicate Page competing for `/work/`.
 5. Site Settings options for reusable contact/company/footer data. Branding tokens remain code. Inquiry storage, if chosen later, is a private CPT, not a public content type.
 
@@ -141,7 +141,7 @@ Optional private `sm_inquiry` CPT storage is a later decision; do not build CRM,
 | Missing routes | Theme `404.php` | HTTP 404; no blanket redirect to Home |
 | Restricted/fixture project routes | No public equivalent | Do not create detail routes. Legacy withdrawn routes remain 404 (or agreed 410); no fabricated case study. |
 
-Retain `/work/?service=<service-slug>`, detail `?from=<service-slug>` and `/contact/?service=<slug>&project=<project-slug>`. Do not register `service` as a WordPress taxonomy query var: a collision could turn Work into a term archive. Use `sm_service` internally with no competing public rewrite/query route. Service slugs remain unchanged. For multi-service projects, keep project context without auto-selecting one service. Next Project wraps only eligible real projects. Unknown service/project context must safely clear; zero-result states stay honest. No service single pages, industry/media taxonomy or three capability-pillar taxonomy is needed.
+Retain `/work/?service=<service-slug>`, detail `?from=<service-slug>` and `/contact/?service=<slug>&project=<project-slug>`. Do not register `service` as a WordPress taxonomy query var: a collision could turn Work into a term archive. Use `service` internally with no competing public rewrite/query route. Service slugs remain unchanged. For multi-service projects, keep project context without auto-selecting one service. Next Project wraps only eligible real projects. Unknown service/project context must safely clear; zero-result states stay honest. No service single pages, industry/media taxonomy or three capability-pillar taxonomy is needed.
 
 Plan a server-rendered valid Work filter on direct URL requests, with the current buttons/history behavior as enhancement; confirm parity of no-JS handling and accessible statuses in QA. Optional future pagination must not silently truncate the current client-side filter dataset; postpone until a genuine collection-size requirement. No redirects or WordPress routes are implemented in this phase.
 
@@ -212,3 +212,19 @@ Phase 2 verification completed after manual activation. PHP lint, linked-asset e
 Native font readiness checks passed for MADE TOMMY 700/500 and FUTURA PT 400/500; all 14 declared font binaries return HTTP 200 and shared global CSS is byte-identical to the approved source. ES module tags load correctly; Home reveal delays remain 0.1/0.5/0.65 seconds. Mobile menu open/Escape close, actual navigation to Services and marquee pause were exercised. Existing motion=reduce review mode produced immediate Hero and 18 static logos with no animation/overflow; the unchanged CSS also preserves prefers-reduced-motion. Browser Home/404 logs had no warnings/errors. Anonymous HTTP checks confirmed Home and all four shell routes 200; shell output has correct current-page navigation and shared footer. A missing route produces the branded 404 and actual HTTP 404. Screenshots were saved locally at /tmp/showmakers-wordpress-home-1440.png and /tmp/showmakers-wordpress-home-390.png, not committed.
 
 Known intended differences: native WP document titles use the local site name; logged-in users retain the WP toolbar; inner routes are explicitly incomplete page shells, not migrated full pages. Service anchors on Home target the future Explorer; individual service panels/anchor destinations are deferred to Phase 3. Current shell Contact has no form/handler; the original static Contact remains unchanged and inactive. Local theme is not a standalone distributable until asset symlinks are materialized by the future packaging step. Existing static files/main/static-approved-v1 remain unchanged.
+
+## Phase 3 completion — 2026-10-05
+
+The user replaced the Pro prerequisite with official free ACF. The content plugin is implemented and active on LocalWP (`showmakers-local.local`, WordPress 7.1.2, PHP 8.2.29, ACF 6.8.10). The repository plugin directory is symlinked into the local installation; it is not an independently packaged production install.
+
+Actual structures: `project` / `client` CPTs and `service` taxonomy. Four Local JSON groups are stored inside the plugin. See the authoritative [implemented model](CMS-DATA-MODEL.md#phase-3-implemented-specification--free-acf-authoritative) for names, relationships, ordering, permissions, staff workflow, media guards and Pro upgrade plan. Earlier Pro-oriented planning tables are future intent, not active dependencies.
+
+Free adaptations: five optional project images; newline capability/platform/format lists; one Service image; no ACF Options Page. Existing global data stays in its current source. No actual company content has migrated. Exactly eight service terms were seeded as required structural vocabulary, without descriptions or portfolio media.
+
+The theme only adds Project thumbnail support and a temporary `archive-project.php` forwarding to the existing Phase 2 Work shell. This prevents CPT registration from replacing `/work/` with the generic fallback. No brand/design/static content was changed. The old empty Work Page can be retired during Phase 4 after archive integration is verified; it is not removed here.
+
+Validation: PHP syntax checks; free-only JSON types; all four JSON groups loaded; Project→one Client / multiple Services saved; thumbnail/hero/five image slots and Client logo IDs saved; Project/attachment pending/approved/restricted checks; numeric ordering; Service newline fields and image saved/restored; clean `/work/{slug}/` sample permalink and `/work/` archive configuration. Temporary draft records and temporary attachment were removed after tests; no fake public content remains. Frontend and Admin inspection are recorded in the final Phase 3 report.
+
+No new staff role, Contact backend, SEO plugin, Inquiry CPT, business import, production deployment, DNS, Vercel, Supabase or environment variables. Main/static-approved-v1 stay unchanged. Commit and push only `wordpress-cms` using `ShowMakers: add WordPress content model`.
+
+Next recommended Phase 4: migrate verified assets/content as drafts using stable source IDs; first validate Ravo Film and one Client against the approved static presentation; integrate archive/single and existing page components without redesign; preserve placeholder honesty, restricted-media exclusion and current filter/navigation behavior. Resolve richer service media/platform mapping without losing source content. Review frontend equivalence before bulk publishing. Do not begin without approval.
