@@ -39,17 +39,21 @@ function showmakers_seo_metadata( $entity ) {
     }
     $image = absint( get_post_meta( $id, 'seo_social_image', true ) );
     if ( ! showmakers_seo_image( $image ) && $entity['kind'] === 'project' ) {
-        if ( showmakers_project_media_type( $id ) === 'video' ) {
-            $image = showmakers_video_poster( $id );
-            if ( ! showmakers_seo_image( $image ) ) $image = absint( get_post_meta( $id, 'listing_thumbnail', true ) );
-        } else $image = absint( get_post_meta( $id, 'hero_media', true ) );
+        $candidates = array();
+        if ( showmakers_project_media_type( $id ) === 'video' ) $candidates[] = showmakers_video_poster( $id );
+        $candidates[] = absint( get_post_meta( $id, 'listing_thumbnail', true ) );
+        $candidates[] = absint( get_post_meta( $id, 'hero_media', true ) );
+        $image = 0;
+        foreach ( $candidates as $candidate ) {
+            if ( showmakers_seo_image( $candidate ) ) { $image = $candidate; break; }
+        }
     }
     $media = showmakers_seo_image( $image );
     if ( ! $media ) $media = array( 'url' => get_theme_file_uri( '/assets/images/showmakers-logo.webp' ), 'width' => 838, 'height' => 342, 'alt' => 'ShowMakers' );
     return array( 'title' => $title, 'description' => $description, 'image' => $media );
 }
 function showmakers_seo_image( $id ) {
-    if ( ! showmakers_approved_media( $id ) || ! is_file( (string) get_attached_file( $id ) ) ) return null;
+    if ( ! wp_attachment_is_image( $id ) || ! showmakers_approved_media( $id ) || ! is_file( (string) get_attached_file( $id ) ) ) return null;
     $image = wp_get_attachment_image_src( $id, 'full' );
     if ( ! $image ) return null;
     return array( 'url' => $image[0], 'width' => $image[1], 'height' => $image[2], 'alt' => showmakers_seo_text( get_post_meta( $id, '_wp_attachment_image_alt', true ) ) );
