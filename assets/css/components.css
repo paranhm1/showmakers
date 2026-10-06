@@ -114,3 +114,5 @@ html:not(.js) .menu-toggle { display: none !important; }
 @media(prefers-reduced-motion:reduce){.ui-arrow{transition:none!important;transform:none!important}.cta-reveal .ui-arrow{opacity:1}}
 .reduce-motion .ui-arrow{transition:none!important;transform:none!important}
 .reduce-motion .cta-reveal .ui-arrow{opacity:1}
+
+a.privacy-notice{text-decoration:underline;text-underline-offset:4px}

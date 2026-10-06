@@ -1,0 +1,195 @@
+{
+  "key": "group_showmakers_services",
+  "title": "Service Details",
+  "fields": [
+    {
+      "key": "field_showmakers_s_service_intro",
+      "name": "service_intro",
+      "label": "Service Intro",
+      "type": "textarea",
+      "instructions": "Short introductory sentence shown above the description.",
+      "required": 0
+    },
+    {
+      "key": "field_showmakers_s_service_description",
+      "name": "service_description",
+      "label": "Service Description",
+      "type": "textarea",
+      "instructions": "Approved service explanation. Plain text only.",
+      "required": 0
+    },
+    {
+      "key": "field_showmakers_s_capabilities",
+      "name": "capabilities",
+      "label": "Capabilities",
+      "type": "textarea",
+      "instructions": "Enter one capability per line.",
+      "required": 0
+    },
+    {
+      "key": "field_showmakers_s_platforms",
+      "name": "platforms",
+      "label": "Platforms",
+      "type": "textarea",
+      "instructions": "Enter one platform per line. Platform descriptions below are optional.",
+      "required": 0
+    },
+    {
+      "key": "field_showmakers_s_platform_facebook_description",
+      "name": "platform_facebook_description",
+      "label": "Facebook Description",
+      "type": "textarea",
+      "instructions": "Optional approved explanation for Facebook. Shown only when this platform is listed above.",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_showmakers_s_platforms",
+            "operator": "!=empty"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "field_showmakers_s_platform_instagram_description",
+      "name": "platform_instagram_description",
+      "label": "Instagram Description",
+      "type": "textarea",
+      "instructions": "Optional approved explanation for Instagram. Shown only when this platform is listed above.",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_showmakers_s_platforms",
+            "operator": "!=empty"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "field_showmakers_s_platform_xiaohongshu_description",
+      "name": "platform_xiaohongshu_description",
+      "label": "XiaoHongShu Description",
+      "type": "textarea",
+      "instructions": "Optional approved explanation for XiaoHongShu. Shown only when this platform is listed above.",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_showmakers_s_platforms",
+            "operator": "!=empty"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "field_showmakers_s_platform_tiktok_description",
+      "name": "platform_tiktok_description",
+      "label": "TikTok Description",
+      "type": "textarea",
+      "instructions": "Optional approved explanation for TikTok. Shown only when this platform is listed above.",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_showmakers_s_platforms",
+            "operator": "!=empty"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "field_showmakers_s_formats",
+      "name": "formats",
+      "label": "Formats",
+      "type": "textarea",
+      "instructions": "Optional; one format per line.",
+      "required": 0
+    },
+    {
+      "key": "field_showmakers_s_service_media",
+      "name": "service_media",
+      "label": "Service Image",
+      "type": "image",
+      "instructions": "Choose the first approved service image. Leave empty when no suitable image is available.",
+      "required": 0,
+      "return_format": "id",
+      "preview_size": "thumbnail",
+      "library": "all",
+      "mime_types": "jpg,jpeg,png,webp,avif"
+    },
+    {
+      "key": "field_showmakers_s_service_media_caption",
+      "name": "service_media_caption",
+      "label": "Service Image Caption",
+      "type": "textarea",
+      "instructions": "Optional caption for this service only; does not change other uses of the image.",
+      "required": 0
+    },
+    {
+      "key": "field_showmakers_s_service_media_2",
+      "name": "service_media_2",
+      "label": "Second Service Image",
+      "type": "image",
+      "instructions": "Optional second approved image, displayed after Service Image.",
+      "required": 0,
+      "return_format": "id",
+      "preview_size": "thumbnail",
+      "library": "all",
+      "mime_types": "jpg,jpeg,png,webp,avif"
+    },
+    {
+      "key": "field_showmakers_s_service_media_2_caption",
+      "name": "service_media_2_caption",
+      "label": "Second Image Caption",
+      "type": "textarea",
+      "instructions": "Optional caption for the second service image.",
+      "required": 0
+    },
+    {
+      "key": "field_showmakers_s_sort_order",
+      "name": "sort_order",
+      "label": "Sort Order",
+      "type": "number",
+      "instructions": "Lower numbers appear first. This is the only ordering value.",
+      "required": 0,
+      "default_value": 0,
+      "min": 0,
+      "step": 1
+    },
+    {
+      "key": "field_showmakers_s_visible",
+      "name": "visible",
+      "label": "Visible",
+      "type": "true_false",
+      "instructions": "Show this service in the website indexes and selector. Turning this off keeps existing project assignments.",
+      "required": 0,
+      "ui": 1,
+      "default_value": 1
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "taxonomy",
+        "operator": "==",
+        "value": "service"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "author"
+  ],
+  "active": true,
+  "show_in_rest": 0,
+  "modified": 1791210000
+}

@@ -1,0 +1,52 @@
+{
+  "key": "group_showmakers_media",
+  "title": "Media Permission",
+  "fields": [
+    {
+      "key": "field_showmakers_m_media_status",
+      "name": "media_status",
+      "label": "Media Status",
+      "type": "select",
+      "instructions": "Only Approved media may be displayed publicly. Restricted files must stay outside public uploads.",
+      "required": 0,
+      "choices": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "restricted": "Restricted"
+      },
+      "default_value": "pending"
+    },
+    {
+      "key": "field_showmakers_m_internal_media_note",
+      "name": "internal_media_note",
+      "label": "Internal Media Note",
+      "type": "textarea",
+      "instructions": "Internal only. Raw uploaded files can be public; do not upload restricted or confidential originals.",
+      "required": 0
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "attachment",
+        "operator": "==",
+        "value": "all"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "author"
+  ],
+  "active": true,
+  "show_in_rest": 0,
+  "modified": 1791192837
+}

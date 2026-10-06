@@ -1,0 +1,181 @@
+{
+  "key": "group_showmakers_about",
+  "title": "About Page Content",
+  "fields": [
+    {
+      "key": "field_showmakers_about_hero_heading",
+      "name": "about_hero_heading",
+      "label": "Main Heading",
+      "type": "text",
+      "instructions": "Main heading shown at the top of the About page.",
+      "required": 1
+    },
+    {
+      "key": "field_showmakers_about_hero_intro",
+      "name": "about_hero_intro",
+      "label": "Introduction",
+      "type": "textarea",
+      "instructions": "Short introduction below the main heading.",
+      "required": 1,
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_showmakers_about_philosophy_heading",
+      "name": "about_philosophy_heading",
+      "label": "Brand Philosophy Heading",
+      "type": "text",
+      "instructions": "Heading for the brand philosophy section.",
+      "required": 1
+    },
+    {
+      "key": "field_showmakers_about_philosophy_body",
+      "name": "about_philosophy_body",
+      "label": "Brand Philosophy Copy",
+      "type": "textarea",
+      "instructions": "Approved company copy for this section. Plain text only.",
+      "required": 1,
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_showmakers_about_approach_heading",
+      "name": "about_approach_heading",
+      "label": "People and Execution Heading",
+      "type": "text",
+      "instructions": "Heading for the people and execution section.",
+      "required": 1
+    },
+    {
+      "key": "field_showmakers_about_approach_body",
+      "name": "about_approach_body",
+      "label": "People and Execution Copy",
+      "type": "textarea",
+      "instructions": "Approved company copy for this section. Plain text only.",
+      "required": 1,
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_showmakers_about_approach_image",
+      "name": "about_approach_image",
+      "label": "Production Image",
+      "type": "image",
+      "instructions": "Choose an approved production image from the Media Library. Pending or restricted images are not shown.",
+      "required": 0,
+      "return_format": "id",
+      "preview_size": "medium",
+      "library": "all",
+      "mime_types": "jpg,jpeg,png,webp,avif"
+    },
+    {
+      "key": "field_showmakers_about_approach_image_alt",
+      "name": "about_approach_image_alt",
+      "label": "Image Description",
+      "type": "text",
+      "instructions": "Optional description for readers who cannot see the image. Leave blank to use its Media Library description.",
+      "required": 0
+    },
+    {
+      "key": "field_showmakers_about_step_1_heading",
+      "name": "about_step_1_heading",
+      "label": "Step 1 Heading",
+      "type": "text",
+      "instructions": "Content for working-approach step 1. The number and layout are managed automatically.",
+      "required": 1
+    },
+    {
+      "key": "field_showmakers_about_step_1_body",
+      "name": "about_step_1_body",
+      "label": "Step 1 Copy",
+      "type": "textarea",
+      "instructions": "Content for working-approach step 1. The number and layout are managed automatically.",
+      "required": 1,
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_showmakers_about_step_2_heading",
+      "name": "about_step_2_heading",
+      "label": "Step 2 Heading",
+      "type": "text",
+      "instructions": "Content for working-approach step 2. The number and layout are managed automatically.",
+      "required": 1
+    },
+    {
+      "key": "field_showmakers_about_step_2_body",
+      "name": "about_step_2_body",
+      "label": "Step 2 Copy",
+      "type": "textarea",
+      "instructions": "Content for working-approach step 2. The number and layout are managed automatically.",
+      "required": 1,
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_showmakers_about_step_3_heading",
+      "name": "about_step_3_heading",
+      "label": "Step 3 Heading",
+      "type": "text",
+      "instructions": "Content for working-approach step 3. The number and layout are managed automatically.",
+      "required": 1
+    },
+    {
+      "key": "field_showmakers_about_step_3_body",
+      "name": "about_step_3_body",
+      "label": "Step 3 Copy",
+      "type": "textarea",
+      "instructions": "Content for working-approach step 3. The number and layout are managed automatically.",
+      "required": 1,
+      "rows": 3,
+      "new_lines": ""
+    },
+    {
+      "key": "field_showmakers_about_step_4_heading",
+      "name": "about_step_4_heading",
+      "label": "Step 4 Heading",
+      "type": "text",
+      "instructions": "Content for working-approach step 4. The number and layout are managed automatically.",
+      "required": 1
+    },
+    {
+      "key": "field_showmakers_about_step_4_body",
+      "name": "about_step_4_body",
+      "label": "Step 4 Copy",
+      "type": "textarea",
+      "instructions": "Content for working-approach step 4. The number and layout are managed automatically.",
+      "required": 1,
+      "rows": 3,
+      "new_lines": ""
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "page"
+      },
+      {
+        "param": "page",
+        "operator": "==",
+        "value": "9"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "author"
+  ],
+  "active": true,
+  "show_in_rest": 0,
+  "modified": 1791230000
+}

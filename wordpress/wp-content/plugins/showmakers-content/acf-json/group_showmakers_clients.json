@@ -1,0 +1,106 @@
+{
+  "key": "group_showmakers_clients",
+  "title": "Client Details",
+  "fields": [
+    {
+      "key": "field_showmakers_c_client_logo",
+      "name": "client_logo",
+      "label": "Client Logo",
+      "type": "image",
+      "instructions": "Upload the approved client logo. Keep its original artwork and colors.",
+      "required": 0,
+      "return_format": "id",
+      "preview_size": "thumbnail",
+      "library": "all",
+      "mime_types": "jpg,jpeg,png,webp,avif"
+    },
+    {
+      "key": "field_showmakers_c_logo_status",
+      "name": "logo_status",
+      "label": "Logo Approval Status",
+      "type": "select",
+      "instructions": "Only Approved logos can appear publicly. This does not approve project images.",
+      "required": 0,
+      "choices": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "restricted": "Restricted"
+      },
+      "default_value": "pending"
+    },
+    {
+      "key": "field_showmakers_c_show_in_marquee",
+      "name": "show_in_marquee",
+      "label": "Show in Selected Clients",
+      "type": "true_false",
+      "instructions": "Enable this client in the Home Selected Clients marquee. No public project is required.",
+      "required": 0,
+      "ui": 1,
+      "default_value": 0
+    },
+    {
+      "key": "field_showmakers_c_marquee_sort_order",
+      "name": "marquee_sort_order",
+      "label": "Marquee Sort Order",
+      "type": "number",
+      "instructions": "Lower numbers appear first.",
+      "required": 0,
+      "default_value": 0,
+      "min": 0,
+      "step": 1
+    },
+    {
+      "key": "field_showmakers_c_website_url",
+      "name": "website_url",
+      "label": "Website URL",
+      "type": "url",
+      "instructions": "Optional. Does not automatically make a logo link.",
+      "required": 0
+    },
+    {
+      "key": "field_showmakers_c_visible",
+      "name": "visible",
+      "label": "Legacy Visibility",
+      "type": "true_false",
+      "instructions": "Previous setting retained for compatibility. Does not control Selected Clients.",
+      "required": 0,
+      "ui": 1,
+      "default_value": 0
+    },
+    {
+      "key": "field_showmakers_c_sort_order",
+      "name": "sort_order",
+      "label": "Legacy Sort Order",
+      "type": "number",
+      "instructions": "Previous setting retained for compatibility. Does not control marquee order.",
+      "required": 0,
+      "default_value": 0,
+      "min": 0,
+      "step": 1
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "client"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "author"
+  ],
+  "active": true,
+  "show_in_rest": 0,
+  "modified": 1791220000
+}

@@ -1,0 +1,327 @@
+{
+  "key": "group_showmakers_projects",
+  "title": "Project Details",
+  "fields": [
+    {
+      "key": "field_showmakers_p_info",
+      "name": "info",
+      "label": "Project Information",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "placement": "top"
+    },
+    {
+      "key": "field_showmakers_p_client",
+      "name": "client",
+      "label": "Client",
+      "type": "post_object",
+      "instructions": "Select one documented client, or leave empty. Logo permission does not approve project photography.",
+      "required": 0,
+      "post_type": [
+        "client"
+      ],
+      "return_format": "id",
+      "multiple": 0,
+      "allow_null": 1
+    },
+    {
+      "key": "field_showmakers_p_client_name",
+      "name": "client_name",
+      "label": "Confirmed Client Name (if no record)",
+      "type": "text",
+      "instructions": "Optional verified name only; ignored when a Client record is selected.",
+      "required": 0
+    },
+    {
+      "key": "field_showmakers_p_short_summary",
+      "name": "short_summary",
+      "label": "Short Summary",
+      "type": "textarea",
+      "instructions": "Use verified facts. Do not invent dates, results or scope.",
+      "required": 0,
+      "new_lines": ""
+    },
+    {
+      "key": "field_showmakers_p_project_year",
+      "name": "project_year",
+      "label": "Verified Project Year",
+      "type": "number",
+      "instructions": "Leave empty when unknown.",
+      "required": 0,
+      "min": 1900,
+      "max": 2200,
+      "step": 1
+    },
+    {
+      "key": "field_showmakers_p_sort_order",
+      "name": "sort_order",
+      "label": "Sort Order",
+      "type": "number",
+      "instructions": "Lower numbers appear first. This is the only ordering value.",
+      "required": 0,
+      "default_value": 0,
+      "min": 0,
+      "step": 1
+    },
+    {
+      "key": "field_showmakers_p_relationships",
+      "name": "relationships",
+      "label": "Relationships",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "placement": "top"
+    },
+    {
+      "key": "field_showmakers_p_services",
+      "name": "services",
+      "label": "Services",
+      "type": "taxonomy",
+      "instructions": "Select all relevant individual services; these taxonomy assignments are the source of truth.",
+      "required": 0,
+      "taxonomy": "service",
+      "field_type": "multi_select",
+      "return_format": "id",
+      "save_terms": 1,
+      "load_terms": 1,
+      "add_term": 0,
+      "allow_null": 1
+    },
+    {
+      "key": "field_showmakers_p_media",
+      "name": "media",
+      "label": "Media",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "placement": "top"
+    },
+    {
+      "key": "field_showmakers_p_listing_thumbnail",
+      "name": "listing_thumbnail",
+      "label": "Listing Thumbnail",
+      "type": "image",
+      "instructions": "Required to publish a Video Project. Used on the Work portfolio grid and as the video poster when no separate approved Video Poster Image is selected. Recommended landscape crop.",
+      "required": 0,
+      "return_format": "id",
+      "preview_size": "thumbnail",
+      "library": "all",
+      "mime_types": "jpg,jpeg,png,webp,avif"
+    },
+    {
+      "key": "field_showmakers_p_listing_fit",
+      "name": "listing_fit",
+      "label": "Listing Image Fit",
+      "type": "select",
+      "instructions": "Contain preserves full website screenshots.",
+      "required": 0,
+      "choices": {
+        "cover": "Cover",
+        "contain": "Contain"
+      },
+      "default_value": "cover"
+    },
+    {
+      "key": "field_showmakers_p_project_media_type",
+      "name": "project_media_type",
+      "label": "Project Media Type",
+      "type": "select",
+      "instructions": "Choose whether this Project uses an image or short video as its main media.",
+      "required": 0,
+      "choices": {
+        "image": "Image",
+        "video": "Video"
+      },
+      "default_value": "image",
+      "allow_null": 0
+    },
+    {
+      "key": "field_showmakers_p_project_video",
+      "name": "project_video",
+      "label": "Project Video",
+      "type": "file",
+      "instructions": "Upload a web-ready MP4: H.264, 1080p or smaller, 10 seconds or less. Aim below 20–30 MB; your server upload limit still applies. Approve the video in Media Library before publishing. Essential speech needs captions; this player is intended for visual clips without essential dialogue.",
+      "required": 0,
+      "return_format": "id",
+      "library": "all",
+      "mime_types": "mp4",
+      "conditional_logic": [
+        [
+          {
+            "field": "field_showmakers_p_project_media_type",
+            "operator": "==",
+            "value": "video"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "field_showmakers_p_project_video_poster",
+      "name": "project_video_poster",
+      "label": "Video Poster Image",
+      "type": "image",
+      "instructions": "Optional. Choose approved artwork only if you want a different image before the video starts or when motion is reduced. Otherwise the approved Listing Thumbnail is used; an approved Hero Image is the next fallback.",
+      "required": 0,
+      "return_format": "id",
+      "preview_size": "thumbnail",
+      "library": "all",
+      "mime_types": "jpg,jpeg,png,webp,avif",
+      "conditional_logic": [
+        [
+          {
+            "field": "field_showmakers_p_project_media_type",
+            "operator": "==",
+            "value": "video"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "field_showmakers_p_hero_media",
+      "name": "hero_media",
+      "label": "Hero Media",
+      "type": "image",
+      "instructions": "Main project image; native proportions are preserved.",
+      "required": 0,
+      "return_format": "id",
+      "preview_size": "thumbnail",
+      "library": "all",
+      "mime_types": "jpg,jpeg,png,webp,avif"
+    },
+    {
+      "key": "field_showmakers_p_project_image_1",
+      "name": "project_image_1",
+      "label": "Additional Image 1",
+      "type": "image",
+      "instructions": "Optional. Images display in numbered order; leave unused slots empty.",
+      "required": 0,
+      "return_format": "id",
+      "preview_size": "thumbnail",
+      "library": "all",
+      "mime_types": "jpg,jpeg,png,webp,avif"
+    },
+    {
+      "key": "field_showmakers_p_project_image_2",
+      "name": "project_image_2",
+      "label": "Additional Image 2",
+      "type": "image",
+      "instructions": "Optional. Images display in numbered order; leave unused slots empty.",
+      "required": 0,
+      "return_format": "id",
+      "preview_size": "thumbnail",
+      "library": "all",
+      "mime_types": "jpg,jpeg,png,webp,avif"
+    },
+    {
+      "key": "field_showmakers_p_project_image_3",
+      "name": "project_image_3",
+      "label": "Additional Image 3",
+      "type": "image",
+      "instructions": "Optional. Images display in numbered order; leave unused slots empty.",
+      "required": 0,
+      "return_format": "id",
+      "preview_size": "thumbnail",
+      "library": "all",
+      "mime_types": "jpg,jpeg,png,webp,avif"
+    },
+    {
+      "key": "field_showmakers_p_project_image_4",
+      "name": "project_image_4",
+      "label": "Additional Image 4",
+      "type": "image",
+      "instructions": "Optional. Images display in numbered order; leave unused slots empty.",
+      "required": 0,
+      "return_format": "id",
+      "preview_size": "thumbnail",
+      "library": "all",
+      "mime_types": "jpg,jpeg,png,webp,avif"
+    },
+    {
+      "key": "field_showmakers_p_project_image_5",
+      "name": "project_image_5",
+      "label": "Additional Image 5",
+      "type": "image",
+      "instructions": "Optional. Images display in numbered order; leave unused slots empty.",
+      "required": 0,
+      "return_format": "id",
+      "preview_size": "thumbnail",
+      "library": "all",
+      "mime_types": "jpg,jpeg,png,webp,avif"
+    },
+    {
+      "key": "field_showmakers_p_display",
+      "name": "display",
+      "label": "Display",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "placement": "top"
+    },
+    {
+      "key": "field_showmakers_p_featured",
+      "name": "featured",
+      "label": "Featured",
+      "type": "true_false",
+      "instructions": "Publication uses the normal WordPress Draft / Published status.",
+      "required": 0,
+      "ui": 1,
+      "default_value": 0
+    },
+    {
+      "key": "field_showmakers_p_governance",
+      "name": "governance",
+      "label": "Media Governance",
+      "type": "tab",
+      "instructions": "",
+      "required": 0,
+      "placement": "top"
+    },
+    {
+      "key": "field_showmakers_p_media_status",
+      "name": "media_status",
+      "label": "Media Status",
+      "type": "select",
+      "instructions": "Only Approved media may be displayed publicly. Restricted files must stay outside public uploads.",
+      "required": 0,
+      "choices": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "restricted": "Restricted"
+      },
+      "default_value": "pending"
+    },
+    {
+      "key": "field_showmakers_p_internal_media_note",
+      "name": "internal_media_note",
+      "label": "Internal Media Note",
+      "type": "textarea",
+      "instructions": "Internal only. Never displayed on the website.",
+      "required": 0
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "project"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "the_content",
+    "excerpt",
+    "discussion",
+    "comments",
+    "author"
+  ],
+  "active": true,
+  "show_in_rest": 0,
+  "modified": 1791239000
+}
