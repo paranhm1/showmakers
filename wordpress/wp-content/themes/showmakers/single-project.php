@@ -36,16 +36,16 @@ get_header();
 $video_mode = showmakers_project_media_type( $id ) === 'video';
 $video = $video_mode ? showmakers_project_video( $id ) : null;
 $poster = $video_mode ? showmakers_video_poster( $id ) : 0;
-if ( $video && $poster ) :
-    $poster_src = wp_get_attachment_image_src( $poster, 'full' );
-    $width = $video['width'] ?: $poster_src[1]; $height = $video['height'] ?: $poster_src[2];
+if ( $video ) :
+    $poster_src = $poster ? wp_get_attachment_image_src( $poster, 'full' ) : false;
+    $width = $video['width'] ?: ( $poster_src[1] ?? 16 ); $height = $video['height'] ?: ( $poster_src[2] ?? 9 );
 ?>
 <figure class="detail-hero detail-video" data-project-video style="--video-ratio:<?php echo absint( $width ); ?>/<?php echo absint( $height ); ?><?php if ( $height > $width ) echo ';max-width:min(100%,' . absint( min( $width, 540 ) ) . 'px)'; ?>">
-<video id="project-video" width="<?php echo absint( $width ); ?>" height="<?php echo absint( $height ); ?>" poster="<?php echo esc_url( $poster_src[0] ); ?>" muted playsinline controls preload="metadata" aria-label="<?php echo esc_attr( $project->post_title . ' project video' ); ?>">
+<video id="project-video" width="<?php echo absint( $width ); ?>" height="<?php echo absint( $height ); ?>"<?php if ( $poster_src ) : ?> poster="<?php echo esc_url( $poster_src[0] ); ?>"<?php endif; ?> muted playsinline controls preload="metadata" aria-label="<?php echo esc_attr( $project->post_title . ' project video' ); ?>">
 <source src="<?php echo esc_url( $video['url'] ); ?>" type="video/mp4">
 Your browser does not support this video.
 </video>
-<div class="video-fallback" hidden><?php echo showmakers_cms_image( $poster, false ); ?></div>
+<?php if ( $poster_src ) : ?><div class="video-fallback" hidden><?php echo showmakers_cms_image( $poster, false ); ?></div><?php endif; ?>
 <button class="video-toggle" type="button" aria-controls="project-video" hidden>Play video</button>
 <span class="video-status screen-reader-text" role="status"></span>
 </figure>

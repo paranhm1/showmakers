@@ -22,8 +22,8 @@ if(frame){
  video.addEventListener('pause',sync);
  video.addEventListener('ended',sync);
  video.addEventListener('error',()=>{
-  video.hidden=true; fallback.hidden=false; button.hidden=true;
-  status.textContent='Video unavailable. Poster image shown.';
+  video.hidden=true; if(fallback)fallback.hidden=false; button.hidden=true;
+  status.textContent=fallback?'Video unavailable. Poster image shown.':'Video unavailable.';
  });
  const play=()=>video.play().then(()=>{status.textContent='';sync();}).catch(()=>{
   sync();status.textContent='Playback did not start. Use Play video to try again.';

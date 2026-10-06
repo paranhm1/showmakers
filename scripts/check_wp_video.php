@@ -10,11 +10,11 @@ foreach([18,21,26,29,32] as $id)sm_video_assert(showmakers_project_media_type($i
 $fixture=isset($args[0])?json_decode(file_get_contents($args[0]),true):null;
 if(!$fixture){WP_CLI::success('Existing image records/ACF configuration verified; pass QA fixture JSON for video cases.');return;}
 $id=$fixture['project'];sm_video_assert(get_the_title($id)==='LOCAL VIDEO QA ONLY','Only synthetic local Project can be changed by this test');
-$base=['project_media_type'=>'video','project_video'=>$fixture['videos']['horizontal'],'project_video_poster'=>$fixture['poster']];
+$base=['project_media_type'=>'video','listing_thumbnail'=>$fixture['listing']??$fixture['poster'],'project_video'=>$fixture['videos']['horizontal'],'project_video_poster'=>$fixture['poster']];
 sm_video_assert(!showmakers_video_errors($base,true)&&showmakers_project_video($id),'Approved valid short video and poster');
 $long=$base;$long['project_video']=$fixture['videos']['long'];sm_video_assert(showmakers_video_file($long['project_video'])['duration']>10&&showmakers_video_errors($long)['project_video']==='Project videos should be 10 seconds or shorter.','Actual 10.4s MP4 rejected (no rounded-length loophole)');
 $wrong=$base;$wrong['project_video']=$fixture['poster'];sm_video_assert(isset(showmakers_video_errors($wrong)['project_video']),'Image/document cannot serve as MP4');
-$empty=['project_media_type'=>'video'];sm_video_assert(!showmakers_video_errors($empty,false)&&count(showmakers_video_errors($empty,true))===2,'Incomplete Video Draft allowed, publication requires video/poster');
+$empty=['project_media_type'=>'video'];sm_video_assert(!showmakers_video_errors($empty,false)&&count(showmakers_video_errors($empty,true))===2,'Incomplete Video Draft allowed, publication requires video/listing thumbnail');
 $original=get_post_meta($id);try{
  foreach(['pending','restricted'] as $status){update_post_meta($fixture['videos']['horizontal'],'media_status',$status);sm_video_assert(!showmakers_project_video($id),'Unapproved attachment blocked: '.$status);}
  update_post_meta($fixture['videos']['horizontal'],'media_status','approved');

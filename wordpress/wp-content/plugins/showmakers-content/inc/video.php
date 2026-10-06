@@ -36,8 +36,11 @@ function showmakers_project_video( $id ) {
     return $video && ( $video['duration'] === null || $video['duration'] <= 10 ) ? $video : null;
 }
 function showmakers_video_poster( $id ) {
-    $poster = absint( get_post_meta( $id, 'project_video_poster', true ) );
-    return showmakers_approved_media( $poster ) && wp_attachment_is_image( $poster ) && is_file( (string) get_attached_file( $poster ) ) ? $poster : 0;
+    foreach ( array( 'project_video_poster', 'listing_thumbnail', 'hero_media' ) as $field ) {
+        $image = absint( get_post_meta( $id, $field, true ) );
+        if ( showmakers_approved_media( $image ) && wp_attachment_is_image( $image ) && is_file( (string) get_attached_file( $image ) ) ) return $image;
+    }
+    return 0;
 }
 /** Pure validation shared by ACF and publication guard. Drafts may omit assets. */
 function showmakers_video_errors( $values, $publishing = false ) {
@@ -48,15 +51,17 @@ function showmakers_video_errors( $values, $publishing = false ) {
         if ( ! $file ) $errors['project_video'] = 'Choose a valid uploaded MP4 video.';
         elseif ( $file['duration'] !== null && $file['duration'] > 10 ) $errors['project_video'] = 'Project videos should be 10 seconds or shorter.';
     } elseif ( $publishing ) $errors['project_video'] = 'Choose a Project Video before publishing. You can save a Draft first.';
+    $listing = absint( $values['listing_thumbnail'] ?? 0 );
+    if ( $publishing && ( ! $listing || ! wp_attachment_is_image( $listing ) || ! showmakers_approved_media( $listing ) || ! is_file( (string) get_attached_file( $listing ) ) ) ) $errors['listing_thumbnail'] = 'Choose an approved Listing Thumbnail before publishing a Video Project.';
     $poster = absint( $values['project_video_poster'] ?? 0 );
-    if ( $publishing && ( ! $poster || ! wp_attachment_is_image( $poster ) || ! showmakers_approved_media( $poster ) || ! is_file( (string) get_attached_file( $poster ) ) ) ) $errors['project_video_poster'] = 'Choose an approved Video Poster Image before publishing. You can save a Draft first.';
+    if ( $publishing && $poster && ( ! wp_attachment_is_image( $poster ) || ! showmakers_approved_media( $poster ) || ! is_file( (string) get_attached_file( $poster ) ) ) ) $errors['project_video_poster'] = 'Choose an approved Video Poster Image, or leave this optional field empty.';
     if ( $publishing && ! empty( $values['project_video'] ) && ! showmakers_approved_media( $values['project_video'] ) ) $errors['project_video'] = $errors['project_video'] ?? 'Approve this video in the Media Library before publishing.';
     return $errors;
 }
 function showmakers_video_editor_values( $id, $provided = array() ) {
     $values = array();
     $submitted = isset( $_POST['acf'] ) && is_array( $_POST['acf'] ) ? wp_unslash( $_POST['acf'] ) : array();
-    foreach ( array( 'project_media_type', 'project_video', 'project_video_poster' ) as $name ) {
+    foreach ( array( 'project_media_type', 'listing_thumbnail', 'project_video', 'project_video_poster' ) as $name ) {
         $key = 'field_showmakers_p_' . $name;
         $value = array_key_exists( $key, $submitted ) ? $submitted[$key] : ( $provided[$name] ?? get_post_meta( $id, $name, true ) );
         $values[$name] = is_scalar( $value ) ? ( $name === 'project_media_type' ? (string) $value : absint( $value ) ) : '';
